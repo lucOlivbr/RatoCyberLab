@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório de erros · Rato CyberLab</title>
+<style>
+  :root {
+    --bg: #080b14; --panel: #0e1626; --panel2: #121d33; --line: #1f3050;
+    --txt: #e4efff; --mut: #8fa6c8; --cyan: #19e6ff; --yel: #ffd23a; --red: #ff5a72; --mag: #ff7ae0; --grn: #50ff82;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--txt); font: 15px/1.5 system-ui, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 56px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: .04em; }
+  h1 span { color: var(--yel); }
+  h2 { margin: 0 0 12px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
+  .sub { color: var(--mut); font-size: 13px; }
+  button, input { font: inherit; }
+  button { background: var(--panel2); color: var(--txt); border: 1px solid var(--cyan); border-radius: 4px; padding: 8px 14px; cursor: pointer; }
+  button:hover { background: #17294a; border-color: var(--yel); }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--yel); outline-offset: 2px; }
+  input, select { background: #0a1120; color: var(--txt); border: 1px solid var(--line); border-radius: 4px; padding: 9px 10px; width: 100%; }
+  label { display: block; margin: 12px 0 4px; color: var(--mut); font-size: 13px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+  .login { max-width: 380px; margin: 56px auto; }
+  .login .erro { color: var(--red); min-height: 1.4em; margin: 10px 0 0; font-size: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .kpis { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 14px; }
+  .kpi b { display: block; font-size: 30px; line-height: 1.1; }
+  .kpi small { color: var(--mut); }
+  .cols { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 14px; }
+  .linha { display: grid; grid-template-columns: 150px 1fr 34px; align-items: center; gap: 8px; margin: 6px 0; font-size: 13px; }
+  .linha .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .barra { background: #0a1120; height: 12px; border-radius: 2px; overflow: hidden; }
+  .barra i { display: block; height: 100%; background: var(--cyan); }
+  .linha .n { text-align: right; font-variant-numeric: tabular-nums; }
+  .dias { display: flex; align-items: flex-end; gap: 6px; height: 110px; padding-top: 6px; }
+  .dias div { flex: 1; min-width: 18px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; font-size: 11px; color: var(--mut); }
+  .dias i { display: block; width: 100%; background: var(--yel); border-radius: 2px 2px 0 0; min-height: 2px; }
+  .dias em { font-style: normal; color: var(--txt); }
+  ul.top { margin: 0; padding: 0; list-style: none; font-size: 13px; }
+  ul.top li { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+  ul.top li b { min-width: 30px; color: var(--yel); }
+  .filtro { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .filtro select { width: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--mut); font-weight: 600; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 12px; font-weight: 600; color: #05080f; white-space: nowrap; }
+  .t-FORMULA_ERRADA { background: var(--yel); } .t-RECEITA_INVALIDA { background: var(--cyan); }
+  .t-DANO { background: var(--red); } .t-MORTE { background: var(--mag); }
+  .vazio { color: var(--mut); padding: 18px 0; text-align: center; }
+  .scroll { overflow-x: auto; }
+  [hidden] { display: none !important; }
+  @media (max-width: 560px) { .linha { grid-template-columns: 110px 1fr 28px; } }
+  @media print { body { background: #fff; color: #000; } .card { border-color: #999; background: #fff; } button, .filtro { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="telaLogin" class="login card" hidden>
+    <h1>Rato <span>CyberLab</span></h1>
+    <p class="sub">Entre com a mesma conta que você usa no jogo para ver o relatório dos seus erros.</p>
+    <form id="formLogin">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" autocomplete="current-password" required>
+      <p class="erro" id="erroLogin" role="alert"></p>
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <main id="telaRelatorio" hidden>
+    <header>
+      <div>
+        <h1>Relatório de erros · <span id="nomeJogador"></span></h1>
+        <div class="sub" id="infoJogador"></div>
+      </div>
+      <div><button id="btnAtualizar" type="button">Atualizar</button> <button id="btnSair" type="button">Sair</button></div>
+    </header>
+
+    <div class="grid kpis" id="kpis"></div>
+
+    <div class="grid cols">
+      <section class="card"><h2>Erros por tipo</h2><div id="porTipo"></div></section>
+      <section class="card"><h2>Erros por sala</h2><div id="porSala"></div></section>
+    </div>
+
+    <div class="grid cols">
+      <section class="card"><h2>Erros por dia</h2><div class="dias" id="porDia" role="img" aria-label="Erros por dia"></div></section>
+      <section class="card"><h2>Onde mais errou</h2><div id="maisComuns"></div></section>
+    </div>
+
+    <section class="card">
+      <h2>Quando errou</h2>
+      <div class="filtro">
+        <label for="fTipo" style="margin:0">Mostrar</label>
+        <select id="fTipo"><option value="">Todos os tipos</option></select>
+        <span class="sub" id="contagem"></span>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Data e hora</th><th>Tipo</th><th>Sala</th><th>Detalhe</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="vazio" id="semErros" hidden>Nenhum erro registrado ainda. Jogue algumas salas e volte aqui.</div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var TIPOS = {
+    FORMULA_ERRADA: { nome: "Fórmula errada", cor: "#ffd23a" },
+    RECEITA_INVALIDA: { nome: "Receita inválida", cor: "#19e6ff" },
+    DANO: { nome: "Dano sofrido", cor: "#ff5a72" },
+    MORTE: { nome: "Recapturado", cor: "#ff7ae0" }
+  };
+  var token = null, dados = null;
+  try { token = sessionStorage.getItem("rato_token"); } catch (e) {}
+
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function limpar(n) { while (n.firstChild) n.removeChild(n.firstChild); }
+  function nomeTipo(c) { return (TIPOS[c] || {}).nome || c; }
+
+  // o jogo abre esta página com #token=...; guardamos e limpamos o endereço
+  var m = /[#&]token=([\w\-]+)/.exec(location.hash);
+  if (m) {
+    token = m[1];
+    try { sessionStorage.setItem("rato_token", token); } catch (e) {}
+    history.replaceState(null, "", location.pathname);
+  }
+
+  function api(metodo, rota, corpo) {
+    var h = { "Content-Type": "application/json" };
+    if (token) h.Authorization = "Bearer " + token;
+    return fetch(rota, { method: metodo, headers: h, body: corpo ? JSON.stringify(corpo) : undefined })
+      .then(function (r) { return r.text().then(function (t) { return { status: r.status, json: t ? JSON.parse(t) : null }; }); });
+  }
+
+  function mostrarLogin(msg) {
+    $("telaRelatorio").hidden = true; $("telaLogin").hidden = false;
+    $("erroLogin").textContent = msg || "";
+  }
+
+  function carregar() {
+    if (!token) return mostrarLogin();
+    api("GET", "/api/relatorio?limite=500").then(function (r) {
+      if (r.status === 401) { token = null; try { sessionStorage.removeItem("rato_token"); } catch (e) {} return mostrarLogin(); }
+      if (r.status !== 200) return mostrarLogin((r.json && r.json.erro) || "Falha ao carregar.");
+      dados = r.json; desenhar();
+    }).catch(function () { mostrarLogin("Não foi possível falar com o servidor."); });
+  }
+
+  function barras(alvo, itens, corFn) {
+    limpar(alvo);
+    var max = Math.max.apply(null, itens.map(function (i) { return i.total; }).concat([1]));
+    itens.forEach(function (i) {
+      var l = el("div", "linha");
+      var nome = el("span", "nome", i.rotulo); nome.title = i.rotulo;
+      var b = el("div", "barra"), f = el("i"); f.style.width = (i.total / max * 100) + "%"; f.style.background = corFn(i);
+      b.appendChild(f);
+      l.appendChild(nome); l.appendChild(b); l.appendChild(el("span", "n", String(i.total)));
+      alvo.appendChild(l);
+    });
+  }
+
+  function desenhar() {
+    $("telaLogin").hidden = true; $("telaRelatorio").hidden = false;
+    var j = dados.jogador, rs = dados.resumo;
+    $("nomeJogador").textContent = j.nome;
+    var info = j.email + " · conta criada em " + new Date(j.criado_em).toLocaleDateString("pt-BR");
+    if (dados.progresso && dados.progresso.sala != null) info += " · está na sala " + dados.progresso.sala;
+    $("infoJogador").textContent = info;
+
+    var k = $("kpis"); limpar(k);
+    var tot = {}; rs.por_tipo.forEach(function (t) { tot[t.codigo] = t.total; });
+    [["Total de erros", rs.total, "#e4efff"]].concat(Object.keys(TIPOS).map(function (c) { return [TIPOS[c].nome, tot[c] || 0, TIPOS[c].cor]; }))
+      .forEach(function (x) {
+        var c = el("div", "card kpi"); var b = el("b", null, String(x[1])); b.style.color = x[2];
+        c.appendChild(b); c.appendChild(el("small", null, x[0])); k.appendChild(c);
+      });
+
+    barras($("porTipo"), rs.por_tipo.map(function (t) { return { rotulo: nomeTipo(t.codigo), total: t.total, codigo: t.codigo }; }),
+      function (i) { return (TIPOS[i.codigo] || {}).cor || "#19e6ff"; });
+    barras($("porSala"), rs.por_sala.map(function (s) { return { rotulo: s.sala_id + " · " + s.nome, total: s.total }; }),
+      function () { return "#19e6ff"; });
+
+    // erros por dia (horário local do computador), últimos 10 dias com erro
+    var porDia = {};
+    dados.eventos.forEach(function (e) {
+      var d = new Date(e.quando); var ch = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+      porDia[ch] = (porDia[ch] || 0) + 1;
+    });
+    var dias = Object.keys(porDia).sort().slice(-10), box = $("porDia"); limpar(box);
+    if (!dias.length) box.appendChild(el("div", "vazio", "Sem dados"));
+    var maxD = Math.max.apply(null, dias.map(function (d) { return porDia[d]; }).concat([1]));
+    dias.forEach(function (d) {
+      var c = el("div"); c.appendChild(el("em", null, String(porDia[d])));
+      var b = el("i"); b.style.height = (porDia[d] / maxD * 78) + "px"; c.appendChild(b);
+      c.appendChild(el("span", null, d.slice(8) + "/" + d.slice(5, 7))); box.appendChild(c);
+    });
+
+    var mc = $("maisComuns"); limpar(mc);
+    if (!rs.mais_comuns.length) mc.appendChild(el("div", "vazio", "Sem dados"));
+    Object.keys(TIPOS).forEach(function (c) {
+      var lista = rs.mais_comuns.filter(function (x) { return x.codigo === c; }).slice(0, 3);
+      if (!lista.length) return;
+      var h = el("div", "sub", TIPOS[c].nome); h.style.margin = "10px 0 2px"; mc.appendChild(h);
+      var ul = el("ul", "top");
+      lista.forEach(function (x) { var li = el("li"); li.appendChild(el("b", null, x.total + "×")); li.appendChild(el("span", null, x.detalhe)); ul.appendChild(li); });
+      mc.appendChild(ul);
+    });
+
+    var sel = $("fTipo"); var atual = sel.value; limpar(sel);
+    var o0 = el("option", null, "Todos os tipos"); o0.value = ""; sel.appendChild(o0);
+    Object.keys(TIPOS).forEach(function (c) { var o = el("option", null, TIPOS[c].nome); o.value = c; sel.appendChild(o); });
+    sel.value = atual;
+    tabela();
+  }
+
+  function tabela() {
+    var f = $("fTipo").value, tb = $("tbody"); limpar(tb);
+    var lista = dados.eventos.filter(function (e) { return !f || e.tipo === f; });
+    lista.forEach(function (e) {
+      var tr = el("tr");
+      tr.appendChild(el("td", null, new Date(e.quando).toLocaleString("pt-BR")));
+      var td = el("td"); var tag = el("span", "tag t-" + e.tipo, nomeTipo(e.tipo)); td.appendChild(tag); tr.appendChild(td);
+      tr.appendChild(el("td", null, e.sala_id + " · " + e.sala));
+      tr.appendChild(el("td", null, e.detalhe));
+      tb.appendChild(tr);
+    });
+    $("semErros").hidden = lista.length > 0;
+    $("contagem").textContent = lista.length + (lista.length === 1 ? " registro" : " registros") +
+      (dados.resumo.total > dados.eventos.length ? " (mostrando os " + dados.eventos.length + " mais recentes)" : "");
+  }
+
+  $("fTipo").addEventListener("change", tabela);
+  $("btnAtualizar").addEventListener("click", carregar);
+  $("btnSair").addEventListener("click", function () {
+    api("POST", "/api/logout", {}).then(function () {});
+    token = null; try { sessionStorage.removeItem("rato_token"); } catch (e) {}
+    mostrarLogin();
+  });
+  $("formLogin").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    $("erroLogin").textContent = "";
+    api("POST", "/api/login", { email: $("email").value, senha: $("senha").value }).then(function (r) {
+      if (r.status !== 200) return ($("erroLogin").textContent = (r.json && r.json.erro) || "Falha ao entrar.");
+      token = r.json.token; try { sessionStorage.setItem("rato_token", token); } catch (e) {}
+      $("senha").value = ""; carregar();
+    }).catch(function () { $("erroLogin").textContent = "Não foi possível falar com o servidor."; });
+  });
+
+  carregar();
+})();
+</script>
+</body>
+</html>

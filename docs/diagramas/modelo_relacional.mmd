@@ -1,0 +1,83 @@
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#e8f7fb','primaryBorderColor':'#0b7a8f','lineColor':'#345','fontFamily':'Arial'}}}%%
+erDiagram
+    JOGADOR {
+        int id PK
+        text nome
+        text email UK
+        text senha_hash
+        text senha_salt
+        text criado_em
+    }
+    SESSAO {
+        text token_hash PK
+        int jogador_id FK
+        text criado_em
+        text expira_em
+    }
+    SALA {
+        int id PK
+        text nome
+    }
+    ITEM {
+        text id PK
+        text nome
+        text simbolo
+        text tipo
+        text descricao
+    }
+    RECEITA {
+        text item_id PK, FK
+        int requer_fogo
+    }
+    INGREDIENTE_RECEITA {
+        text receita_id PK, FK
+        text item_id PK, FK
+        int quantidade
+    }
+    PROGRESSO {
+        int jogador_id PK, FK
+        int sala_atual FK
+        int vida
+        text atualizado_em
+    }
+    INVENTARIO {
+        int jogador_id PK, FK
+        text item_id PK, FK
+        int quantidade
+    }
+    RECEITA_APRENDIDA {
+        int jogador_id PK, FK
+        text receita_id PK, FK
+    }
+    MARCADOR {
+        int jogador_id PK, FK
+        text tipo PK
+        text chave PK
+    }
+    TIPO_ERRO {
+        int id PK
+        text codigo UK
+        text descricao
+    }
+    EVENTO_ERRO {
+        int id PK
+        int jogador_id FK
+        int tipo_erro_id FK
+        int sala_id FK
+        text detalhe
+        text ocorrido_em
+    }
+    JOGADOR ||--o{ SESSAO : abre
+    JOGADOR ||--o| PROGRESSO : possui
+    JOGADOR ||--o{ INVENTARIO : carrega
+    JOGADOR ||--o{ RECEITA_APRENDIDA : aprende
+    JOGADOR ||--o{ MARCADOR : conquista
+    JOGADOR ||--o{ EVENTO_ERRO : comete
+    SALA ||--o{ PROGRESSO : atual
+    SALA ||--o{ EVENTO_ERRO : local
+    TIPO_ERRO ||--o{ EVENTO_ERRO : classifica
+    ITEM ||--o{ INVENTARIO : aparece
+    ITEM ||--o| RECEITA : produzido
+    RECEITA ||--o{ INGREDIENTE_RECEITA : usa
+    ITEM ||--o{ INGREDIENTE_RECEITA : ingrediente
+    RECEITA ||--o{ RECEITA_APRENDIDA : aprendida

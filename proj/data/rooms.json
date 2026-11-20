@@ -1,0 +1,3759 @@
+{
+ "rooms": [
+  {
+   "id": 0,
+   "name": "Gaiola Experimental",
+   "theme": "cyan",
+   "grid": [
+    "##############################",
+    "##############################",
+    "##############DD##############",
+    "##############DD##############",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "########..............########",
+    "##############################",
+    "##############################",
+    "##############################"
+   ],
+   "broken_bench": true,
+   "spawn_prev": [
+    14,
+    8
+   ],
+   "spawn_next": [
+    14,
+    8
+   ],
+   "intro": [
+    "A gaiola é pequena e as grades, firmes.",
+    "Há frascos espalhados pelo chão e uma bancada velha, quebrada. Talvez dê para improvisar."
+   ],
+   "needs": [
+    [
+     "acido",
+     "r0_open"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "flag:t_moved",
+     "text": "Mova-se com WASD ou as setas (Shift corre)",
+     "hint": "Use W A S D ou as setas para andar pela gaiola."
+    },
+    {
+     "done": "item:h&item:o&item:so|item:acido|flag:r0_open",
+     "text": "Colete os frascos do chão: 2 H, 3 O e 1 SO (chegue perto e aperte E)",
+     "hint": "Os frascos brilham no chão: hidrogênio (H), oxigênio (O) e monóxido de enxofre (SO)."
+    },
+    {
+     "done": "flag:t_inv|item:acido|flag:r0_open",
+     "text": "Aperte I para ver o inventário",
+     "hint": "A tecla I abre o inventário. Esc ou I fecha."
+    },
+    {
+     "done": "flag:t_bench|item:acido|flag:r0_open",
+     "text": "Vá até a bancada quebrada e aperte C (ou E)",
+     "hint": "A bancada fica no canto direito da gaiola."
+    },
+    {
+     "done": "item:acido|flag:r0_open",
+     "text": "Na bancada: arraste 2 H, 1 SO e 3 O para os recipientes, acenda o maçarico (Espaço) e fabrique (Enter)",
+     "hint": "Cada recipiente guarda um tipo de item: H num, SO em outro, O no terceiro. Acenda o maçarico e aperte FABRICAR. Se errar, nada é gasto."
+    },
+    {
+     "done": "flag:r0_open",
+     "text": "Use o ácido sulfúrico nas grades da jaula (E) para derretê-las",
+     "hint": "Chegue perto das grades de cima, no meio, e aperte E."
+    }
+   ],
+   "final": "As grades derreteram. Saia da jaula!",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 2,
+     "w": 2,
+     "h": 2,
+     "to": 1,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r0_open",
+     "locked_msg": "As grades ainda bloqueiam a saída."
+    },
+    {
+     "type": "obstacle",
+     "id": "r0_bars",
+     "kind": "bars",
+     "x": 14,
+     "y": 4,
+     "w": 2,
+     "h": 2,
+     "needs": "acido",
+     "flag": "r0_open",
+     "consume": true,
+     "blocks": true,
+     "label": "Grades da jaula",
+     "ok_msg": "O ácido corrói o aço. As grades se desfazem em fumaça verde!",
+     "fail_msg": "As grades são de aço reforçado. Só algo corrosivo as derreteria."
+    },
+    {
+     "type": "terminal",
+     "id": "r0_t1",
+     "x": 11,
+     "y": 4,
+     "title": "ANOTAÇÃO // TÉCNICO",
+     "lines": [
+      "Lembrete do técnico: o rato R-31 rói qualquer coisa, menos aço reforçado.",
+      "Se algum dia o bicho escapasse: ácido sulfúrico corrói o aço. Receita: 2 hidrogênios (H) + 1 monóxido de enxofre (SO) + 3 oxigênios (O).",
+      "A mistura precisa de calor: acender o maçarico da bancada. A bancada daqui está quebrada, mas ainda funciona."
+     ],
+     "learn": [
+      "acido"
+     ]
+    },
+    {
+     "type": "bench",
+     "x": 17,
+     "y": 8,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "pickup",
+     "id": "r0_p1",
+     "x": 10,
+     "y": 7,
+     "item": "h",
+     "qty": 2
+    },
+    {
+     "type": "pickup",
+     "id": "r0_p2",
+     "x": 10,
+     "y": 10,
+     "item": "o",
+     "qty": 3
+    },
+    {
+     "type": "pickup",
+     "id": "r0_p3",
+     "x": 14,
+     "y": 10,
+     "item": "so",
+     "qty": 1
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 13,
+     "y": 3,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "JAULA R-31"
+    },
+    {
+     "type": "decor",
+     "kind": "lamp",
+     "x": 12,
+     "y": 5,
+     "w": 6,
+     "h": 6,
+     "solid": false
+    }
+   ],
+   "accent": "#19e6ff"
+  },
+  {
+   "id": 1,
+   "name": "Cela de Contenção",
+   "theme": "cyan",
+   "grid": [
+    "#######################DD#####",
+    "#######################DD#####",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    6
+   ],
+   "spawn_next": [
+    23,
+    4
+   ],
+   "intro": [
+    "Estou fora da jaula, mas a sala continua trancada.",
+    "Preciso de uma chave de manutenção para o painel ao lado da porta."
+   ],
+   "needs": [
+    [
+     "chave_manut",
+     "r1_open"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:chave_manut|flag:r1_open",
+     "text": "Reúna 1 ferro e 2 engrenagens nos armários (um está trancado) e fabrique a Chave de manutenção (bancada, C)",
+     "hint": "Um armário está aberto. O outro, no canto direito, pede a fórmula do sal de cozinha."
+    },
+    {
+     "done": "flag:r1_open",
+     "text": "Use a chave no painel de manutenção ao lado da porta",
+     "hint": "Chegue perto do painel e aperte E."
+    }
+   ],
+   "final": "Atravesse a porta para o Laboratório de Misturas.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 23,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 2,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r1_open",
+     "locked_msg": "A porta está trancada. O painel de manutenção ao lado precisa de uma chave."
+    },
+    {
+     "type": "obstacle",
+     "id": "r1_panel",
+     "kind": "panel",
+     "x": 21,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "chave_manut",
+     "flag": "r1_open",
+     "consume": false,
+     "blocks": false,
+     "label": "Painel de manutenção",
+     "ok_msg": "Os parafusos cedem. A porta destranca!",
+     "fail_msg": "O painel exige uma Chave de manutenção. Fabrique uma na bancada."
+    },
+    {
+     "type": "terminal",
+     "id": "r1_t1",
+     "x": 6,
+     "y": 2,
+     "title": "TERMINAL // CONTENÇÃO 01",
+     "lines": [
+      "REGISTRO 0147: Sujeito R-31 mantido na gaiola de contenção principal.",
+      "NOTA DO TÉCNICO: perdi a chave dos painéis de novo. Dá pra montar outra na bancada: 2 engrenagens + 1 ferro, com o maçarico aceso para moldar.",
+      "O armário da direita está trancado com código. Pista: é o nome químico do sal de cozinha, cloreto de sódio.",
+      "Há outros sujeitos presos nos setores seguintes. Eles continuarão nos testes."
+     ],
+     "learn": [
+      "chave_manut"
+     ]
+    },
+    {
+     "type": "locker",
+     "id": "r1_l1",
+     "x": 3,
+     "y": 2,
+     "items": {
+      "fe": 1,
+      "engrenagem": 1
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r1_l2",
+     "x": 27,
+     "y": 2,
+     "items": {
+      "engrenagem": 1,
+      "gel": 1
+     },
+     "puzzle": {
+      "formula": "NaCl",
+      "tokens": [
+       "N",
+       "a",
+       "C",
+       "l"
+      ],
+      "decoys": [
+       "H",
+       "O",
+       "K",
+       "e",
+       "S",
+       "i"
+      ],
+      "question": "Qual é a fórmula do SAL DE COZINHA (cloreto de sódio)?",
+      "hint": "Metal alcalino do 3º período mais o halogênio do mesmo período, na proporção de 1 para 1. A segunda letra de cada símbolo é minúscula."
+     }
+    },
+    {
+     "type": "bench",
+     "x": 17,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "decor",
+     "kind": "cage_start",
+     "x": 13,
+     "y": 3,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 2,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 26,
+     "y": 7,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 26,
+     "y": 9,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 26,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 7,
+     "y": 5,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 20,
+     "y": 5,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 8,
+     "y": 9,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 22,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 16,
+     "y": 11,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 12,
+     "y": 12,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 9,
+     "y": 1,
+     "w": 3,
+     "h": 1,
+     "solid": false,
+     "text": "CONTENCAO 01"
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 8,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 13,
+     "y": 1,
+     "w": 8,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "lamp",
+     "x": 14,
+     "y": 7,
+     "w": 3,
+     "h": 3,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 2,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    }
+   ],
+   "accent": "#19e6ff"
+  },
+  {
+   "id": 2,
+   "name": "Laboratório de Misturas",
+   "theme": "purple",
+   "grid": [
+    "##########################DD##",
+    "##########################DD##",
+    "#........................#..##",
+    "#........................#..##",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    26,
+    4
+   ],
+   "intro": [
+    "Bancadas de mistura, reagentes e uma passagem congelada.",
+    "Um bom dispositivo térmico resolveria isso. Os armários devem ter a receita e os componentes."
+   ],
+   "needs": [
+    [
+     "termico",
+     "r2_melt"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:termico|flag:r2_melt",
+     "text": "Abra os 2 armários e fabrique o Dispositivo térmico: núcleo térmico + ferro + cobre",
+     "hint": "O armário da esquerda está aberto e guarda a receita. O da direita guarda os componentes, mas pede a fórmula da água."
+    },
+    {
+     "done": "flag:r2_melt",
+     "text": "Derreta a barreira de gelo que bloqueia a saída (E)",
+     "hint": "O dispositivo térmico funciona ao interagir com a parede congelada."
+    }
+   ],
+   "final": "A passagem está livre. Siga para a Central de Energia.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 1,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 26,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 3,
+     "spawn": "prev",
+     "kind": "door"
+    },
+    {
+     "type": "obstacle",
+     "id": "r2_ice",
+     "kind": "ice",
+     "x": 26,
+     "y": 2,
+     "w": 2,
+     "h": 2,
+     "needs": "termico",
+     "flag": "r2_melt",
+     "consume": false,
+     "blocks": true,
+     "label": "Barreira de gelo",
+     "ok_msg": "O gelo evapora em uma nuvem de vapor.",
+     "fail_msg": "Uma parede de gelo industrial. Precisa de calor intenso: um Dispositivo térmico."
+    },
+    {
+     "type": "terminal",
+     "id": "r2_t1",
+     "x": 10,
+     "y": 2,
+     "title": "TERMINAL // MISTURAS",
+     "lines": [
+      "PROCEDIMENTO: o sistema de refrigeração congelou o corredor leste.",
+      "A receita do Dispositivo térmico está guardada no armário aberto, perto da bancada.",
+      "Os componentes ficam no armário trancado da direita. Código: a fórmula da substância mais comum do planeta (H, O e números)."
+     ],
+     "learn": []
+    },
+    {
+     "type": "bench",
+     "x": 13,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r2_l1",
+     "x": 7,
+     "y": 2,
+     "items": {},
+     "learn": [
+      "termico"
+     ]
+    },
+    {
+     "type": "locker",
+     "id": "r2_l2",
+     "x": 21,
+     "y": 2,
+     "items": {
+      "nucleo": 1,
+      "fe": 1,
+      "cu": 1
+     },
+     "puzzle": {
+      "formula": "H2O",
+      "tokens": [
+       "H",
+       "2",
+       "O"
+      ],
+      "decoys": [
+       "N",
+       "a",
+       "C",
+       "l",
+       "K",
+       "3"
+      ],
+      "question": "Qual é a fórmula da ÁGUA?",
+      "hint": "O elemento mais leve do universo aparece duas vezes; o gás que sustenta a respiração, uma só. Não esqueça o índice."
+     }
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 2,
+     "y": 2,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 4,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 10,
+     "y": 3,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 17,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "mixbench",
+     "x": 11,
+     "y": 6,
+     "w": 6,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 2,
+     "y": 6,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 23,
+     "y": 6,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 19,
+     "y": 9,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 20,
+     "y": 8,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 2,
+     "y": 9,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 5,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 8,
+     "y": 10,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 24,
+     "y": 10,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 26,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 27,
+     "y": 5,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 1,
+     "y": 12,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 14,
+     "y": 1,
+     "w": 3,
+     "h": 1,
+     "solid": false,
+     "text": "MISTURAS"
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 10,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "lamp",
+     "x": 12,
+     "y": 5,
+     "w": 4,
+     "h": 4,
+     "solid": false
+    }
+   ],
+   "accent": "#c05cff"
+  },
+  {
+   "id": 3,
+   "name": "Central de Energia",
+   "theme": "blue",
+   "grid": [
+    "##############DD##############",
+    "##############DD##############",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    3
+   ],
+   "intro": [
+    "O núcleo do complexo pulsa no centro da sala.",
+    "Faixas elétricas cercam os armários e raios rondam a bancada. Preciso cronometrar cada passo."
+   ],
+   "needs": [
+    [
+     "modulo_eletrico",
+     "r3_power"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:modulo_eletrico|flag:r3_power",
+     "text": "Abra os 3 armários e fabrique o Módulo elétrico: 1 célula de energia + 2 cobres",
+     "hint": "Armário do canto direito: receita. Canto esquerdo (CO2): cobre e ferro. Canto direito de baixo: cobre, gel e a célula."
+    },
+    {
+     "done": "flag:r3_power",
+     "text": "Instale o módulo no painel de energia ao lado da porta",
+     "hint": "O painel fica no alto, perto da porta central."
+    }
+   ],
+   "final": "Energia restaurada. Siga para o Laboratório de Mutação.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 2,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 14,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 4,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r3_power",
+     "locked_msg": "A porta está sem energia. O painel ao lado precisa de um Módulo elétrico."
+    },
+    {
+     "type": "obstacle",
+     "id": "r3_panel",
+     "kind": "panel",
+     "x": 17,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "modulo_eletrico",
+     "flag": "r3_power",
+     "consume": true,
+     "blocks": false,
+     "label": "Painel de energia",
+     "ok_msg": "O módulo se encaixa. A porta recebe energia!",
+     "fail_msg": "O painel está sem energia. Fabrique um Módulo elétrico."
+    },
+    {
+     "type": "terminal",
+     "id": "r3_t1",
+     "x": 9,
+     "y": 2,
+     "title": "TERMINAL // ENERGIA",
+     "lines": [
+      "AVISO: as faixas de descarga ficam ativas em ciclos. O piso pisca antes de energizar.",
+      "Cada armário é cercado por 3 faixas. Espere o clarão laranja de aviso e cruze quando apagar.",
+      "Raios orbitam a bancada: não encoste neles. Dica de armário: o gás carbônico é CO e um número."
+     ],
+     "learn": []
+    },
+    {
+     "type": "bench",
+     "x": 4,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "hazard",
+     "kind": "orbit",
+     "x": 4,
+     "y": 2,
+     "w": 3,
+     "h": 2,
+     "n": 2,
+     "speed": 0.7,
+     "rx": 84,
+     "ry": 60,
+     "dmg": 1
+    },
+    {
+     "type": "locker",
+     "id": "r3_l1",
+     "x": 24,
+     "y": 2,
+     "items": {},
+     "learn": [
+      "modulo_eletrico"
+     ]
+    },
+    {
+     "type": "locker",
+     "id": "r3_l2",
+     "x": 3,
+     "y": 12,
+     "items": {
+      "cu": 1,
+      "fe": 1
+     },
+     "puzzle": {
+      "formula": "CO2",
+      "tokens": [
+       "C",
+       "O",
+       "2"
+      ],
+      "decoys": [
+       "H",
+       "N",
+       "3",
+       "S",
+       "a",
+       "l"
+      ],
+      "question": "Qual é a fórmula do GÁS CARBÔNICO (dióxido de carbono)?",
+      "hint": "Sai dos pulmões e das chaminés, e as plantas o absorvem. Um átomo do elemento do carvão e dois do gás da respiração."
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r3_l3",
+     "x": 26,
+     "y": 12,
+     "items": {
+      "cu": 1,
+      "gel": 1,
+      "celula": 1
+     }
+    },
+    {
+     "type": "decor",
+     "kind": "reactor",
+     "x": 13,
+     "y": 4,
+     "w": 4,
+     "h": 4,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 1,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 27,
+     "y": 5,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 7,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 21,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 11,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 20,
+     "y": 3,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 25,
+     "y": 5,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 7,
+     "y": 9,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 20,
+     "y": 9,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 1,
+     "y": 9,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 11,
+     "y": 9,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 20,
+     "y": 1,
+     "w": 3,
+     "h": 1,
+     "solid": false,
+     "text": "ENERGIA"
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 7,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "lamp",
+     "x": 12,
+     "y": 3,
+     "w": 6,
+     "h": 6,
+     "solid": false
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 23,
+     "y": 3,
+     "w": 3,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 0.0,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 23,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 1.4,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 25,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 2.8,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 2,
+     "y": 13,
+     "w": 3,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 1.0,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 2,
+     "y": 12,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 2.4,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 4,
+     "y": 12,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 3.8,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 2,
+     "y": 11,
+     "w": 3,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 3.0999999999999996,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 25,
+     "y": 13,
+     "w": 3,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 2.0,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 25,
+     "y": 12,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 3.4,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 27,
+     "y": 12,
+     "w": 1,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 4.8,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "electric",
+     "x": 25,
+     "y": 11,
+     "w": 3,
+     "h": 1,
+     "on": 1.4,
+     "off": 2.8,
+     "phase": 4.1,
+     "dmg": 1
+    }
+   ],
+   "accent": "#3d8bff"
+  },
+  {
+   "id": 4,
+   "name": "Laboratório de Mutação",
+   "theme": "green",
+   "grid": [
+    "##########################DD##",
+    "##########################DD##",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    4,
+    12
+   ],
+   "spawn_next": [
+    26,
+    4
+   ],
+   "intro": [
+    "O ar está verde. O mapa inteiro está tomado por veneno!",
+    "Só as zonas azuis brilhantes e as trilhas de rato são seguras."
+   ],
+   "needs": [
+    [
+     "filtro",
+     "r4_gas"
+    ],
+    [
+     "chave_manut",
+     "r4_rescue"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:filtro|flag:r4_gas",
+     "text": "Siga os caminhos de rato e fabrique o Filtro experimental: 2 carbonos + 1 polímero",
+     "hint": "As trilhas ciano ligam as zonas seguras. Armário do sul/esquerda: carbonos. Armário do sul/direita (NH3): polímero, oxigênio e gel."
+    },
+    {
+     "done": "flag:r4_gas",
+     "text": "Instale o filtro na válvula de ventilação (norte, direita)",
+     "hint": "O gás se dissipa depois que o filtro é instalado."
+    },
+    {
+     "done": "flag:r4_rescue",
+     "text": "Com o gás dissipado, liberte o rato R-18 na gaiola do meio (Chave de manutenção)",
+     "hint": "A gaiola do meio só abre depois que o veneno some."
+    }
+   ],
+   "final": "O protocolo de contenção foi encerrado. Siga para a porta.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 4,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 3,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 26,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 5,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r4_rescue",
+     "locked_msg": "Protocolo de contenção ativo. Libere a gaiola do sujeito R-18 para destravar."
+    },
+    {
+     "type": "obstacle",
+     "id": "r4_vent",
+     "kind": "vent",
+     "x": 21,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "filtro",
+     "flag": "r4_gas",
+     "consume": true,
+     "blocks": false,
+     "label": "Válvula de ventilação",
+     "ok_msg": "O filtro neutraliza o gás. O veneno se dissipa!",
+     "fail_msg": "A válvula precisa de um Filtro experimental para neutralizar o gás."
+    },
+    {
+     "type": "cage",
+     "id": "r4_cage",
+     "x": 14,
+     "y": 7,
+     "w": 2,
+     "h": 2,
+     "needs": "chave_manut",
+     "flag": "r4_rescue",
+     "requires": "flag:r4_gas",
+     "req_msg": "O veneno ainda cobre a gaiola. Instale o filtro na válvula primeiro.",
+     "label": "Gaiola do sujeito R-18",
+     "ok_msg": "A trava cede. R-18 escapa pelas sombras. Obrigado!",
+     "fail_msg": "A trava exige uma Chave de manutenção."
+    },
+    {
+     "type": "hazard",
+     "kind": "poison",
+     "x": 1,
+     "y": 2,
+     "w": 28,
+     "h": 12,
+     "clear_flag": "r4_gas",
+     "dmg": 1,
+     "safe": [
+      [
+       1,
+       2,
+       8,
+       4
+      ],
+      [
+       9,
+       2,
+       5,
+       3
+      ],
+      [
+       19,
+       2,
+       5,
+       3
+      ],
+      [
+       24,
+       2,
+       5,
+       4
+      ],
+      [
+       2,
+       11,
+       6,
+       3
+      ],
+      [
+       8,
+       10,
+       6,
+       4
+      ],
+      [
+       18,
+       10,
+       6,
+       4
+      ]
+     ],
+     "paths": [
+      [
+       5,
+       6,
+       1,
+       5
+      ],
+      [
+       14,
+       12,
+       4,
+       1
+      ],
+      [
+       14,
+       3,
+       5,
+       1
+      ],
+      [
+       24,
+       6,
+       1,
+       5
+      ],
+      [
+       12,
+       5,
+       1,
+       5
+      ]
+     ]
+    },
+    {
+     "type": "terminal",
+     "id": "r4_t1",
+     "x": 11,
+     "y": 2,
+     "title": "TERMINAL // MUTAÇÃO",
+     "lines": [
+      "O veneno cobre o laboratório inteiro. Só as zonas seguras e as trilhas de rato estão protegidas.",
+      "Filtro experimental = 2 Carbonos + 1 Polímero. Gel regenerativo = 1 Água (2 H + 1 O) + 1 Polímero.",
+      "Depois do filtro na válvula, o gás se dissipa. Só então a gaiola do sujeito R-18 pode ser aberta."
+     ],
+     "learn": [
+      "filtro",
+      "agua",
+      "gel"
+     ]
+    },
+    {
+     "type": "bench",
+     "x": 3,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r4_l1",
+     "x": 11,
+     "y": 12,
+     "items": {
+      "c": 2,
+      "h": 2
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r4_l2",
+     "x": 21,
+     "y": 12,
+     "items": {
+      "polimero": 2,
+      "o": 1,
+      "gel": 1
+     },
+     "puzzle": {
+      "formula": "NH3",
+      "tokens": [
+       "N",
+       "H",
+       "3"
+      ],
+      "decoys": [
+       "C",
+       "O",
+       "2",
+       "a",
+       "l",
+       "S"
+      ],
+      "question": "Qual é a fórmula da AMÔNIA?",
+      "hint": "Gás de cheiro forte, usado em limpeza e fertilizantes. Elemento de número atômico 7 ligado a três átomos do mais leve de todos."
+     }
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 7,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 1,
+     "y": 7,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 8,
+     "y": 7,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 19,
+     "y": 6,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 21,
+     "y": 6,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 27,
+     "y": 7,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 27,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 16,
+     "y": 9,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 26,
+     "y": 6,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 12,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 18,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "MUTACAO 04"
+    }
+   ],
+   "accent": "#3dff8a"
+  },
+  {
+   "id": 5,
+   "name": "Complexo Químico",
+   "theme": "yellow",
+   "grid": [
+    "##############DD##############",
+    "##############DD##############",
+    "#............#..#............#",
+    "#............#..#............#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    4
+   ],
+   "intro": [
+    "Tanques gigantes, vapor industrial e fogo na saída.",
+    "Válvulas de vapor guardam os armários, a bancada e a porta. Uma barreira cristalizada selou o caminho."
+   ],
+   "needs": [
+    [
+     "solvente",
+     "r5_open"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:agua|item:solvente|flag:r5_open",
+     "text": "Pegue 2 H + 1 O no armário da direita (fórmula do metano) e fabrique Água",
+     "hint": "O armário da direita (CH4) tem hidrogênios e oxigênio. Cuidado com as válvulas de vapor."
+    },
+    {
+     "done": "item:solvente|flag:r5_open",
+     "text": "Pegue Catalisador + Sódio no armário da esquerda e fabrique o Solvente: Água + Catalisador + Sódio",
+     "hint": "O armário da esquerda está aberto. Misture na bancada (sem maçarico)."
+    },
+    {
+     "done": "flag:r5_open",
+     "text": "Dissolva a barreira cristalizada com o solvente",
+     "hint": "Chegue perto do cristal e aperte E. Passe pela porta quando o vapor estiver parado."
+    }
+   ],
+   "final": "A barreira se desfez. Siga para o Laboratório de Robótica.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 4,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 14,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 6,
+     "spawn": "prev",
+     "kind": "door"
+    },
+    {
+     "type": "obstacle",
+     "id": "r5_crystal",
+     "kind": "crystal",
+     "x": 14,
+     "y": 2,
+     "w": 2,
+     "h": 2,
+     "needs": "solvente",
+     "flag": "r5_open",
+     "consume": true,
+     "blocks": true,
+     "label": "Barreira cristalizada",
+     "ok_msg": "O cristal se dissolve em uma névoa brilhante.",
+     "fail_msg": "O cristal é resistente demais. Um Solvente experimental pode dissolvê-lo."
+    },
+    {
+     "type": "terminal",
+     "id": "r5_t1",
+     "x": 9,
+     "y": 6,
+     "title": "TERMINAL // QUÍMICA",
+     "lines": [
+      "Água = 2 Hidrogênios (H) + 1 Oxigênio (O). É a molécula H2O.",
+      "Solvente experimental = 1 Água + 1 Catalisador fictício + 1 Sódio (Na). Fórmula inventada para a pesquisa.",
+      "As válvulas de vapor protegem os armários, a bancada e a porta. O jato opera em ciclos: passe quando parar.",
+      "Dica do armário da direita: o gás metano tem 1 carbono e 4 hidrogênios."
+     ],
+     "learn": [
+      "agua",
+      "solvente"
+     ]
+    },
+    {
+     "type": "bench",
+     "x": 24,
+     "y": 8,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r5_l1",
+     "x": 20,
+     "y": 2,
+     "items": {
+      "h": 2,
+      "o": 1
+     },
+     "puzzle": {
+      "formula": "CH4",
+      "tokens": [
+       "C",
+       "H",
+       "4"
+      ],
+      "decoys": [
+       "O",
+       "N",
+       "2",
+       "3",
+       "a",
+       "l"
+      ],
+      "question": "Qual é a fórmula do GÁS METANO?",
+      "hint": "É o principal componente do gás natural, o hidrocarboneto mais simples. Elemento de número atômico 6 com quatro átomos do mais leve."
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r5_l2",
+     "x": 7,
+     "y": 2,
+     "items": {
+      "catalisador": 1,
+      "na": 1
+     }
+    },
+    {
+     "type": "hazard",
+     "kind": "steam",
+     "x": 19,
+     "y": 3,
+     "w": 3,
+     "h": 3,
+     "on": 1.5,
+     "off": 2.7,
+     "phase": 0.0,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "steam",
+     "x": 6,
+     "y": 3,
+     "w": 3,
+     "h": 3,
+     "on": 1.5,
+     "off": 2.7,
+     "phase": 1.4,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "steam",
+     "x": 23,
+     "y": 10,
+     "w": 5,
+     "h": 2,
+     "on": 1.5,
+     "off": 2.7,
+     "phase": 2.2,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "steam",
+     "x": 13,
+     "y": 4,
+     "w": 4,
+     "h": 2,
+     "on": 1.5,
+     "off": 3.0,
+     "phase": 0.8,
+     "dmg": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "flame",
+     "x": 12,
+     "y": 3,
+     "w": 1,
+     "h": 1
+    },
+    {
+     "type": "hazard",
+     "kind": "flame",
+     "x": 17,
+     "y": 3,
+     "w": 1,
+     "h": 1
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 2,
+     "y": 3,
+     "w": 3,
+     "h": 4,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 25,
+     "y": 3,
+     "w": 3,
+     "h": 4,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 13,
+     "y": 7,
+     "w": 4,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 10,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 23,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 9,
+     "y": 9,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 19,
+     "y": 8,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 20,
+     "y": 7,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 1,
+     "y": 8,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 1,
+     "y": 11,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 28,
+     "y": 11,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 5,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 20,
+     "y": 11,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 12,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 17,
+     "y": 1,
+     "w": 12,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 8,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "QUIMICA 05"
+    }
+   ],
+   "accent": "#ffd23a"
+  },
+  {
+   "id": 6,
+   "name": "Laboratório de Robótica",
+   "theme": "red",
+   "grid": [
+    "##########################DD##",
+    "##########################DD##",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    26,
+    4
+   ],
+   "intro": [
+    "Braços robóticos, drones que perseguem e uma malha de lasers.",
+    "Preciso desativar o campo de contenção. Perto da bancada os drones não me alcançam."
+   ],
+   "needs": [
+    [
+     "modulo_contencao",
+     "r6_laser"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:modulo_contencao|flag:r6_laser",
+     "text": "Pegue 2 placas de circuito e 1 cristal nos armários (o de baixo pede HCl) e fabrique o Módulo de contenção",
+     "hint": "Os drones perseguem. Use a zona da bancada para fabricar em paz."
+    },
+    {
+     "done": "flag:r6_laser",
+     "text": "Instale o módulo no terminal do campo laser",
+     "hint": "O terminal do campo fica ao lado das hastes do laser."
+    }
+   ],
+   "final": "O campo laser caiu. Siga para o Armazém Geral.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 5,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 26,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 7,
+     "spawn": "prev",
+     "kind": "door"
+    },
+    {
+     "type": "obstacle",
+     "id": "r6_laser_t",
+     "kind": "lasercon",
+     "x": 17,
+     "y": 3,
+     "w": 1,
+     "h": 1,
+     "needs": "modulo_contencao",
+     "flag": "r6_laser",
+     "consume": true,
+     "blocks": false,
+     "label": "Terminal do campo laser",
+     "ok_msg": "A malha de lasers se desliga com um zumbido.",
+     "fail_msg": "O terminal pede um Módulo de contenção."
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 20.3,
+     "y": 2,
+     "w": 0.4,
+     "h": 12,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 22.3,
+     "y": 2,
+     "w": 0.4,
+     "h": 12,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 24.3,
+     "y": 2,
+     "w": 0.4,
+     "h": 12,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 20,
+     "y": 5.3,
+     "w": 9,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 20,
+     "y": 8.3,
+     "w": 9,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 20,
+     "y": 11.3,
+     "w": 9,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "clear_flag": "r6_laser"
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 10,
+     "y": 8.3,
+     "w": 7,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 0.0,
+     "on": 1.6,
+     "off": 2.2
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 11.3,
+     "y": 2,
+     "w": 0.4,
+     "h": 4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 1.9,
+     "on": 1.6,
+     "off": 2.2
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 2,
+     "y": 8.3,
+     "w": 6,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 60,
+     "phase": 1.1,
+     "on": 1.6,
+     "off": 2.2
+    },
+    {
+     "type": "drone",
+     "x": 8,
+     "y": 5,
+     "chase": true,
+     "bench_safe": true,
+     "speed": 56,
+     "range": 300
+    },
+    {
+     "type": "drone",
+     "x": 17,
+     "y": 7,
+     "chase": true,
+     "bench_safe": true,
+     "speed": 52,
+     "range": 300
+    },
+    {
+     "type": "terminal",
+     "id": "r6_t1",
+     "x": 12,
+     "y": 2,
+     "title": "TERMINAL // ROBÓTICA",
+     "lines": [
+      "O campo laser corta a sala. Para desligar: Módulo de contenção = 2 Placas de circuito + 1 Cristal.",
+      "ATENÇÃO: os drones de patrulha perseguem qualquer intruso. A zona da bancada é protegida: eles recuam enquanto você a usa.",
+      "Dica do armário trancado: o ácido do estômago é HCl."
+     ],
+     "learn": [
+      "modulo_contencao"
+     ]
+    },
+    {
+     "type": "bench",
+     "x": 6,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r6_l1",
+     "x": 13,
+     "y": 6,
+     "items": {
+      "circuito": 2
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r6_l2",
+     "x": 6,
+     "y": 10,
+     "items": {
+      "cristal": 1
+     },
+     "puzzle": {
+      "formula": "HCl",
+      "tokens": [
+       "H",
+       "C",
+       "l"
+      ],
+      "decoys": [
+       "O",
+       "N",
+       "a",
+       "2",
+       "S",
+       "K"
+      ],
+      "question": "Qual é a fórmula do ÁCIDO CLORÍDRICO?",
+      "hint": "Está presente no suco gástrico do estômago. O elemento mais leve ligado ao halogênio de número atômico 17."
+     }
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 2,
+     "y": 2,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 2,
+     "y": 5,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "emitter",
+     "x": 20,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "emitter",
+     "x": 20,
+     "y": 13,
+     "w": 1,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 3,
+     "y": 9,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 4,
+     "y": 8,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 14,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 9,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 15,
+     "y": 10,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 10,
+     "y": 4,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 27,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 27,
+     "y": 9,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 18,
+     "y": 10,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 1,
+     "y": 10,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 12,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 14,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "ROBOTICA 06"
+    }
+   ],
+   "accent": "#ff3a55"
+  },
+  {
+   "id": 7,
+   "name": "Armazém Geral",
+   "theme": "orange",
+   "grid": [
+    "##############DD##############",
+    "##############DD##############",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    3
+   ],
+   "intro": [
+    "Pilhas de caixas e uma empilhadeira parada.",
+    "O portão de carga só abre com as cinco placas de pressão ativas."
+   ],
+   "needs": [
+    [
+     "disp_resgate",
+     "r7_done"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "flag:r7_shutter",
+     "text": "Empurre as 5 caixas até as 5 placas de pressão (R reinicia as caixas)",
+     "hint": "Fique abaixo de cada caixa e empurre para cima até a placa."
+    },
+    {
+     "done": "item:disp_resgate|flag:r7_done",
+     "text": "Abra os 2 armários e fabrique o Dispositivo de resgate: circuito + engrenagem + célula",
+     "hint": "Esquerda: soda cáustica (NaOH). Direita: cal virgem (CaO)."
+    }
+   ],
+   "final": "Com o portão aberto e o dispositivo pronto, siga para a Área de Experimentos.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 6,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 14,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 8,
+     "spawn": "prev",
+     "kind": "shutter",
+     "needs_flag": "r7_shutter",
+     "locked_msg": "O portão de carga está travado. Ative as cinco placas de pressão."
+    },
+    {
+     "type": "crate",
+     "id": "r7_c1",
+     "x": 6,
+     "y": 8
+    },
+    {
+     "type": "crate",
+     "id": "r7_c2",
+     "x": 10,
+     "y": 8
+    },
+    {
+     "type": "crate",
+     "id": "r7_c3",
+     "x": 14,
+     "y": 8
+    },
+    {
+     "type": "crate",
+     "id": "r7_c4",
+     "x": 18,
+     "y": 8
+    },
+    {
+     "type": "crate",
+     "id": "r7_c5",
+     "x": 22,
+     "y": 8
+    },
+    {
+     "type": "plate",
+     "id": "r7_pl1",
+     "x": 6,
+     "y": 4,
+     "group": "r7_shutter"
+    },
+    {
+     "type": "plate",
+     "id": "r7_pl2",
+     "x": 10,
+     "y": 4,
+     "group": "r7_shutter"
+    },
+    {
+     "type": "plate",
+     "id": "r7_pl3",
+     "x": 14,
+     "y": 4,
+     "group": "r7_shutter"
+    },
+    {
+     "type": "plate",
+     "id": "r7_pl4",
+     "x": 18,
+     "y": 4,
+     "group": "r7_shutter"
+    },
+    {
+     "type": "plate",
+     "id": "r7_pl5",
+     "x": 22,
+     "y": 4,
+     "group": "r7_shutter"
+    },
+    {
+     "type": "npc",
+     "id": "r7_npc",
+     "kind": "researcher",
+     "x": 4,
+     "y": 12,
+     "name": "Dra. Okoye",
+     "lines": [
+      "Psiu... você é o rato modificado? Eu não aprovo o que fazem aqui.",
+      "Os outros ratos estão na Área de Experimentos, logo depois deste portão.",
+      "Um Dispositivo de resgate abre as gaiolas deles: 1 placa de circuito, 1 engrenagem e 1 célula de energia.",
+      "Empurre as caixas até as placas. Se travar uma caixa, aperte R para reiniciá-las.",
+      "Cuidado: são cinco caixas e cinco placas de pressão. O portão só abre quando todas estiverem ativas.",
+      "As peças do dispositivo estão nos dois armários desta sala, mas os dois têm código de acesso.",
+      "O armário da esquerda abre com a fórmula da soda cáustica, o hidróxido de sódio: sódio, oxigênio e hidrogênio.",
+      "O da direita usa a cal virgem, o óxido de cálcio: cálcio e oxigênio. Lembre das maiúsculas e minúsculas!",
+      "Eu trabalhei seis anos para o Dr. Voss e me calei. Não vou me calar mais. Boa sorte, pequeno."
+     ],
+     "learn": [
+      "disp_resgate"
+     ]
+    },
+    {
+     "type": "terminal",
+     "id": "r7_t1",
+     "x": 12,
+     "y": 2,
+     "title": "TERMINAL // ARMAZÉM",
+     "lines": [
+      "INVENTÁRIO: circuitos, engrenagens e células de reserva trancados nos armários norte.",
+      "O portão de carga usa cinco placas de pressão. Caixas sobre as placas liberam o trilho."
+     ],
+     "learn": []
+    },
+    {
+     "type": "bench",
+     "x": 24,
+     "y": 10,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r7_l1",
+     "x": 3,
+     "y": 2,
+     "items": {
+      "circuito": 1,
+      "engrenagem": 1
+     },
+     "puzzle": {
+      "formula": "NaOH",
+      "tokens": [
+       "N",
+       "a",
+       "O",
+       "H"
+      ],
+      "decoys": [
+       "C",
+       "l",
+       "K",
+       "2",
+       "S",
+       "e"
+      ],
+      "question": "Qual é a fórmula da SODA CÁUSTICA (hidróxido de sódio)?",
+      "hint": "Base forte usada para fazer sabão: um metal alcalino de número atômico 11 seguido do grupo hidroxila. A Dra. Okoye sabe mais."
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r7_l2",
+     "x": 26,
+     "y": 2,
+     "items": {
+      "celula": 1
+     },
+     "puzzle": {
+      "formula": "CaO",
+      "tokens": [
+       "C",
+       "a",
+       "O"
+      ],
+      "decoys": [
+       "H",
+       "N",
+       "l",
+       "2",
+       "S",
+       "K"
+      ],
+      "question": "Qual é a fórmula da CAL VIRGEM (óxido de cálcio)?",
+      "hint": "Obtida ao queimar calcário e usada na construção. Metal alcalino-terroso de número atômico 20 mais o elemento da respiração, 1 para 1. A Dra. Okoye sabe mais."
+     }
+    },
+    {
+     "type": "decor",
+     "kind": "boxes",
+     "x": 1,
+     "y": 5,
+     "w": 3,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "boxes",
+     "x": 26,
+     "y": 5,
+     "w": 3,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 8,
+     "y": 6,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 12,
+     "y": 6,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 16,
+     "y": 6,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 20,
+     "y": 6,
+     "w": 1,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "forklift",
+     "x": 20,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "boxes",
+     "x": 1,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 7,
+     "y": 12,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 9,
+     "y": 11,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 27,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 16,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 12,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 18,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "ARMAZEM 07"
+    }
+   ],
+   "accent": "#ff9a2a"
+  },
+  {
+   "id": 8,
+   "name": "Área de Experimentos",
+   "theme": "teal",
+   "grid": [
+    "##############DD##############",
+    "##############DD##############",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    3
+   ],
+   "intro": [
+    "Aquários, criaturas e duas gaiolas de ratos.",
+    "Duas criaturas vigiam as gaiolas... e já me viram!"
+   ],
+   "needs": [
+    [
+     "disp_resgate",
+     "r8_free"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "flag:r8_free",
+     "text": "Liberte os 2 ratos nas gaiolas com o Dispositivo de resgate (cada gaiola tem um mutante por perto)",
+     "hint": "Os mutantes perseguem, mas são lentos. Dê a volta pelos tanques. Gel regenerativo cura (F)."
+    }
+   ],
+   "final": "Os ratos estão livres. Siga para a Segurança Máxima.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 7,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 14,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 9,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r8_rat1&r8_rat2",
+     "locked_msg": "A porta de contenção só abre quando os dois ratos forem libertados."
+    },
+    {
+     "type": "cage",
+     "id": "r8_c1",
+     "x": 3,
+     "y": 5,
+     "w": 2,
+     "h": 2,
+     "needs": "disp_resgate",
+     "flag": "r8_rat1",
+     "label": "Gaiola 08-A",
+     "ok_msg": "A gaiola abre. O rato foge, livre!",
+     "fail_msg": "A trava eletrônica exige um Dispositivo de resgate."
+    },
+    {
+     "type": "cage",
+     "id": "r8_c2",
+     "x": 25,
+     "y": 5,
+     "w": 2,
+     "h": 2,
+     "needs": "disp_resgate",
+     "flag": "r8_rat2",
+     "label": "Gaiola 08-B",
+     "ok_msg": "A gaiola abre. O rato agradece com um guincho!",
+     "fail_msg": "A trava eletrônica exige um Dispositivo de resgate."
+    },
+    {
+     "type": "mutant",
+     "id": "r8_m1",
+     "x": 7,
+     "y": 6,
+     "speed": 44,
+     "range": 300
+    },
+    {
+     "type": "mutant",
+     "id": "r8_m2",
+     "x": 22,
+     "y": 6,
+     "speed": 44,
+     "range": 300
+    },
+    {
+     "type": "terminal",
+     "id": "r8_t1",
+     "x": 10,
+     "y": 2,
+     "title": "TERMINAL // EXPERIMENTOS",
+     "lines": [
+      "REGISTRO: sujeitos R-31 e R-22 aguardam o procedimento de mutação final.",
+      "As duas criaturas escaparam dos tanques e vigiam as gaiolas. Não respondem a comandos.",
+      "O Dr. Voss pretende estender o programa a todo o complexo."
+     ],
+     "learn": []
+    },
+    {
+     "type": "bench",
+     "x": 18,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "pickup",
+     "id": "r8_p1",
+     "x": 8,
+     "y": 12,
+     "item": "gel",
+     "qty": 1
+    },
+    {
+     "type": "pickup",
+     "id": "r8_p2",
+     "x": 21,
+     "y": 12,
+     "item": "gel",
+     "qty": 1
+    },
+    {
+     "type": "decor",
+     "kind": "aquarium",
+     "x": 2,
+     "y": 2,
+     "w": 6,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "aquarium",
+     "x": 22,
+     "y": 2,
+     "w": 6,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 11,
+     "y": 9,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 17,
+     "y": 9,
+     "w": 2,
+     "h": 3,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 1,
+     "y": 9,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 28,
+     "y": 9,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 12,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "desk",
+     "x": 10,
+     "y": 6,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 19,
+     "y": 6,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 6,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 22,
+     "y": 10,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 1,
+     "y": 12,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 26,
+     "y": 12,
+     "w": 3,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "tank",
+     "x": 14,
+     "y": 6,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 8,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 18,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false,
+     "text": "EXPERIMENTOS"
+    }
+   ],
+   "accent": "#2af0c8"
+  },
+  {
+   "id": 9,
+   "name": "Segurança Máxima",
+   "theme": "red",
+   "grid": [
+    "##############DD##############",
+    "##############DD##############",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#............................#",
+    "#............................#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "#........#..........#........#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    3
+   ],
+   "intro": [
+    "Alarmes, lasers que surgem e somem, e três robôs de segurança no meu rastro.",
+    "A porta mestra está trancada. Preciso reunir três componentes das câmaras laterais."
+   ],
+   "needs": [
+    [
+     "chave_mestra",
+     "r9_open"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "item:chave_mestra|flag:r9_open",
+     "text": "Reúna circuito + cristal (câmara oeste) e módulo genético (câmara leste) e fabrique a Chave mestra",
+     "hint": "Os lasers perto dos armários ligam e desligam. Os 3 robôs perseguem você: não pare!"
+    },
+    {
+     "done": "flag:r9_open",
+     "text": "Use a Chave mestra no painel de segurança ao lado da porta",
+     "hint": "O painel fica no alto, à direita da porta."
+    }
+   ],
+   "final": "A porta mestra se abriu. O laboratório do cientista está à frente.",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 8,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "door",
+     "x": 14,
+     "y": 0,
+     "w": 2,
+     "h": 2,
+     "to": 10,
+     "spawn": "prev",
+     "kind": "door",
+     "needs_flag": "r9_open",
+     "locked_msg": "A porta mestra exige a Chave mestra do painel de segurança."
+    },
+    {
+     "type": "obstacle",
+     "id": "r9_panel",
+     "kind": "panel",
+     "x": 17,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "chave_mestra",
+     "flag": "r9_open",
+     "consume": true,
+     "blocks": false,
+     "label": "Painel de segurança",
+     "ok_msg": "A Chave mestra é aceita. A porta se destranca!",
+     "fail_msg": "O painel exige uma Chave mestra."
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 9.3,
+     "y": 8,
+     "w": 0.4,
+     "h": 2,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 0.0,
+     "on": 1.5,
+     "off": 2.0
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 20.3,
+     "y": 8,
+     "w": 0.4,
+     "h": 2,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 1.8,
+     "on": 1.5,
+     "off": 2.0
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 1,
+     "y": 6.3,
+     "w": 8,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 0.0,
+     "on": 1.4,
+     "off": 2.2
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 5.3,
+     "y": 3,
+     "w": 0.4,
+     "h": 3,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 1.9,
+     "on": 1.4,
+     "off": 2.2
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 21,
+     "y": 6.3,
+     "w": 8,
+     "h": 0.4,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 1.1,
+     "on": 1.4,
+     "off": 2.2
+    },
+    {
+     "type": "hazard",
+     "kind": "laser",
+     "x": 24.3,
+     "y": 3,
+     "w": 0.4,
+     "h": 3,
+     "dmg": 1,
+     "knock": 56,
+     "phase": 3.0,
+     "on": 1.4,
+     "off": 2.2
+    },
+    {
+     "type": "drone",
+     "x": 11,
+     "y": 4,
+     "chase": true,
+     "speed": 40,
+     "tint": "#ff7070"
+    },
+    {
+     "type": "drone",
+     "x": 18,
+     "y": 4,
+     "chase": true,
+     "speed": 40,
+     "tint": "#ff7070"
+    },
+    {
+     "type": "drone",
+     "x": 14,
+     "y": 7,
+     "chase": true,
+     "speed": 38,
+     "tint": "#ff7070"
+    },
+    {
+     "type": "terminal",
+     "id": "r9_t1",
+     "x": 19,
+     "y": 2,
+     "title": "TERMINAL // SEGURANÇA",
+     "lines": [
+      "Chave mestra = 1 Placa de circuito + 1 Cristal de contenção + 1 Módulo genético.",
+      "Os 3 robôs de segurança seguem o intruso. Os lasers das câmaras pulsam em ciclos de alguns segundos."
+     ],
+     "learn": [
+      "chave_mestra"
+     ]
+    },
+    {
+     "type": "bench",
+     "x": 10,
+     "y": 2,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r9_l1",
+     "x": 3,
+     "y": 3,
+     "items": {
+      "circuito": 1,
+      "cristal": 1
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r9_l2",
+     "x": 26,
+     "y": 3,
+     "items": {
+      "modulo_gen": 1
+     }
+    },
+    {
+     "type": "pickup",
+     "id": "r9_p1",
+     "x": 5,
+     "y": 10,
+     "item": "gel",
+     "qty": 1
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 1,
+     "y": 11,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "rack",
+     "x": 28,
+     "y": 11,
+     "w": 1,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 3,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "machine",
+     "x": 25,
+     "y": 11,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 12,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 12,
+     "y": 9,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 16,
+     "y": 10,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 8,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 22,
+     "y": 1,
+     "w": 5,
+     "h": 1,
+     "solid": false,
+     "text": "SEGURANCA MAX"
+    }
+   ],
+   "accent": "#ff3a55"
+  },
+  {
+   "id": 10,
+   "name": "Sala do Cientista",
+   "theme": "blue",
+   "grid": [
+    "##############################",
+    "##############################",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "#............................#",
+    "##############################"
+   ],
+   "spawn_prev": [
+    14,
+    12
+   ],
+   "spawn_next": [
+    14,
+    12
+   ],
+   "intro": [
+    "O laboratório do Dr. Voss. Cápsulas com ratos aprisionados cercam a sala.",
+    "No centro, o núcleo que mantém tudo funcionando. Se ele explodir, o complexo vai junto."
+   ],
+   "needs": [
+    [
+     "modulo_contencao",
+     "r10_def"
+    ],
+    [
+     "modulo_eletrico",
+     "r10_evac"
+    ],
+    [
+     "disp_resgate",
+     "r10_free"
+    ],
+    [
+     "bomba",
+     "r10_bomb"
+    ]
+   ],
+   "stages": [
+    {
+     "done": "flag:r10_def&flag:r10_evac&flag:r10_free",
+     "text": "Ative os 3 consoles: defesas (módulo de contenção), evacuação (módulo elétrico) e cápsulas (disp. de resgate)",
+     "hint": "5 armários guardam as peças (o do alto pede H2O2). Os módulos usam receitas que você já conhece. Desvie das bolas de laser do Voss!"
+    },
+    {
+     "done": "item:bomba|flag:r10_bomb",
+     "text": "Pegue a receita no armário e fabrique a Bomba experimental (módulo genético + célula + cristal)",
+     "hint": "Na bancada, com o maçarico aceso. Enquanto você fabrica, nada te atinge."
+    },
+    {
+     "done": "flag:r10_bomb",
+     "text": "Coloque a bomba no núcleo central e fuja!",
+     "hint": "O núcleo fica no meio da sala."
+    }
+   ],
+   "final": "Corra!",
+   "objects": [
+    {
+     "type": "door",
+     "x": 14,
+     "y": 14,
+     "w": 2,
+     "h": 1,
+     "to": 9,
+     "spawn": "next",
+     "back": true
+    },
+    {
+     "type": "obstacle",
+     "id": "r10_ca",
+     "kind": "lasercon",
+     "x": 6,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "modulo_contencao",
+     "flag": "r10_def",
+     "consume": true,
+     "blocks": false,
+     "label": "Console de defesas",
+     "ok_msg": "As defesas do complexo são desativadas.",
+     "fail_msg": "Este console precisa de um Módulo de contenção."
+    },
+    {
+     "type": "obstacle",
+     "id": "r10_cb",
+     "kind": "panel",
+     "x": 22,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "modulo_eletrico",
+     "flag": "r10_evac",
+     "consume": true,
+     "blocks": false,
+     "label": "Console de evacuação",
+     "ok_msg": "As rotas de evacuação se acendem em ciano.",
+     "fail_msg": "Este console precisa de um Módulo elétrico."
+    },
+    {
+     "type": "obstacle",
+     "id": "r10_cc",
+     "kind": "console",
+     "x": 14,
+     "y": 2,
+     "w": 1,
+     "h": 1,
+     "needs": "disp_resgate",
+     "flag": "r10_free",
+     "consume": false,
+     "blocks": false,
+     "label": "Console de contenção",
+     "ok_msg": "As cápsulas se abrem! Os ratos estão livres!",
+     "fail_msg": "Este console precisa de um Dispositivo de resgate."
+    },
+    {
+     "type": "obstacle",
+     "id": "r10_core",
+     "kind": "core",
+     "x": 14,
+     "y": 8,
+     "w": 2,
+     "h": 2,
+     "needs": "bomba",
+     "flag": "r10_bomb",
+     "consume": true,
+     "blocks": true,
+     "label": "Núcleo central",
+     "ok_msg": "A bomba está armada! Sobrecarga em 5 segundos... CORRA!",
+     "fail_msg": "O núcleo central precisa de uma Bomba experimental.",
+     "requires": "flag:r10_def&flag:r10_evac&flag:r10_free",
+     "req_msg": "O núcleo está protegido. Ative os três consoles primeiro."
+    },
+    {
+     "type": "npc",
+     "id": "r10_boss",
+     "kind": "scientist",
+     "x": 14,
+     "y": 5,
+     "name": "Dr. Voss",
+     "lines": [
+      "Então foi você, R-31. O único que saiu da gaiola... Devia sentir raiva. Sinto, na verdade, um certo orgulho.",
+      "Passei vinte anos nesta sala. Perdi minha família, meus amigos, o sono. Tudo pela ciência. Você acha que foi fácil?",
+      "Cada rato aqui é uma resposta que ainda não encontrei. Eu não sou um monstro, pequeno. Sou um homem com pressa.",
+      "Mas não posso deixar você destruir tudo o que eu construí. Sinto muito."
+     ],
+     "choices": [
+      "Libertar os ratos e encerrar o projeto.",
+      "Você chama isso de ciência?"
+     ]
+    },
+    {
+     "type": "boss",
+     "x": 14,
+     "y": 5,
+     "interval": 2.0
+    },
+    {
+     "type": "terminal",
+     "id": "r10_t1",
+     "x": 10,
+     "y": 2,
+     "title": "TERMINAL // DR. VOSS",
+     "lines": [
+      "PROJETO CYBERLAB: fase final. Todos os sujeitos serão submetidos ao protocolo.",
+      "Console de defesas: Módulo de contenção. Evacuação: Módulo elétrico. Cápsulas: Dispositivo de resgate.",
+      "NOTA PRIVADA: se o núcleo central sofrer sobrecarga, o complexo inteiro vai pelos ares. Jamais deixe alguém chegar perto dele."
+     ],
+     "learn": []
+    },
+    {
+     "type": "bench",
+     "x": 3,
+     "y": 9,
+     "w": 3,
+     "h": 2
+    },
+    {
+     "type": "locker",
+     "id": "r10_l1",
+     "x": 2,
+     "y": 12,
+     "items": {
+      "circuito": 2
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r10_l2",
+     "x": 27,
+     "y": 12,
+     "items": {
+      "cristal": 1,
+      "celula": 1
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r10_l3",
+     "x": 18,
+     "y": 2,
+     "items": {
+      "cu": 2,
+      "engrenagem": 1,
+      "cristal": 1
+     },
+     "puzzle": {
+      "formula": "H2O2",
+      "tokens": [
+       "H",
+       "2",
+       "O",
+       "2"
+      ],
+      "decoys": [
+       "N",
+       "a",
+       "C",
+       "l",
+       "3",
+       "S"
+      ],
+      "question": "Qual é a fórmula da ÁGUA OXIGENADA (peróxido de hidrogênio)?",
+      "hint": "Desinfeta feridas e clareia cabelos. Parente da água, mas com um átomo de oxigênio a mais; confira os dois índices."
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r10_l4",
+     "x": 8,
+     "y": 12,
+     "items": {
+      "circuito": 1,
+      "celula": 1,
+      "modulo_gen": 1
+     }
+    },
+    {
+     "type": "locker",
+     "id": "r10_l5",
+     "x": 21,
+     "y": 12,
+     "items": {
+      "celula": 1,
+      "gel": 1
+     },
+     "learn": [
+      "bomba"
+     ]
+    },
+    {
+     "type": "decor",
+     "kind": "pod",
+     "x": 2,
+     "y": 4,
+     "w": 2,
+     "h": 3,
+     "solid": true,
+     "rats": 2
+    },
+    {
+     "type": "decor",
+     "kind": "pod",
+     "x": 26,
+     "y": 4,
+     "w": 2,
+     "h": 3,
+     "solid": true,
+     "rats": 2
+    },
+    {
+     "type": "decor",
+     "kind": "pod",
+     "x": 8,
+     "y": 9,
+     "w": 1,
+     "h": 2,
+     "solid": true,
+     "rats": 1
+    },
+    {
+     "type": "decor",
+     "kind": "pod",
+     "x": 21,
+     "y": 9,
+     "w": 1,
+     "h": 2,
+     "solid": true,
+     "rats": 1
+    },
+    {
+     "type": "decor",
+     "kind": "platform",
+     "x": 11,
+     "y": 5,
+     "w": 8,
+     "h": 5,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "computer",
+     "x": 24,
+     "y": 2,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "books",
+     "x": 6,
+     "y": 4,
+     "w": 2,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "potions",
+     "x": 23,
+     "y": 7,
+     "w": 3,
+     "h": 2,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "shelf",
+     "x": 5,
+     "y": 12,
+     "w": 2,
+     "h": 1,
+     "solid": true
+    },
+    {
+     "type": "decor",
+     "kind": "sign",
+     "x": 12,
+     "y": 1,
+     "w": 6,
+     "h": 1,
+     "solid": false,
+     "text": "DR VOSS // CYBERLAB"
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 1,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false
+    },
+    {
+     "type": "decor",
+     "kind": "pipe",
+     "x": 25,
+     "y": 1,
+     "w": 4,
+     "h": 1,
+     "solid": false
+    }
+   ],
+   "accent": "#3d8bff"
+  }
+ ]
+}

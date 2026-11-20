@@ -1,0 +1,14 @@
+# Godot
+proj/.godot/
+proj/.import/
+*.translation
+export_presets.cfg.bak
+# Backend: banco de dados local não vai para o repositório
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+__pycache__/
+*.pyc
+# Sistema
+.DS_Store
+Thumbs.db

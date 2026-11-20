@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construtor de Entregas · Projeto e Engenharia de Software · UNA Barreiro</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9; color: #1e2a3e; line-height: 1.7;
+    padding: 2rem 1rem; display: flex; flex-direction: column;
+    align-items: center; transition: background 0.4s, color 0.4s;
+  }
+  body.dark-mode { background: #12161f; color: #e0e6f0; }
+  .container {
+    max-width: 1100px; width: 100%; background: #ffffff; border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08); overflow: hidden;
+    border: 1px solid #e0e6ed; transition: background 0.4s, border-color 0.4s;
+  }
+  body.dark-mode .container { background: #1c2230; border-color: #2e3648; }
+
+  /* HEADER */
+  .header {
+    background: #ffffff; border-bottom: 2px solid #e0e6ed;
+    padding: 1.2rem 2rem; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  body.dark-mode .header { background: #1c2230; border-bottom-color: #2e3648; }
+  .logo-una { display: flex; align-items: center; gap: 0.8rem; }
+  .logo-una-svg { height: 52px; width: auto; display: block; flex-shrink: 0; }
+  .logo-una-svg .txt-main { fill: #1e2a3e; transition: fill 0.4s; }
+  .logo-una-svg .txt-sub  { fill: #d32f2f; transition: fill 0.4s; }
+  body.dark-mode .logo-una-svg .txt-main { fill: #e0e6f0; }
+  body.dark-mode .logo-una-svg .txt-sub  { fill: #ff6b6b; }
+  .logo-una .nome-plataforma {
+    font-size: 0.9rem; font-weight: 600; color: #555; background: #f0f2f5;
+    padding: 0.2rem 0.8rem; border-radius: 20px;
+  }
+  body.dark-mode .logo-una .nome-plataforma { background: #2e3648; color: #b0bcd0; }
+  .header .info-uc { font-size: 0.85rem; color: #555; text-align: right; }
+  body.dark-mode .header .info-uc { color: #b0bcd0; }
+  .header .info-uc strong { color: #d32f2f; }
+  body.dark-mode .header .info-uc strong { color: #ff6b6b; }
+  .header .info-uc .professores { display: block; margin-top: 0.2rem; }
+
+  /* CONTEXTO */
+  .contexto {
+    background: #e3f2fd; border-left: 5px solid #1565c0; padding: 1rem 2rem;
+    font-size: 0.9rem; color: #0d47a1;
+  }
+  body.dark-mode .contexto { background: #0f1b2e; color: #90caf9; }
+  .contexto strong { color: #0d47a1; }
+  body.dark-mode .contexto strong { color: #bbdefb; }
+
+  /* CONTENT */
+  .content { padding: 2rem; }
+  .titulo {
+    font-size: 1.5rem; font-weight: 700; color: #1e2a3e; margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f2f5; padding-bottom: 0.5rem;
+  }
+  body.dark-mode .titulo { color: #e0e6f0; border-bottom-color: #2e3648; }
+  h2 {
+    font-size: 1.35rem; font-weight: 700; color: #1e2a3e; margin: 2rem 0 1rem 0;
+    padding-bottom: 0.4rem; border-bottom: 2px solid #f0f2f5; scroll-margin-top: 20px;
+  }
+  body.dark-mode h2 { color: #e0e6f0; border-bottom-color: #2e3648; }
+  h3 { font-size: 1.1rem; font-weight: 700; color: #1e2a3e; margin: 1.2rem 0 0.6rem 0; }
+  body.dark-mode h3 { color: #e0e6f0; }
+  h4 { font-size: 1rem; font-weight: 700; color: #d32f2f; margin: 0.9rem 0 0.4rem 0; }
+  body.dark-mode h4 { color: #ff6b6b; }
+  p, li { color: #1e2a3e; line-height: 1.7; font-size: 0.97rem; text-align: justify; }
+  body.dark-mode p, body.dark-mode li { color: #c8d0e0; }
+  ul, ol { padding-left: 1.8rem; margin: 0.5rem 0 1rem 0; }
+  li { margin-bottom: 0.3rem; }
+
+  /* PRAZO GRID */
+  .prazo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.2rem 0; }
+  @media (max-width: 700px) { .prazo-grid { grid-template-columns: 1fr; } }
+  .prazo-card { border-radius: 12px; padding: 1.2rem 1rem; text-align: center; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  .prazo-card.inscricao { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+  .prazo-card.parcial { background: linear-gradient(135deg, #f57c00, #e65100); }
+  .prazo-card.final { background: linear-gradient(135deg, #d32f2f, #b71c1c); }
+  .prazo-card.urgente { animation: pulseBanner 2s infinite; }
+  @keyframes pulseBanner { 0%,100% { box-shadow: 0 4px 12px rgba(0,0,0,0.12); } 50% { box-shadow: 0 4px 24px rgba(0,0,0,0.4); } }
+  .prazo-card .fase { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.95; }
+  .prazo-card .data { font-size: 1.8rem; font-weight: 800; margin: 0.3rem 0; }
+  .prazo-card .status { font-size: 0.82rem; opacity: 0.95; }
+
+  /* ÍNDICE */
+  .indice { background: #fafbfc; border: 1px solid #e0e6ed; border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
+  body.dark-mode .indice { background: #232a3a; border-color: #2e3648; }
+  .indice a { color: #d32f2f; font-weight: 600; text-decoration: none; font-size: 0.88rem; transition: color 0.2s, transform 0.2s; }
+  .indice a:hover { color: #b71c1c; transform: translateY(-2px); }
+  body.dark-mode .indice a { color: #ff6b6b; }
+
+  /* CARDS */
+  .card { background: #f9fbfd; border: 2px solid #e0e6ed; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1rem 0; transition: all 0.2s; }
+  .card:hover { border-color: #d32f2f; box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1); }
+  body.dark-mode .card { background: #232a3a; border-color: #2e3648; }
+  body.dark-mode .card:hover { border-color: #ff6b6b; }
+  .card a { color: #1565c0; font-weight: 600; word-break: break-word; }
+  .card a:hover { color: #0d47a1; text-decoration: underline; }
+  body.dark-mode .card a { color: #90caf9; }
+
+  /* BANNERS */
+  .destaque { background: #fff8e1; border-left: 5px solid #f9a825; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; }
+  body.dark-mode .destaque { background: #2a2218; }
+  .destaque strong { color: #b45309; }
+  .dica { background: #e8f5e9; border-left: 5px solid #2e7d32; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; }
+  body.dark-mode .dica { background: #17281a; }
+  .dica strong { color: #1b5e20; }
+  .pegadinha { background: #fce4ec; border-left: 5px solid #d32f2f; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; }
+  body.dark-mode .pegadinha { background: #2a1a22; }
+  .pegadinha strong { color: #b71c1c; }
+
+  /* TABELAS */
+  table { width: 100%; border-collapse: collapse; background: #fafbfc; border-radius: 10px; overflow: hidden; margin: 0.6rem 0 1rem 0; font-size: 0.9rem; }
+  body.dark-mode table { background: #232a3a; }
+  th, td { padding: 0.55rem 0.85rem; border: 1px solid #e0e6ed; text-align: left; vertical-align: top; }
+  body.dark-mode th, body.dark-mode td { border-color: #3e4658; color: #c8d0e0; }
+  th { background: #1e2a3e; color: #fff; font-weight: 600; }
+  body.dark-mode th { background: #2e3648; }
+  code { background: #f0f2f5; padding: 0.1rem 0.4rem; border-radius: 5px; font-size: 0.9rem; color: #d32f2f; font-family: 'Consolas','Courier New',monospace; }
+  body.dark-mode code { background: #2e3648; color: #ff8a8a; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding: 0.5rem 0 0.5rem 1.8rem; position: relative; border-bottom: 1px dashed #e0e6ed; font-size: 0.95rem; }
+  body.dark-mode .checklist li { border-bottom-color: #3e4658; }
+  .checklist li::before { content: '☐'; position: absolute; left: 0; top: 0.4rem; font-size: 1.1rem; color: #2e7d32; font-weight: 700; }
+
+  /* BOTÕES */
+  .btn-group { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0; justify-content: center; }
+  .btn { padding: 0.7rem 1.5rem; background: #d32f2f; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; font-family: inherit; transition: background 0.2s, transform 0.2s; }
+  .btn:hover { background: #b71c1c; transform: translateY(-2px); }
+  .btn.secundario { background: #1e2a3e; }
+  .btn.secundario:hover { background: #2e3648; }
+  .btn.verde { background: #2e7d32; }
+  .btn.verde:hover { background: #1b5e20; }
+  .btn.amarelo { background: #f9a825; color: #1e2a3e; }
+  .btn.amarelo:hover { background: #f57f17; }
+  .btn.azul { background: #1565c0; }
+  .btn.azul:hover { background: #0d47a1; }
+  .btn.perigo { background: #c62828; }
+  .btn.perigo:hover { background: #8e1e1e; }
+  .btn.pequeno { padding: 0.4rem 0.9rem; font-size: 0.8rem; }
+
+  /* FORMS */
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-weight: 700; font-size: 0.9rem; color: #1e2a3e; margin-bottom: 0.3rem; }
+  body.dark-mode .form-group label { color: #e0e6f0; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 1rem; border: 2px solid #e0e6ed; border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: #ffffff; color: #1e2a3e; transition: all 0.3s; }
+  body.dark-mode .form-group input, body.dark-mode .form-group select, body.dark-mode .form-group textarea { background: #2e3648; color: #e0e6f0; border-color: #2e3648; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #d32f2f; box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-row-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; }
+  .form-row-4 { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 0.8rem; align-items: end; }
+  @media (max-width: 900px) { .form-row-4 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .form-row, .form-row-3, .form-row-4 { grid-template-columns: 1fr; } }
+
+  /* LISTAS DINÂMICAS */
+  .lista-dinamica { list-style: none; padding: 0; margin: 0.5rem 0; }
+  .lista-dinamica li { background: #ffffff; border: 1px solid #e0e6ed; border-radius: 8px; padding: 0.5rem 0.8rem; margin-bottom: 0.4rem; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+  body.dark-mode .lista-dinamica li { background: #2a3244; border-color: #3e4658; }
+  .lista-dinamica li span { flex: 1; font-size: 0.93rem; }
+  .add-inline { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  .add-inline input, .add-inline select { flex: 1; min-width: 140px; }
+
+  /* FASE BADGE */
+  .fase-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.6rem; vertical-align: middle; }
+  .fase-badge.todas { background: #bbdefb; color: #0d47a1; }
+  .fase-badge.parcial { background: #ffe0b2; color: #e65100; }
+  .fase-badge.final { background: #ffcdd2; color: #b71c1c; }
+  body.dark-mode .fase-badge.todas { background: #0d2a4a; color: #90caf9; }
+  body.dark-mode .fase-badge.parcial { background: #4a2a10; color: #ffb74d; }
+  body.dark-mode .fase-badge.final { background: #4a1515; color: #ff8a8a; }
+
+  /* ALERTAS PAINEL */
+  .alertas-painel { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+  .alerta-card { border-radius: 10px; padding: 0.9rem 1rem; text-align: center; border-left: 5px solid #999; background: #f0f2f5; transition: transform 0.2s; }
+  .alerta-card:hover { transform: translateY(-2px); }
+  body.dark-mode .alerta-card { background: #2a3244; }
+  .alerta-card .alerta-num { font-size: 1.8rem; font-weight: 800; display: block; }
+  .alerta-card .alerta-label { font-size: 0.8rem; color: #555; font-weight: 600; }
+  body.dark-mode .alerta-card .alerta-label { color: #b0bcd0; }
+  .alerta-card.atrasada { border-left-color: #c62828; }
+  .alerta-card.atrasada .alerta-num { color: #c62828; }
+  .alerta-card.urgente { border-left-color: #f57c00; }
+  .alerta-card.urgente .alerta-num { color: #f57c00; }
+  .alerta-card.atencao { border-left-color: #f9a825; }
+  .alerta-card.atencao .alerta-num { color: #f9a825; }
+  .alerta-card.ok { border-left-color: #2e7d32; }
+  .alerta-card.ok .alerta-num { color: #2e7d32; }
+  .alerta-card.concluida { border-left-color: #1565c0; }
+  .alerta-card.concluida .alerta-num { color: #1565c0; }
+
+  /* GANTT */
+  .gantt-wrapper { background: #fafbfc; border: 2px solid #e0e6ed; border-radius: 12px; padding: 1rem; margin: 1rem 0; overflow-x: auto; }
+  body.dark-mode .gantt-wrapper { background: #232a3a; border-color: #2e3648; }
+  .gantt-wrapper .gantt-title { font-weight: 700; color: #d32f2f; margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  body.dark-mode .gantt-wrapper .gantt-title { color: #ff6b6b; }
+  .gantt-axis { display: grid; grid-template-columns: 220px 1fr; gap: 12px; padding-bottom: 0.4rem; border-bottom: 2px solid #e0e6ed; margin-bottom: 0.4rem; }
+  body.dark-mode .gantt-axis { border-bottom-color: #2e3648; }
+  .gantt-axis-label { font-size: 0.78rem; font-weight: 700; color: #555; text-transform: uppercase; }
+  body.dark-mode .gantt-axis-label { color: #b0bcd0; }
+  .gantt-axis-track { position: relative; height: 20px; display: flex; justify-content: space-between; font-size: 0.72rem; color: #888; }
+  .gantt-axis-mark { position: absolute; transform: translateX(-50%); }
+  .gantt-axis-mark:first-child { transform: translateX(0); }
+  .gantt-axis-mark:last-child { transform: translateX(-100%); }
+  .gantt-row { display: grid; grid-template-columns: 220px 1fr; gap: 12px; margin-bottom: 0.5rem; align-items: center; }
+  @media (max-width: 700px) { .gantt-axis { grid-template-columns: 1fr; } .gantt-axis-label { display: none; } .gantt-row { grid-template-columns: 1fr; } }
+  .gantt-row-label { font-size: 0.85rem; font-weight: 600; color: #1e2a3e; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  body.dark-mode .gantt-row-label { color: #e0e6f0; }
+  .gantt-row-label small { font-weight: 400; color: #888; font-size: 0.75rem; display: block; }
+  .gantt-track { position: relative; height: 32px; background: #f0f2f5; border-radius: 6px; overflow: hidden; }
+  body.dark-mode .gantt-track { background: #1a2130; }
+  .gantt-bar { position: absolute; top: 3px; height: 26px; border-radius: 5px; background: #d32f2f; color: #fff; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: filter 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.15); overflow: hidden; }
+  .gantt-bar:hover { filter: brightness(1.1); z-index: 5; }
+  .gantt-bar.concluida { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+  .gantt-bar.urgente { background: linear-gradient(135deg, #f57c00, #e65100); }
+  .gantt-bar.atrasada { background: linear-gradient(135deg, #c62828, #7f0f0f); animation: pulseBar 1.8s infinite; }
+  .gantt-bar.atencao { background: linear-gradient(135deg, #f9a825, #f57f17); }
+  .gantt-bar.marco { background: transparent; color: #d32f2f; border: 2px dashed #d32f2f; box-shadow: none; }
+  @keyframes pulseBar { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.25); } }
+  .gantt-today { position: absolute; top: 0; bottom: 0; width: 2px; background: #d32f2f; z-index: 4; pointer-events: none; }
+  .gantt-today::before { content: 'HOJE'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; font-weight: 800; color: #d32f2f; white-space: nowrap; }
+  .gantt-dep { position: absolute; top: 50%; width: 8px; height: 8px; background: #1565c0; border-radius: 50%; transform: translate(-50%, -50%); z-index: 3; border: 2px solid #fff; }
+
+  /* TAREFAS */
+  .tarefa-item { background: #ffffff; border: 2px solid #e0e6ed; border-radius: 10px; padding: 0.8rem 1rem; margin: 0.5rem 0; display: grid; grid-template-columns: 1fr auto; gap: 0.8rem; align-items: center; }
+  .tarefa-item:hover { border-color: #d32f2f; }
+  body.dark-mode .tarefa-item { background: #232a3a; border-color: #2e3648; }
+  .tarefa-nome { font-weight: 700; color: #1e2a3e; font-size: 0.95rem; }
+  body.dark-mode .tarefa-nome { color: #e0e6f0; }
+  .tarefa-meta { font-size: 0.78rem; color: #666; margin-top: 0.2rem; }
+  body.dark-mode .tarefa-meta { color: #b0bcd0; }
+  .tarefa-acoes { display: flex; gap: 0.4rem; }
+  .badge-status { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.4rem; }
+  .badge-status.atrasada { background: #ffcdd2; color: #b71c1c; }
+  .badge-status.urgente { background: #ffe0b2; color: #e65100; }
+  .badge-status.atencao { background: #fff9c4; color: #f57f17; }
+  .badge-status.ok { background: #c8e6c9; color: #1b5e20; }
+  .badge-status.concluida { background: #bbdefb; color: #0d47a1; }
+  body.dark-mode .badge-status.atrasada { background: #4a1515; color: #ff8a8a; }
+  body.dark-mode .badge-status.urgente { background: #4a2a10; color: #ffb74d; }
+  body.dark-mode .badge-status.atencao { background: #4a3f10; color: #ffe082; }
+  body.dark-mode .badge-status.ok { background: #1b3a1e; color: #81c784; }
+  body.dark-mode .badge-status.concluida { background: #0d2a4a; color: #90caf9; }
+
+  /* DEP LIST */
+  .dep-list { max-height: 150px; overflow-y: auto; background: #fff; border: 2px solid #e0e6ed; border-radius: 8px; padding: 0.5rem 0.8rem; }
+  body.dark-mode .dep-list { background: #2e3648; border-color: #3e4658; }
+  .dep-list label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 400; cursor: pointer; padding: 0.25rem 0; color: #1e2a3e; }
+  body.dark-mode .dep-list label { color: #c8d0e0; }
+  .dep-list input[type="checkbox"] { width: auto; margin: 0; }
+
+  /* WORKLOAD */
+  .workload-item { background: #ffffff; border: 2px solid #e0e6ed; border-radius: 10px; padding: 0.8rem 1rem; margin: 0.5rem 0; }
+  body.dark-mode .workload-item { background: #232a3a; border-color: #2e3648; }
+  .workload-header { display: flex; justify-content: space-between; align-items: center; font-weight: 700; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem; }
+  .workload-header .nome { color: #1e2a3e; }
+  body.dark-mode .workload-header .nome { color: #e0e6f0; }
+  .workload-header .dias { color: #d32f2f; font-size: 0.9rem; }
+  .workload-bar-bg { width: 100%; height: 12px; background: #e0e6ed; border-radius: 6px; overflow: hidden; }
+  body.dark-mode .workload-bar-bg { background: #1a2130; }
+  .workload-bar-fill { height: 100%; transition: width 0.4s; border-radius: 6px; }
+  .workload-bar-fill.ok { background: #2e7d32; }
+  .workload-bar-fill.atencao { background: #f9a825; }
+  .workload-bar-fill.sobrecarga { background: #c62828; }
+  .sobrecarga-tag { background: #c62828; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 10px; margin-left: 0.4rem; }
+
+  /* PROGRESSO GERAL */
+  .progresso-geral { margin: 1rem 0; padding: 1rem 1.2rem; background: #f9fbfd; border: 2px solid #e0e6ed; border-radius: 12px; }
+  body.dark-mode .progresso-geral { background: #232a3a; border-color: #2e3648; }
+  .progresso-geral .linha { display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #1e2a3e; margin-bottom: 0.4rem; }
+  body.dark-mode .progresso-geral .linha { color: #e0e6f0; }
+  .progresso-geral .barra-bg { width: 100%; height: 14px; background: #e0e6ed; border-radius: 8px; overflow: hidden; }
+  body.dark-mode .progresso-geral .barra-bg { background: #1a2130; }
+  .progresso-geral .barra-fill { height: 100%; background: linear-gradient(90deg, #d32f2f, #f57c00); transition: width 0.4s ease; border-radius: 8px; }
+
+  /* RISCOS */
+  .risco-item { background: #ffffff; border: 2px solid #e0e6ed; border-radius: 10px; padding: 0.9rem 1rem; margin: 0.6rem 0; }
+  body.dark-mode .risco-item { background: #232a3a; border-color: #2e3648; }
+  .risco-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+  .risco-nome { font-weight: 700; color: #1e2a3e; }
+  body.dark-mode .risco-nome { color: #e0e6f0; }
+  .risco-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .risco-tag { font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 10px; text-transform: uppercase; }
+  .risco-tag.prob-alta { background: #ffcdd2; color: #b71c1c; }
+  .risco-tag.prob-media { background: #ffe0b2; color: #e65100; }
+  .risco-tag.prob-baixa { background: #c8e6c9; color: #1b5e20; }
+
+  /* GERADOR */
+  .gerador-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0; }
+  @media (max-width: 800px) { .gerador-grid { grid-template-columns: 1fr; } }
+  .gerador-card { border-radius: 12px; padding: 1.2rem; border: 2px solid #e0e6ed; background: #fafbfc; }
+  body.dark-mode .gerador-card { background: #232a3a; border-color: #2e3648; }
+  .gerador-card.inscricao { border-color: #1565c0; }
+  .gerador-card.parcial { border-color: #f57c00; }
+  .gerador-card.final { border-color: #d32f2f; }
+  .gerador-card h4 { margin-top: 0; }
+  .gerador-card.inscricao h4 { color: #1565c0; }
+  .gerador-card.parcial h4 { color: #f57c00; }
+  .gerador-card.final h4 { color: #d32f2f; }
+  .gerador-card .desc { font-size: 0.85rem; color: #666; margin-bottom: 0.8rem; }
+  body.dark-mode .gerador-card .desc { color: #b0bcd0; }
+  .gerador-card .acoes { display: flex; flex-direction: column; gap: 0.4rem; }
+  .gerador-card .acoes .btn { width: 100%; }
+
+  /* FOOTER */
+  .footer { background: #f4f6f9; border-top: 1px solid #e0e6ed; padding: 1.5rem 2rem; text-align: center; font-size: 0.9rem; color: #444; }
+  body.dark-mode .footer { background: #1a1f2b; border-top-color: #2e3648; color: #b0bcd0; }
+  .footer .nota { color: #d32f2f; font-weight: 700; }
+  .footer-botoes { background: #ffffff; border-top: 1px solid #e0e6ed; padding: 1.2rem 2rem; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+  body.dark-mode .footer-botoes { background: #1c2230; border-top-color: #2e3648; }
+
+  /* PROGRESS/SCROLL */
+  .progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #e0e6ed; z-index: 999; }
+  .progress-fill { height: 100%; width: 0%; background: #1565c0; transition: width 0.15s ease; }
+  .scroll-top { position: fixed; bottom: 2rem; right: 2rem; background: #d32f2f; color: #fff; width: 46px; height: 46px; border-radius: 50%; border: none; font-size: 1.3rem; cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.4s; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 100; }
+  .scroll-top.visible { opacity: 1; transform: translateY(0); }
+  .scroll-top:hover { background: #b71c1c; }
+
+  @media (max-width: 700px) {
+    body { padding: 1rem; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .header .info-uc { text-align: left; }
+    .content { padding: 1.2rem; }
+    .indice { flex-direction: column; gap: 0.3rem; }
+    .logo-una-svg { height: 42px; }
+    .tarefa-item { grid-template-columns: 1fr; }
+    .tarefa-acoes { justify-content: flex-end; }
+  }
+  @media print {
+    body { background: #fff !important; padding: 0; }
+    .btn, .btn-group, .scroll-top, .footer-botoes, .progress-bar,
+    .form-group, .form-row, .form-row-3, .form-row-4,
+    .add-inline, .dep-list, .tarefa-acoes, .gerador-grid { display: none !important; }
+    .card, .tarefa-item, .alerta-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<script type="application/json" id="dadosEmbutidos">{"grupo": {"nome": "Grupo R-31", "projeto": "Outro (especificar)", "projetoCustom": "Projeto R-31 — Rato CyberLab (jogo educativo 2D de aventura e quebra-cabeças)", "tipoApp": "Desktop", "lider": "Paulo André Lima Patrício"}, "integrantes": [{"id": 1, "nome": "Lucas Gonçalves Florentino", "matricula": "326176171", "funcao": "Analista de requisitos"}, {"id": 2, "nome": "Lucas Alves Oliveira", "matricula": "326129404", "funcao": "Desenvolvedor de sistemas"}, {"id": 3, "nome": "Arthur Carvalho de Oliveira", "matricula": "32611916", "funcao": "Modelador de dados / DBA"}, {"id": 4, "nome": "Laura Chagas Faria", "matricula": "326129970", "funcao": "Interface e documentação"}, {"id": 5, "nome": "Paulo André Lima Patrício", "matricula": "326128523", "funcao": "Desenvolvimento e integração"}, {"id": 6, "nome": "Miguel Oliveira Silva", "matricula": "326128330", "funcao": "Testes e qualidade"}], "apresentacao": {"objetivo": "Desenvolver o Rato CyberLab, um jogo educativo 2D top-down em pixel art. O jogador controla o rato R-31, explora um laboratório, coleta itens, combina materiais na bancada e resolve desafios de química para libertar ratos presos e escapar.", "justificativa": "Transformar o contato com conceitos introdutórios de química e raciocínio lógico em uma experiência interativa de exploração, tentativa e feedback. O jogo pode apoiar discussões em sala como recurso complementar; não substitui aulas nem experiências supervisionadas. As receitas de crafting são fictícias e servem à progressão do jogo. O relatório de erros ajuda o jogador (e o professor ou mediador) a identificar quais fórmulas e combinações geram mais dificuldade.", "publico": "Estudantes e pessoas interessadas em química básica e jogos de aventura. Professores ou mediadores podem usar o jogo como apoio complementar para discussão de conceitos e raciocínio lógico.", "diferenciais": "Aventura narrativa cyberpunk com visão top-down que integra exploração, inventário, combinações na CraftTable, desafios de fórmulas, perigos e progressão por salas. O projeto usa pixel art e apresenta conceitos científicos dentro de uma história. O jogo tem cadastro e login de jogadores, salva o progresso em um banco de dados por meio de um backend próprio e gera um relatório que mostra ao jogador quando e onde ele errou."}, "escopo": {"dentro": ["Jogo 2D para computador, em visão top-down e pixel art.", "Movimentação do R-31 e exploração de salas do laboratório.", "Coleta de itens e reagentes com armazenamento no inventário.", "Bancada CraftTable para combinar elementos e fabricar ferramentas.", "Uso de maçarico e controle de temperatura na bancada.", "Puzzles e obstáculos que liberam passagens e permitem avançar.", "Diálogos e interações com personagens.", "Sistema de vida e danos causados por perigos.", "Progressão por tutorial e 10 salas de campanha.", "Salvamento do progresso no banco de dados, com cópia local para jogar offline.", "Cadastro e login de jogadores, com senha protegida por hash.", "Backend (API REST em Python) que conversa com o jogo e com o banco SQLite.", "Relatório de erros do jogador (fórmula errada, receita inválida, dano e recaptura) com data, hora e sala.", "Resgate de animais presos no laboratório.", "Confronto final com Dr. Voss e encerramento da história."], "fora": ["Aplicativo mobile nativo.", "Multiplayer ou partidas online.", "Integrações com ERPs ou sistemas corporativos.", "Painel administrativo com BI.", "Loja virtual e compras dentro do jogo.", "Competição ou ranking online.", "Inteligência artificial avançada para personagens.", "Simulações químicas com precisão laboratorial.", "Integração com redes sociais.", "Publicação para consoles."]}, "funcionalidades": [{"nome": "Movimentação do personagem", "prioridade": "Alta", "desc": "Controlar o R-31 pelo teclado em quatro direções, andando ou correndo."}, {"nome": "Exploração dos ambientes", "prioridade": "Alta", "desc": "Percorrer salas do laboratório em visão top-down e encontrar novas passagens."}, {"nome": "Sistema de inventário", "prioridade": "Alta", "desc": "Consultar e organizar itens e reagentes recolhidos."}, {"nome": "Bancada de combinações (CraftTable)", "prioridade": "Alta", "desc": "Combinar elementos nos recipientes da bancada."}, {"nome": "Fabricação de itens", "prioridade": "Alta", "desc": "Criar ferramentas necessárias para avançar."}, {"nome": "Sistema de puzzles e obstáculos", "prioridade": "Alta", "desc": "Resolver desafios de fórmulas e superar obstáculos usando itens."}, {"nome": "Progressão entre fases", "prioridade": "Alta", "desc": "Liberar novas salas ao concluir os desafios."}, {"nome": "Sistema de coleta de materiais", "prioridade": "Alta", "desc": "Encontrar e recolher itens pelo cenário."}, {"nome": "Sistema de salvamento", "prioridade": "Alta", "desc": "Salvar e carregar o progresso do jogador no banco de dados, com cópia local para o modo offline."}, {"nome": "Cadastro e login de jogadores", "prioridade": "Alta", "desc": "Criar conta com nome, e-mail e senha, entrar com a conta ou jogar sem conta (offline)."}, {"nome": "Backend e banco de dados", "prioridade": "Alta", "desc": "API REST em Python que valida os dados e grava contas, progresso e erros no SQLite."}, {"nome": "Relatório de erros do jogador", "prioridade": "Alta", "desc": "Registrar cada erro (fórmula, receita, dano, recaptura) e exibir totais por tipo, por sala e por dia, com data e hora."}, {"nome": "Sistema de diálogos", "prioridade": "Média", "desc": "Apresentar conversas e informações dos personagens."}, {"nome": "Sistema de vida e danos", "prioridade": "Média", "desc": "Controlar a vida do personagem e os danos dos perigos."}, {"nome": "Tutorial inicial", "prioridade": "Média", "desc": "Ensinar os controles e as mecânicas principais."}, {"nome": "Sistema de temperatura e maçarico", "prioridade": "Média", "desc": "Aquecer receitas na CraftTable."}, {"nome": "Missões de resgate de animais", "prioridade": "Média", "desc": "Libertar animais presos no laboratório."}, {"nome": "Menu inicial e pausa", "prioridade": "Média", "desc": "Iniciar ou continuar a campanha e pausar o jogo."}, {"nome": "Cena final e encerramento", "prioridade": "Baixa", "desc": "Apresentar o desfecho após o confronto com Dr. Voss."}], "requisitos": {"RF": ["O jogo deve permitir movimentar o personagem usando o teclado.", "O jogo deve permitir explorar diferentes salas do laboratório.", "O jogo deve permitir coletar itens e reagentes encontrados nos ambientes.", "O jogo deve armazenar os itens coletados no inventário.", "O jogo deve permitir usar itens do inventário na bancada de combinações.", "O jogo deve permitir combinar elementos para fabricar novos objetos.", "O jogo deve apresentar retorno quando uma combinação funcionar ou falhar.", "O jogo deve permitir usar ferramentas para superar obstáculos.", "O jogo deve permitir controlar a temperatura da bancada por meio de um maçarico.", "O jogo deve permitir interações e diálogos com personagens.", "O jogo deve controlar os pontos de vida do personagem.", "O jogo deve permitir avançar para novas salas após concluir desafios.", "O jogo deve permitir libertar animais durante a campanha.", "O jogo deve apresentar um tutorial com as mecânicas básicas.", "O jogo deve permitir salvar e carregar o progresso do jogador a partir do banco de dados.", "O jogo deve apresentar uma tela inicial e uma opção de pausa.", "O jogo deve apresentar uma cena final após a conclusão da campanha.", "O sistema deve permitir cadastrar um jogador com nome, e-mail e senha.", "O sistema deve permitir que o jogador faça login e continue a campanha de onde parou.", "O sistema deve registrar cada erro do jogador (fórmula errada, receita inválida, dano e recaptura) com data, hora e sala.", "O sistema deve exibir ao jogador um relatório com os seus erros, por tipo, por sala e ao longo do tempo."], "RNF": ["O jogo deve ser desenvolvido em Godot 4.", "A interface deve ser simples e intuitiva para o público-alvo.", "O jogo deve funcionar em computadores compatíveis com os requisitos definidos para o projeto.", "O jogo deve manter desempenho estável durante a exploração.", "Os dados do jogador devem ser armazenados de maneira organizada.", "O código deve ser organizado em módulos e funcionalidades.", "O jogo deve responder rapidamente aos comandos do jogador.", "O salvamento deve preservar o progresso do jogador.", "Os elementos visuais devem manter o padrão 2D em pixel art.", "As combinações da bancada devem apresentar resultados consistentes.", "As senhas devem ser armazenadas com hash e sal, nunca em texto puro.", "Cada jogador só pode acessar o próprio progresso e o próprio relatório.", "O jogo deve continuar funcionando sem o servidor (modo offline), enviando os erros pendentes quando a conexão voltar."]}, "tecnologias": [{"nome": "Godot Engine", "categoria": "Outro", "versao": "4.4.1; engine 2D, cenas, entrada e interface."}, {"nome": "GDScript", "categoria": "Outro", "versao": "Linguagem principal da lógica do jogo."}, {"nome": "JSON", "categoria": "Outro", "versao": "Definição das salas, objetos, diálogos e receitas."}, {"nome": "Python 3 (http.server + sqlite3)", "categoria": "Backend", "versao": "API REST em JSON, autenticação por token e relatório HTML, sem dependências externas."}, {"nome": "HTTPRequest (Godot)", "categoria": "Frontend", "versao": "Comunicação do jogo com a API (cadastro, login, progresso e erros)."}, {"nome": "unittest e Playwright", "categoria": "Testes", "versao": "16 testes automatizados da API e teste ponta a ponta jogo + backend + banco."}, {"nome": "Python, Pillow, NumPy e SciPy", "categoria": "Design / Prototipação", "versao": "Ferramentas de geração e tratamento da arte pixel art."}, {"nome": "Godot headless e Xvfb", "categoria": "Testes", "versao": "Testes automatizados e capturas de tela."}, {"nome": "Git", "categoria": "Versionamento", "versao": "Controle de versões do código-fonte."}, {"nome": "GitHub", "categoria": "Versionamento", "versao": "Repositório remoto do projeto."}, {"nome": "SQLite", "categoria": "Banco de Dados", "versao": "Banco de dados relacional: contas, progresso, catálogo do jogo e erros dos jogadores (12 tabelas em 3FN)."}, {"nome": "Visual Studio Code", "categoria": "Outro", "versao": "Edição e organização dos arquivos do projeto."}], "tarefas": [{"id": 1, "nome": "Formação do grupo e definição do projeto", "responsavel": "Equipe R-31", "inicio": "2026-10-06", "fim": "2026-10-12", "status": 100, "tipo": "normal", "dependeDe": []}, {"id": 2, "nome": "Versão jogável com tutorial e 10 salas disponibilizada", "responsavel": "Equipe R-31", "inicio": "2026-11-06", "fim": "2026-11-06", "status": 100, "tipo": "normal", "dependeDe": [1]}, {"id": 3, "nome": "Escopo, funcionalidades e requisitos do projeto", "responsavel": "Lucas Gonçalves Florentino; Laura Chagas Faria", "inicio": "2026-11-06", "fim": "2026-11-06", "status": 100, "tipo": "normal", "dependeDe": [1, 2]}, {"id": 4, "nome": "Criar repositório GitHub e versionar o código", "responsavel": "Lucas Alves Oliveira; Paulo André Lima Patrício", "inicio": "2026-11-07", "fim": "2026-11-10", "status": 50, "tipo": "normal", "dependeDe": [1]}, {"id": 5, "nome": "Diagrama de Caso de Uso", "responsavel": "Arthur Carvalho de Oliveira", "inicio": "2026-11-07", "fim": "2026-11-10", "status": 100, "tipo": "normal", "dependeDe": [3]}, {"id": 6, "nome": "DER e modelo relacional SQLite", "responsavel": "Arthur Carvalho de Oliveira", "inicio": "2026-11-08", "fim": "2026-11-13", "status": 100, "tipo": "normal", "dependeDe": [3]}, {"id": 7, "nome": "Dicionário de Dados, normalização e scripts SQL", "responsavel": "Arthur Carvalho de Oliveira; Paulo André Lima Patrício", "inicio": "2026-11-12", "fim": "2026-11-16", "status": 100, "tipo": "normal", "dependeDe": [6]}, {"id": 8, "nome": "Documentar arquitetura Godot, salas JSON e persistência SQLite", "responsavel": "Lucas Alves Oliveira", "inicio": "2026-11-08", "fim": "2026-11-13", "status": 100, "tipo": "normal", "dependeDe": [3]}, {"id": 9, "nome": "Implementar persistência SQLite (backend) para inventário, progresso e erros", "responsavel": "Lucas Alves Oliveira", "inicio": "2026-11-16", "fim": "2026-11-24", "status": 100, "tipo": "normal", "dependeDe": [7, 8]}, {"id": 10, "nome": "Integrar o banco com as cenas e o salvamento do jogo (cadastro, login, relatório)", "responsavel": "Paulo André Lima Patrício; Lucas Alves Oliveira", "inicio": "2026-11-21", "fim": "2026-11-25", "status": 90, "tipo": "normal", "dependeDe": [9]}, {"id": 11, "nome": "Preparar interfaces e material visual da apresentação", "responsavel": "Laura Chagas Faria", "inicio": "2026-11-09", "fim": "2026-11-16", "status": 60, "tipo": "normal", "dependeDe": [3]}, {"id": 12, "nome": "Revisar conteúdo científico e desafios do jogo", "responsavel": "Lucas Gonçalves Florentino; Laura Chagas Faria", "inicio": "2026-11-10", "fim": "2026-11-16", "status": 0, "tipo": "normal", "dependeDe": [3]}, {"id": 13, "nome": "Testar campanha, receitas, progressão e banco de dados (testes automatizados feitos)", "responsavel": "Miguel Oliveira Silva", "inicio": "2026-11-24", "fim": "2026-11-27", "status": 40, "tipo": "normal", "dependeDe": [10]}, {"id": 14, "nome": "Corrigir falhas e repetir os testes", "responsavel": "Miguel Oliveira Silva; Paulo André Lima Patrício", "inicio": "2026-11-27", "fim": "2026-11-28", "status": 0, "tipo": "normal", "dependeDe": [13]}, {"id": 15, "nome": "ENTREGA PARCIAL", "responsavel": "Equipe R-31", "inicio": "2026-11-20", "fim": "2026-11-20", "status": 0, "tipo": "marco", "dependeDe": [4, 5, 6, 7, 8, 11, 12]}, {"id": 16, "nome": "Gerar versão Windows e testar em outros computadores", "responsavel": "Paulo André Lima Patrício", "inicio": "2026-11-28", "fim": "2026-11-29", "status": 0, "tipo": "normal", "dependeDe": [14]}, {"id": 17, "nome": "Finalizar documentação, conclusões, referências e vídeo pitch", "responsavel": "Laura Chagas Faria; Lucas Gonçalves Florentino; Miguel Oliveira Silva", "inicio": "2026-11-25", "fim": "2026-11-29", "status": 0, "tipo": "normal", "dependeDe": [13, 16]}, {"id": 18, "nome": "ENTREGA FINAL", "responsavel": "Equipe R-31", "inicio": "2026-11-30", "fim": "2026-11-30", "status": 0, "tipo": "marco", "dependeDe": [17]}], "modelagem": {"casoUso": "docs/diagramas/caso_de_uso.png (no repositório do projeto)", "casoUsoDesc": "Atores: Jogador e Backend/Banco de dados. O jogador cadastra conta, faz login (ou joga como convidado offline), explora salas e coleta itens, resolve armários montando fórmulas, fabrica itens na bancada, enfrenta perigos e o chefe, salva e continua o progresso e consulta o relatório de erros. Resolver armário, fabricar item e enfrentar perigos incluem o caso \"Registrar erro do jogador\", que grava o erro no banco.", "der": "docs/diagramas/der_conceitual.png (no repositório do projeto)", "derDesc": "Entidades: JOGADOR, SESSAO, SALA, ITEM, RECEITA, INGREDIENTE_RECEITA, PROGRESSO, INVENTARIO, RECEITA_APRENDIDA, MARCADOR, TIPO_ERRO e EVENTO_ERRO. Relacionamentos: JOGADOR 1:N SESSAO; JOGADOR 1:1 PROGRESSO; SALA 1:N PROGRESSO; JOGADOR 1:N INVENTARIO; ITEM 1:N INVENTARIO; JOGADOR 1:N RECEITA_APRENDIDA; JOGADOR 1:N MARCADOR; JOGADOR 1:N EVENTO_ERRO; TIPO_ERRO 1:N EVENTO_ERRO; SALA 1:N EVENTO_ERRO; ITEM 1:1 RECEITA; RECEITA N:N ITEM por INGREDIENTE_RECEITA.", "tabelas": "docs/diagramas/modelo_relacional.png (no repositório do projeto)", "tabelasDesc": "jogador(id PK, nome, email UK, senha_hash, senha_salt, criado_em); sessao(token_hash PK, jogador_id FK, criado_em, expira_em); sala(id PK, nome); item(id PK, nome, simbolo, tipo, descricao); receita(item_id PK/FK, requer_fogo); ingrediente_receita(receita_id PK/FK, item_id PK/FK, quantidade); progresso(jogador_id PK/FK, sala_atual FK, vida, atualizado_em); inventario(jogador_id PK/FK, item_id PK/FK, quantidade); receita_aprendida(jogador_id PK/FK, receita_id PK/FK); marcador(jogador_id PK/FK, tipo PK, chave PK); tipo_erro(id PK, codigo UK, descricao); evento_erro(id PK, jogador_id FK, tipo_erro_id FK, sala_id FK, detalhe, ocorrido_em).", "dicionarioLink": "docs/DOCUMENTACAO_BANCO_DE_DADOS.md, seção 5 (no repositório do projeto)", "dicionario": "jogador: id INTEGER PK; nome TEXT (2 a 60); email TEXT UNIQUE; senha_hash TEXT (PBKDF2-SHA256); senha_salt TEXT; criado_em TEXT (UTC).\nsessao: token_hash TEXT PK (SHA-256); jogador_id INTEGER FK; criado_em TEXT; expira_em TEXT.\nsala: id INTEGER PK (0 a 10); nome TEXT.\nitem: id TEXT PK; nome TEXT; simbolo TEXT; tipo TEXT (elemento, ficticio, fabricado); descricao TEXT.\nreceita: item_id TEXT PK/FK item; requer_fogo INTEGER (0 ou 1).\ningrediente_receita: receita_id TEXT PK/FK; item_id TEXT PK/FK; quantidade INTEGER (> 0).\nprogresso: jogador_id INTEGER PK/FK; sala_atual INTEGER FK sala; vida INTEGER (0 a 3); atualizado_em TEXT.\ninventario: jogador_id INTEGER PK/FK; item_id TEXT PK/FK; quantidade INTEGER (> 0).\nreceita_aprendida: jogador_id INTEGER PK/FK; receita_id TEXT PK/FK receita.\nmarcador: jogador_id INTEGER PK/FK; tipo TEXT PK (flag ou coleta); chave TEXT PK.\ntipo_erro: id INTEGER PK; codigo TEXT UNIQUE (FORMULA_ERRADA, RECEITA_INVALIDA, DANO, MORTE); descricao TEXT.\nevento_erro: id INTEGER PK; jogador_id INTEGER FK; tipo_erro_id INTEGER FK; sala_id INTEGER FK; detalhe TEXT (até 200); ocorrido_em TEXT (UTC).\nDicionário completo, com restrições e descrições, em docs/DOCUMENTACAO_BANCO_DE_DADOS.md.", "normalizacao": "1FN: todos os campos são atômicos e cada tabela tem chave primária. O save em JSON do jogo (inventário, receitas, marcos) foi dividido em linhas nas tabelas inventario, receita_aprendida e marcador. 2FN: nas tabelas de chave composta (inventario, ingrediente_receita, receita_aprendida, marcador) todo atributo depende da chave inteira; nome, símbolo e descrição do item ficam em item, e o nome da sala fica em sala. 3FN: não há dependência transitiva. evento_erro guarda só tipo_erro_id e sala_id (a descrição do tipo e o nome da sala ficam nas tabelas próprias); progresso guarda sala_atual; sessao guarda jogador_id. A tabela RESGATE do modelo anterior foi eliminada: o resgate de animais é um marco da campanha, guardado em marcador (tipo flag).", "sql": "backend/schema.sql e backend/seed.sql (no repositório do projeto)", "sqlDesc": "backend/schema.sql cria as 12 tabelas com chaves primárias e estrangeiras, CHECK, UNIQUE, índices e os 4 tipos de erro. backend/seed.sql carrega 11 salas, 27 itens, 12 receitas e seus ingredientes, gerado do jogo por backend/gerar_seed.py. O servidor executa os dois scripts na primeira inicialização."}, "prototipo": {"link": "", "desc": "Versão jogável em Godot 4.4 com tutorial e 10 salas (exploração, inventário, bancada de craft, puzzles de fórmulas, perigos, inimigos, chefe e final narrativo), agora integrada a um backend. O jogo abre com tela de cadastro e login (ou jogo sem conta), grava o progresso no banco SQLite pelo servidor, registra cada erro do jogador e oferece, no menu de pausa, o relatório de erros. Testes: 16 testes automatizados da API, teste ponta a ponta jogo + backend + banco (cadastro, erros reais, save e novo login, servidor fora do ar) e o playtest das 11 salas (102 verificações), sem falhas. A exportação Windows e os testes em outros computadores seguem no cronograma.", "repo": ""}, "tecnico": {"arquitetura": "Arquitetura em três camadas. Frontend: jogo desktop 2D em Godot 4.4.1 (cenas e scripts GDScript; o Autoload Game guarda estado, inventário e receitas; o Autoload Api conversa com o servidor). Backend: servidor Python 3 (backend/server.py) com API REST em JSON. Banco: SQLite com 12 tabelas em 3FN (backend/schema.sql). As salas continuam em JSON. Sem servidor, o jogo usa o save local e guarda os erros pendentes para enviar depois.", "sgbd": "SQLite", "api": "API REST própria, em Python: POST /api/cadastro, POST /api/login, POST /api/logout, GET/PUT /api/progresso, POST /api/eventos, GET /api/relatorio e a página /relatorio. Dados em JSON sobre HTTP.", "auth": "Cadastro com nome, e-mail e senha. A senha é guardada com PBKDF2-HMAC-SHA256 e sal individual. O login devolve um token de sessão (30 dias), guardado no banco apenas como hash SHA-256. Há bloqueio após 10 tentativas erradas e cada jogador só acessa os próprios dados. Também é possível jogar sem conta (offline).", "observacoes": "As salas e receitas permanecem em JSON; o catálogo (salas, itens e receitas) é copiado para o banco por backend/gerar_seed.py. Para rodar: iniciar_backend.bat (Windows) ou python3 backend/server.py, e abrir proj/project.godot no Godot. Para a apresentação, python3 backend/demo.py cria a conta demo@rato.lab com erros de exemplo. Git e GitHub controlam o código; Visual Studio Code é o editor. A versão Windows e os testes em outros computadores seguem no cronograma até a entrega final."}, "riscos": [{"id": 1, "nome": "Atraso no desenvolvimento das mecânicas", "prob": "media", "mitig": "Priorizar as funcionalidades essenciais e dividir as tarefas entre os integrantes."}, {"id": 2, "nome": "Indisponibilidade de um integrante", "prob": "media", "mitig": "Redistribuir as atividades e manter a documentação atualizada."}, {"id": 3, "nome": "Perda do código-fonte", "prob": "baixa", "mitig": "Versionar o projeto no GitHub e manter cópias de segurança."}, {"id": 4, "nome": "Erros nas combinações da bancada", "prob": "media", "mitig": "Testar receitas válidas e inválidas e revisar as mensagens de retorno."}, {"id": 5, "nome": "Problemas de desempenho", "prob": "media", "mitig": "Testar em computadores-alvo e otimizar cenas, imagens e scripts."}, {"id": 6, "nome": "Falhas no salvamento", "prob": "media", "mitig": "Testar o salvamento e o carregamento da campanha."}, {"id": 7, "nome": "Atraso na modelagem do banco de dados", "prob": "media", "mitig": "Concluir DER, tabelas, dicionário e scripts antes da integração."}, {"id": 8, "nome": "Falhas na integração entre sistemas", "prob": "media", "mitig": "Integrar os módulos por etapas e executar testes de regressão."}, {"id": 9, "nome": "Servidor do backend indisponível durante o uso ou a apresentação", "prob": "media", "mitig": "O jogo funciona offline com o save local e guarda os erros pendentes para enviar quando o servidor voltar. O backend sobe com um clique (iniciar_backend.bat) e tem a conta de demonstração."}, {"id": 10, "nome": "Vazamento de dados de jogadores", "prob": "baixa", "mitig": "Senhas com PBKDF2 e sal, tokens guardados só como hash, consultas parametrizadas e isolamento dos dados por jogador."}], "entregaveis": {"video": "", "deploy": "", "repo": "", "conclusoes": "O Rato CyberLab integra exploração top-down, inventário, combinações de itens, desafios científicos e progressão narrativa. O desenvolvimento aplicou levantamento de requisitos, organização modular, testes e trabalho em equipe. A integração entre mecânicas, banco de dados e salvamento exige coordenação entre os módulos. O projeto ajudou a equipe a praticar planejamento, modelagem de dados, programação e validação de um software interativo. Na parte de dados, o jogo ganhou um backend com cadastro e login, progresso gravado em SQLite e um relatório de erros, o que exigiu normalizar o save em JSON em tabelas relacionais.", "referencias": "GODOT ENGINE. Documentação oficial. Disponível em: https://docs.godotengine.org/.\n\nPLASS, J. L.; HOMER, B. D.; KINZER, C. K. Foundations of game-based learning. Educational Psychologist, v. 50, n. 4, p. 258–283, 2015. DOI: 10.1080/00461520.2015.1122533.\n\nWIEMAN, C. E.; ADAMS, W. K.; PERKINS, K. K. PhET: simulations that enhance learning. Science, v. 322, n. 5902, p. 682–683, 2008. DOI: 10.1126/science.1161948.\n\nSQLITE. Documentação oficial: https://www.sqlite.org/docs.html.\nGITHUB. Documentação oficial: https://docs.github.com/."}}</script>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="container" id="conteudo-baixavel">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-una">
+      <svg class="logo-una-svg" width="182" height="52" viewBox="0 0 182 52" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Centro Universitário UNA Barreiro">
+        <rect x="0" y="6" width="40" height="40" rx="10" fill="#d32f2f"></rect>
+        <text x="20" y="33" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#ffffff">UNA</text>
+        <text x="48" y="25" class="txt-main" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Centro Universitário</text>
+        <text x="48" y="41" class="txt-sub" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="800">UNA Barreiro</text>
+      </svg>
+      <div class="nome-plataforma">Eng. de Software</div>
+    </div>
+    <div class="info-uc">
+      <strong>UC:</strong> Projeto e Engenharia de Software<br>
+      <span class="professores">Centro Universitário UNA · Barreiro</span>
+    </div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <div class="contexto">
+    💻 <strong>Construtor de Entregas</strong> — Projeto Integrador · Software com Backend + Frontend + Banco de Dados · Parcial (20/11) · Final (30/11)
+  </div>
+
+  <div class="content">
+
+    <div class="titulo">💻 Construtor de Entregas — Projeto e Engenharia de Software</div>
+
+    <!-- PRAZOS -->
+    <div class="prazo-grid">
+      <div class="prazo-card inscricao" id="cardInscricao">
+        <div class="fase">Inscrição</div>
+        <div class="data">Hoje</div>
+        <div class="status" id="statusInscricao">Identificação, apresentação, escopo preliminar e cronograma</div>
+      </div>
+      <div class="prazo-card parcial" id="cardParcial">
+        <div class="fase">Atualização Parcial</div>
+        <div class="data">20/11</div>
+        <div class="status" id="statusParcial">Faltam 14 dia(s)</div>
+      </div>
+      <div class="prazo-card final" id="cardFinal">
+        <div class="fase">Entrega Final</div>
+        <div class="data">30/11</div>
+        <div class="status" id="statusFinal">Faltam 24 dia(s)</div>
+      </div>
+    </div>
+
+    <p style="margin-bottom:1.2rem;">
+      Este construtor organiza o projeto de software da UC <strong>Projeto e Engenharia de Software</strong>
+      e gera os documentos das <strong>três fases</strong> de entrega. A aplicação deve ter
+      <strong>interface, backend e banco de dados funcionando</strong> ao final do semestre.
+      Preencha os campos, salve automaticamente no navegador e gere o documento correspondente à fase.
+    </p>
+
+    <div class="destaque">
+      <strong>🎯 Entrega Final (30/11):</strong> documentação completa com apresentação, escopo, funcionalidades,
+      requisitos (funcionais e não funcionais), cronograma, divisão de tarefas,
+      modelagem de dados (caso de uso, DER, tabelas relacionais, dicionário de dados, normalização e scripts SQL)
+      e <strong>vídeo pitch de até 5 minutos</strong> demonstrando o software em operação com todas as funcionalidades previstas.
+    </div>
+
+    <div class="indice">
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#identificacao">1️⃣ Identificação</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#integrantes">2️⃣ Integrantes</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#apresentacao">3️⃣ Apresentação</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#escopo">4️⃣ Escopo</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#funcionalidades">5️⃣ Funcionalidades</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#requisitos">6️⃣ Requisitos RF/RNF</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#tecnologias">7️⃣ Tecnologias</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#cronograma">8️⃣ Cronograma</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#modelagem">9️⃣ Modelagem de Dados</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#prototipo">🔟 Protótipo</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#tecnico">1️⃣1️⃣ Decisões Técnicas</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#riscos">1️⃣2️⃣ Riscos</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#entregaveis">1️⃣3️⃣ Entregáveis Finais</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#gerar">📤 Gerar Documento</a>
+      <a href="file:///C:/Users/lucas/.codex/.chatgpt-projects/g-p-6ad16885ecf0819193b9997e54f2a194/Projeto_R31_final_confirmado_Paulo.html#checklist">✅ Checklists</a>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn secundario" onclick="toggleDarkMode()">🌓 Modo Escuro</button>
+    </div>
+
+    <!-- 1. IDENTIFICAÇÃO -->
+    <h2 id="identificacao">1️⃣ Identificação do Grupo <span class="fase-badge todas">Todas as fases</span></h2>
+    <div class="card">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gNome">Nome do Grupo *</label>
+          <input type="text" id="gNome" placeholder="Ex: Grupo InovaTech" oninput="salvarEstado()">
+        </div>
+        <div class="form-group">
+          <label for="gLider">Líder Técnico / Product Owner</label>
+          <input type="text" id="gLider" placeholder="Nome do líder" oninput="salvarEstado()">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gProjeto">Projeto / Sistema Escolhido *</label>
+          <select id="gProjeto" onchange="salvarEstado(); toggleProjetoCustom()">
+            <option value="">-- Selecione --</option>
+            <option value="Sistema de Gestão Escolar">Sistema de Gestão Escolar</option>
+            <option value="E-commerce / Loja Virtual">E-commerce / Loja Virtual</option>
+            <option value="Sistema de Biblioteca">Sistema de Biblioteca</option>
+            <option value="Aplicativo de Delivery">Aplicativo de Delivery</option>
+            <option value="Sistema de Agendamento (Clínica / Salão)">Sistema de Agendamento (Clínica / Salão)</option>
+            <option value="App de Finanças Pessoais">App de Finanças Pessoais</option>
+            <option value="Sistema de Controle de Estoque">Sistema de Controle de Estoque</option>
+            <option value="Plataforma de Cursos Online">Plataforma de Cursos Online</option>
+            <option value="Sistema de Gestão de Eventos">Sistema de Gestão de Eventos</option>
+            <option value="Sistema de Gestão de Restaurante">Sistema de Gestão de Restaurante</option>
+            <option value="Sistema de Chamados / Helpdesk">Sistema de Chamados / Helpdesk</option>
+            <option value="Rede Social Acadêmica">Rede Social Acadêmica</option>
+            <option value="Sistema de Gestão de RH">Sistema de Gestão de RH</option>
+            <option value="Outro (especificar)">Outro (especificar)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gTipoApp">Tipo de Aplicação *</label>
+          <select id="gTipoApp" onchange="salvarEstado()">
+            <option value="">-- Selecione --</option>
+            <option value="Web (site)">Web (site)</option>
+            <option value="Mobile (app nativo)">Mobile (app nativo)</option>
+            <option value="Mobile (híbrido)">Mobile (híbrido - React Native/Flutter)</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Web + Mobile">Web + Mobile</option>
+            <option value="API / Backend apenas">API / Backend apenas</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" id="projetoCustomBox" style="display: block;">
+        <label for="gProjetoCustom">Especifique o projeto customizado *</label>
+        <input type="text" id="gProjetoCustom" placeholder="Descreva o projeto em uma linha" oninput="salvarEstado()">
+      </div>
+    </div>
+
+    <!-- 2. INTEGRANTES -->
+    <h2 id="integrantes">2️⃣ Integrantes e Papéis <span class="fase-badge todas">Todas as fases</span></h2>
+    <div class="card">
+      <h4>👥 Integrantes</h4>
+      <div id="integrantesList"><table><tbody><tr><th>#</th><th>Nome</th><th>Matrícula</th><th>Função</th><th>Ação</th></tr><tr><td>1</td><td>Lucas Gonçalves Florentino</td><td>326176171</td><td>Analista de requisitos</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(0)">🗑️</button></td></tr><tr><td>2</td><td>Lucas Alves Oliveira</td><td>326129404</td><td>Desenvolvedor de sistemas</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(1)">🗑️</button></td></tr><tr><td>3</td><td>Arthur Carvalho de Oliveira</td><td>32611916</td><td>Modelador de dados / DBA</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(2)">🗑️</button></td></tr><tr><td>4</td><td>Laura Chagas Faria</td><td>326129970</td><td>Interface e documentação</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(3)">🗑️</button></td></tr><tr><td>5</td><td>Paulo André Lima Patrício</td><td>326128523</td><td>Desenvolvimento e integração</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(4)">🗑️</button></td></tr><tr><td>6</td><td>Miguel Oliveira Silva</td><td>326128330</td><td>Testes e qualidade</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(5)">🗑️</button></td></tr></tbody></table></div>
+      <div class="add-inline">
+        <input type="text" id="novoIntegranteNome" placeholder="Nome completo">
+        <input type="text" id="novoIntegranteMat" placeholder="Matrícula" style="max-width:140px;">
+        <select id="novoIntegranteFuncao" style="max-width:280px;">
+          <option value="">Função...</option>
+          <option>Líder Técnico / PO</option>
+          <option>Analista de Requisitos</option>
+          <option>Modelagem de Dados / DBA</option>
+          <option>Desenvolvedor Backend</option>
+          <option>Desenvolvedor Frontend</option>
+          <option>Full-Stack</option>
+          <option>UX/UI Designer</option>
+          <option>QA / Testes</option>
+          <option>Documentação</option>
+          <option>Pitch / Apresentação</option>
+        </select>
+        <button class="btn verde btn-pequeno" onclick="adicionarIntegrante()">➕ Adicionar</button>
+      </div>
+    </div>
+
+    <!-- 3. APRESENTAÇÃO -->
+    <h2 id="apresentacao">3️⃣ Apresentação do Projeto <span class="fase-badge todas">Todas as fases</span></h2>
+    <div class="card">
+      <div class="form-group">
+        <label for="gObjetivo">Objetivo Geral *</label>
+        <textarea id="gObjetivo" rows="3" placeholder="O que o software fará e qual problema resolve" oninput="salvarEstado()"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gJustificativa">Justificativa</label>
+          <textarea id="gJustificativa" rows="3" placeholder="Por que esse software é relevante?" oninput="salvarEstado()"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="gPublico">Público-alvo / Aplicação</label>
+          <textarea id="gPublico" rows="3" placeholder="Quem vai usar? Em que contexto?" oninput="salvarEstado()"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gDiferenciais">Diferenciais / Proposta de valor</label>
+        <textarea id="gDiferenciais" rows="2" placeholder="O que torna o projeto único?" oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <!-- 4. ESCOPO -->
+    <h2 id="escopo">4️⃣ Escopo <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <div class="card">
+      <h4>✅ Dentro do escopo</h4>
+      <ul class="lista-dinamica" id="listaDentro"><li><span>Jogo 2D para computador, em visão top-down e pixel art.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',0)">🗑️</button></li><li><span>Movimentação do R-31 e exploração de salas do laboratório.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',1)">🗑️</button></li><li><span>Coleta de itens e reagentes com armazenamento no inventário.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',2)">🗑️</button></li><li><span>Bancada CraftTable para combinar elementos e fabricar ferramentas.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',3)">🗑️</button></li><li><span>Uso de maçarico e controle de temperatura na bancada.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',4)">🗑️</button></li><li><span>Puzzles e obstáculos que liberam passagens e permitem avançar.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',5)">🗑️</button></li><li><span>Diálogos e interações com personagens.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',6)">🗑️</button></li><li><span>Sistema de vida e danos causados por perigos.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',7)">🗑️</button></li><li><span>Progressão por tutorial e 10 salas de campanha.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',8)">🗑️</button></li><li><span>Salvamento local do progresso.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',9)">🗑️</button></li><li><span>Resgate de animais presos no laboratório.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',10)">🗑️</button></li><li><span>Confronto final com Dr. Voss e encerramento da história.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('dentro',11)">🗑️</button></li></ul>
+      <div class="add-inline">
+        <input type="text" id="novoDentro" placeholder="Item dentro do escopo">
+        <button class="btn verde btn-pequeno" onclick="adicionarEscopo('dentro')">➕</button>
+      </div>
+    </div>
+    <div class="card">
+      <h4>🚫 Fora do escopo</h4>
+      <ul class="lista-dinamica" id="listaFora"><li><span>Aplicativo mobile nativo.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',0)">🗑️</button></li><li><span>Multiplayer ou partidas online.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',1)">🗑️</button></li><li><span>Integrações com ERPs ou sistemas corporativos.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',2)">🗑️</button></li><li><span>Painel administrativo com BI.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',3)">🗑️</button></li><li><span>Loja virtual e compras dentro do jogo.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',4)">🗑️</button></li><li><span>Competição ou ranking online.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',5)">🗑️</button></li><li><span>Inteligência artificial avançada para personagens.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',6)">🗑️</button></li><li><span>Simulações químicas com precisão laboratorial.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',7)">🗑️</button></li><li><span>Integração com redes sociais.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',8)">🗑️</button></li><li><span>Publicação para consoles.</span><button class="btn perigo btn-pequeno" onclick="removerEscopo('fora',9)">🗑️</button></li></ul>
+      <div class="add-inline">
+        <input type="text" id="novoFora" placeholder="Item fora do escopo">
+        <button class="btn verde btn-pequeno" onclick="adicionarEscopo('fora')">➕</button>
+      </div>
+    </div>
+
+    <!-- 5. FUNCIONALIDADES -->
+    <h2 id="funcionalidades">5️⃣ Funcionalidades <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <div class="card">
+      <p style="font-size:0.9rem; margin-bottom:0.8rem;">
+        Liste as funcionalidades do sistema com prioridade e uma descrição curta.
+      </p>
+      <div id="funcionalidadesList"><table><tbody><tr><th>#</th><th>Funcionalidade</th><th>Prioridade</th><th>Descrição</th><th>Ação</th></tr><tr><td>1</td><td>Movimentação do personagem</td><td>Alta</td><td>Controlar o R-31 pelo teclado em quatro direções, andando ou correndo.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(0)">🗑️</button></td></tr><tr><td>2</td><td>Exploração dos ambientes</td><td>Alta</td><td>Percorrer salas do laboratório em visão top-down e encontrar novas passagens.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(1)">🗑️</button></td></tr><tr><td>3</td><td>Sistema de inventário</td><td>Alta</td><td>Consultar e organizar itens e reagentes recolhidos.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(2)">🗑️</button></td></tr><tr><td>4</td><td>Bancada de combinações (CraftTable)</td><td>Alta</td><td>Combinar elementos nos recipientes da bancada.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(3)">🗑️</button></td></tr><tr><td>5</td><td>Fabricação de itens</td><td>Alta</td><td>Criar ferramentas necessárias para avançar.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(4)">🗑️</button></td></tr><tr><td>6</td><td>Sistema de puzzles e obstáculos</td><td>Alta</td><td>Resolver desafios de fórmulas e superar obstáculos usando itens.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(5)">🗑️</button></td></tr><tr><td>7</td><td>Progressão entre fases</td><td>Alta</td><td>Liberar novas salas ao concluir os desafios.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(6)">🗑️</button></td></tr><tr><td>8</td><td>Sistema de coleta de materiais</td><td>Alta</td><td>Encontrar e recolher itens pelo cenário.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(7)">🗑️</button></td></tr><tr><td>9</td><td>Sistema de salvamento</td><td>Alta</td><td>Salvar e carregar o progresso do jogador.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(8)">🗑️</button></td></tr><tr><td>10</td><td>Sistema de diálogos</td><td>Média</td><td>Apresentar conversas e informações dos personagens.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(9)">🗑️</button></td></tr><tr><td>11</td><td>Sistema de vida e danos</td><td>Média</td><td>Controlar a vida do personagem e os danos dos perigos.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(10)">🗑️</button></td></tr><tr><td>12</td><td>Tutorial inicial</td><td>Média</td><td>Ensinar os controles e as mecânicas principais.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(11)">🗑️</button></td></tr><tr><td>13</td><td>Sistema de temperatura e maçarico</td><td>Média</td><td>Aquecer receitas na CraftTable.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(12)">🗑️</button></td></tr><tr><td>14</td><td>Missões de resgate de animais</td><td>Média</td><td>Libertar animais presos no laboratório.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(13)">🗑️</button></td></tr><tr><td>15</td><td>Menu inicial e pausa</td><td>Média</td><td>Iniciar ou continuar a campanha e pausar o jogo.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(14)">🗑️</button></td></tr><tr><td>16</td><td>Cena final e encerramento</td><td>Baixa</td><td>Apresentar o desfecho após o confronto com Dr. Voss.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(15)">🗑️</button></td></tr></tbody></table></div>
+      <div class="add-inline">
+        <input type="text" id="novaFuncNome" placeholder="Nome da funcionalidade">
+        <select id="novaFuncPrio" style="max-width:120px;">
+          <option value="Alta">🔴 Alta</option>
+          <option value="Média">🟡 Média</option>
+          <option value="Baixa">🟢 Baixa</option>
+        </select>
+        <input type="text" id="novaFuncDesc" placeholder="Descrição curta" style="flex:2;">
+        <button class="btn verde btn-pequeno" onclick="adicionarFuncionalidade()">➕ Adicionar</button>
+      </div>
+    </div>
+
+    <!-- 6. REQUISITOS -->
+    <h2 id="requisitos">6️⃣ Levantamento de Requisitos (RF / RNF) <span class="fase-badge parcial">Parcial e Final</span></h2>
+
+    <div class="card">
+      <h4>⚙️ Requisitos Funcionais (RF)</h4>
+      <p style="font-size:0.88rem; color:#666; margin-bottom:0.6rem;">O que o sistema deve fazer (entradas, processamentos, saídas).</p>
+      <ul class="lista-dinamica" id="listaRF"><li><span><strong>RF01:</strong> O jogo deve permitir movimentar o personagem usando o teclado.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',0)">🗑️</button></li><li><span><strong>RF02:</strong> O jogo deve permitir explorar diferentes salas do laboratório.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',1)">🗑️</button></li><li><span><strong>RF03:</strong> O jogo deve permitir coletar itens e reagentes encontrados nos ambientes.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',2)">🗑️</button></li><li><span><strong>RF04:</strong> O jogo deve armazenar os itens coletados no inventário.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',3)">🗑️</button></li><li><span><strong>RF05:</strong> O jogo deve permitir usar itens do inventário na bancada de combinações.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',4)">🗑️</button></li><li><span><strong>RF06:</strong> O jogo deve permitir combinar elementos para fabricar novos objetos.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',5)">🗑️</button></li><li><span><strong>RF07:</strong> O jogo deve apresentar retorno quando uma combinação funcionar ou falhar.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',6)">🗑️</button></li><li><span><strong>RF08:</strong> O jogo deve permitir usar ferramentas para superar obstáculos.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',7)">🗑️</button></li><li><span><strong>RF09:</strong> O jogo deve permitir controlar a temperatura da bancada por meio de um maçarico.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',8)">🗑️</button></li><li><span><strong>RF10:</strong> O jogo deve permitir interações e diálogos com personagens.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',9)">🗑️</button></li><li><span><strong>RF11:</strong> O jogo deve controlar os pontos de vida do personagem.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',10)">🗑️</button></li><li><span><strong>RF12:</strong> O jogo deve permitir avançar para novas salas após concluir desafios.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',11)">🗑️</button></li><li><span><strong>RF13:</strong> O jogo deve permitir libertar animais durante a campanha.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',12)">🗑️</button></li><li><span><strong>RF14:</strong> O jogo deve apresentar um tutorial com as mecânicas básicas.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',13)">🗑️</button></li><li><span><strong>RF15:</strong> O jogo deve permitir salvar e carregar o progresso do jogador.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',14)">🗑️</button></li><li><span><strong>RF16:</strong> O jogo deve apresentar uma tela inicial e uma opção de pausa.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',15)">🗑️</button></li><li><span><strong>RF17:</strong> O jogo deve apresentar uma cena final após a conclusão da campanha.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RF',16)">🗑️</button></li></ul>
+      <div class="add-inline">
+        <input type="text" id="novoRF" placeholder="Ex: O sistema deve permitir cadastro de usuários">
+        <button class="btn verde btn-pequeno" onclick="adicionarReq('RF')">➕</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>🎯 Requisitos Não Funcionais (RNF)</h4>
+      <p style="font-size:0.88rem; color:#666; margin-bottom:0.6rem;">Como o sistema deve se comportar (desempenho, segurança, usabilidade, portabilidade).</p>
+      <ul class="lista-dinamica" id="listaRNF"><li><span><strong>RNF01:</strong> O jogo deve ser desenvolvido em Godot 4.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',0)">🗑️</button></li><li><span><strong>RNF02:</strong> A interface deve ser simples e intuitiva para o público-alvo.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',1)">🗑️</button></li><li><span><strong>RNF03:</strong> O jogo deve funcionar em computadores compatíveis com os requisitos definidos para o projeto.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',2)">🗑️</button></li><li><span><strong>RNF04:</strong> O jogo deve manter desempenho estável durante a exploração.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',3)">🗑️</button></li><li><span><strong>RNF05:</strong> Os dados do jogador devem ser armazenados de maneira organizada.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',4)">🗑️</button></li><li><span><strong>RNF06:</strong> O código deve ser organizado em módulos e funcionalidades.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',5)">🗑️</button></li><li><span><strong>RNF07:</strong> O jogo deve responder rapidamente aos comandos do jogador.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',6)">🗑️</button></li><li><span><strong>RNF08:</strong> O salvamento deve preservar o progresso do jogador.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',7)">🗑️</button></li><li><span><strong>RNF09:</strong> Os elementos visuais devem manter o padrão 2D em pixel art.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',8)">🗑️</button></li><li><span><strong>RNF10:</strong> As combinações da bancada devem apresentar resultados consistentes.</span><button class="btn perigo btn-pequeno" onclick="removerReq('RNF',9)">🗑️</button></li></ul>
+      <div class="add-inline">
+        <input type="text" id="novoRNF" placeholder="Ex: O sistema deve responder em menos de 2s">
+        <button class="btn verde btn-pequeno" onclick="adicionarReq('RNF')">➕</button>
+      </div>
+    </div>
+
+    <!-- 7. TECNOLOGIAS -->
+    <h2 id="tecnologias">7️⃣ Tecnologias e Ferramentas <span class="fase-badge todas">Todas as fases</span></h2>
+    <div class="card">
+      <p style="font-size:0.9rem; margin-bottom:0.8rem;">
+        Registre a stack do projeto: frontend, backend, banco de dados e ferramentas de apoio.
+      </p>
+      <div id="tecnologiasList"><table><tbody><tr><th>#</th><th>Tecnologia</th><th>Categoria</th><th>Versão / Finalidade</th><th>Ação</th></tr><tr><td>1</td><td>Godot Engine</td><td>Outro</td><td>4.4.1; engine 2D, cenas, entrada e interface.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(0)">🗑️</button></td></tr><tr><td>2</td><td>GDScript</td><td>Outro</td><td>Linguagem principal da lógica do jogo.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(1)">🗑️</button></td></tr><tr><td>3</td><td>JSON</td><td>Outro</td><td>Definição das salas, objetos, diálogos e receitas.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(2)">🗑️</button></td></tr><tr><td>4</td><td>Python, Pillow, NumPy e SciPy</td><td>Design / Prototipação</td><td>Ferramentas de geração e tratamento da arte pixel art.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(3)">🗑️</button></td></tr><tr><td>5</td><td>Godot headless e Xvfb</td><td>Testes</td><td>Testes automatizados e capturas de tela.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(4)">🗑️</button></td></tr><tr><td>6</td><td>Git</td><td>Versionamento</td><td>Controle de versões do código-fonte.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(5)">🗑️</button></td></tr><tr><td>7</td><td>GitHub</td><td>Versionamento</td><td>Repositório remoto do projeto.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(6)">🗑️</button></td></tr><tr><td>8</td><td>SQLite</td><td>Banco de Dados</td><td>Persistência estruturada de inventário e progresso.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(7)">🗑️</button></td></tr><tr><td>9</td><td>Visual Studio Code</td><td>Outro</td><td>Edição e organização dos arquivos do projeto.</td><td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(8)">🗑️</button></td></tr></tbody></table></div>
+      <div class="add-inline">
+        <input type="text" id="novaTecNome" placeholder="Tecnologia (ex: React, Node.js, PostgreSQL)">
+        <select id="novaTecCat" style="max-width:180px;">
+          <option value="">Categoria...</option>
+          <option>Frontend</option>
+          <option>Backend</option>
+          <option>Banco de Dados</option>
+          <option>Mobile</option>
+          <option>DevOps / Deploy</option>
+          <option>Design / Prototipação</option>
+          <option>Versionamento</option>
+          <option>Testes</option>
+          <option>Outro</option>
+        </select>
+        <input type="text" id="novaTecVersao" placeholder="Versão / Finalidade" style="flex:1;">
+        <button class="btn verde btn-pequeno" onclick="adicionarTecnologia()">➕ Adicionar</button>
+      </div>
+    </div>
+
+    <!-- 8. CRONOGRAMA -->
+    <h2 id="cronograma">8️⃣ Cronograma e Divisão de Tarefas <span class="fase-badge todas">Todas as fases</span></h2>
+
+    <div class="alertas-painel">
+      <div class="alerta-card atrasada"><span class="alerta-num" id="numAtrasadas">0</span><span class="alerta-label">Atrasadas</span></div>
+      <div class="alerta-card urgente"><span class="alerta-num" id="numUrgentes">0</span><span class="alerta-label">Vencem ≤3 dias</span></div>
+      <div class="alerta-card atencao"><span class="alerta-num" id="numAtencao">4</span><span class="alerta-label">Vencem ≤7 dias</span></div>
+      <div class="alerta-card ok"><span class="alerta-num" id="numOk">11</span><span class="alerta-label">No prazo</span></div>
+      <div class="alerta-card concluida"><span class="alerta-num" id="numConcluidas">3</span><span class="alerta-label">Concluídas</span></div>
+    </div>
+
+    <div class="progresso-geral">
+      <div class="linha">
+        <span>📊 Progresso geral</span>
+        <span id="progressoTexto">17% (18 atividades)</span>
+      </div>
+      <div class="barra-bg"><div class="barra-fill" id="progressoBarra" style="width: 17%;"></div></div>
+    </div>
+
+    <div class="card">
+      <h3 id="formTitulo">➕ Adicionar Atividade</h3>
+      <input type="hidden" id="editandoId" value="">
+      <div class="form-row-4">
+        <div class="form-group">
+          <label>Nome *</label>
+          <input type="text" id="inpNome" placeholder="Ex: Modelagem do banco">
+        </div>
+        <div class="form-group">
+          <label>Responsável</label>
+          <input type="text" id="inpResp" placeholder="Nome">
+        </div>
+        <div class="form-group">
+          <label>Início *</label>
+          <input type="date" id="inpInicio">
+        </div>
+        <div class="form-group">
+          <label>Fim *</label>
+          <input type="date" id="inpFim">
+        </div>
+        <div class="form-group">
+          <label>Status (%)</label>
+          <select id="inpStatus">
+            <option value="0">0%</option>
+            <option value="25">25%</option>
+            <option value="50">50%</option>
+            <option value="75">75%</option>
+            <option value="100">100%</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Tipo</label>
+          <select id="inpTipo">
+            <option value="normal">Atividade</option>
+            <option value="marco">🎯 Marco / Entrega</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label>🔗 Depende de</label>
+          <div class="dep-list" id="depList"><label><input type="checkbox" value="1"> Formação do grupo e definição do projeto</label><label><input type="checkbox" value="2"> Versão jogável com tutorial e 10 salas disponibilizada</label><label><input type="checkbox" value="3"> Escopo, funcionalidades e requisitos do projeto</label><label><input type="checkbox" value="4"> Criar repositório GitHub e versionar o código</label><label><input type="checkbox" value="5"> Diagrama de Caso de Uso</label><label><input type="checkbox" value="6"> DER e modelo relacional SQLite</label><label><input type="checkbox" value="7"> Dicionário de Dados, normalização e scripts SQL</label><label><input type="checkbox" value="8"> Documentar arquitetura Godot, salas JSON e persistência SQLite</label><label><input type="checkbox" value="9"> Implementar persistência SQLite para inventário e progresso</label><label><input type="checkbox" value="10"> Integrar o banco com as cenas e o salvamento do jogo</label><label><input type="checkbox" value="11"> Preparar interfaces e material visual da apresentação</label><label><input type="checkbox" value="12"> Revisar conteúdo científico e desafios do jogo</label><label><input type="checkbox" value="13"> Testar campanha, receitas, progressão e banco de dados</label><label><input type="checkbox" value="14"> Corrigir falhas e repetir os testes</label><label><input type="checkbox" value="15"> ENTREGA PARCIAL</label><label><input type="checkbox" value="16"> Gerar versão Windows e testar em outros computadores</label><label><input type="checkbox" value="17"> Finalizar documentação, conclusões, referências e vídeo pitch</label><label><input type="checkbox" value="18"> ENTREGA FINAL</label></div>
+        </div>
+      </div>
+      <div class="btn-group" style="justify-content: flex-start;">
+        <button class="btn verde" onclick="salvarTarefa()" id="btnSalvar">💾 Adicionar</button>
+        <button class="btn amarelo" onclick="cancelarEdicao()" id="btnCancelar" style="display:none;">✖ Cancelar</button>
+      </div>
+    </div>
+
+    <h4>📊 Visualização Gantt</h4>
+    <div class="gantt-wrapper">
+      <div class="gantt-title">
+        <span>🗓️ Linha do tempo</span>
+        <span style="font-size:0.8rem;color:#777;" id="ganttRange">Período: 06/10/2026 → 30/11/2026</span>
+      </div>
+      <div class="gantt-axis">
+        <div class="gantt-axis-label">Atividade</div>
+        <div class="gantt-axis-track" id="ganttAxis"><span class="gantt-axis-mark" style="left:0%">06/10</span><span class="gantt-axis-mark" style="left:25%">19/10</span><span class="gantt-axis-mark" style="left:50%">02/11</span><span class="gantt-axis-mark" style="left:75%">16/11</span><span class="gantt-axis-mark" style="left:100%">30/11</span></div>
+      </div>
+      <div id="ganttRows"><div class="gantt-row"><div class="gantt-row-label" title="Formação do grupo e definição do projeto">Formação do grupo e definição do projeto<small>Equipe R-31</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-bar concluida" style="left:0%;width:10.909090909090908%" title="Formação do grupo e definição do projeto">100%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Versão jogável com tutorial e 10 salas disponibilizada">Versão jogável com tutorial e 10 salas disponibilizada<small>Equipe R-31</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:56.36363636363636%" title="Depende de 1"></div><div class="gantt-bar concluida" style="left:56.36363636363636%;width:0.8%" title="Versão jogável com tutorial e 10 salas disponibilizada">100%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Escopo, funcionalidades e requisitos do projeto">Escopo, funcionalidades e requisitos do projeto<small>Lucas Gonçalves Florentino; Laura Chagas Faria</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:56.36363636363636%" title="Depende de 2"></div><div class="gantt-bar concluida" style="left:56.36363636363636%;width:0.8%" title="Escopo, funcionalidades e requisitos do projeto">100%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Criar repositório GitHub e versionar o código">Criar repositório GitHub e versionar o código<small>Lucas Alves Oliveira; Paulo André Lima Patrício</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:58.18181818181818%" title="Depende de 1"></div><div class="gantt-bar atencao" style="left:58.18181818181818%;width:5.454545454545454%" title="Criar repositório GitHub e versionar o código">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Diagrama de Caso de Uso">Diagrama de Caso de Uso<small>Arthur Carvalho de Oliveira</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:58.18181818181818%" title="Depende de 1"></div><div class="gantt-bar atencao" style="left:58.18181818181818%;width:5.454545454545454%" title="Diagrama de Caso de Uso">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="DER e modelo relacional SQLite">DER e modelo relacional SQLite<small>Arthur Carvalho de Oliveira</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:60%" title="Depende de 1"></div><div class="gantt-bar atencao" style="left:60%;width:9.090909090909092%" title="DER e modelo relacional SQLite">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Documentar arquitetura Godot, salas JSON e persistência SQLite">Documentar arquitetura Godot, salas JSON e persistência SQLite<small>Lucas Alves Oliveira</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:60%" title="Depende de 1"></div><div class="gantt-bar atencao" style="left:60%;width:9.090909090909092%" title="Documentar arquitetura Godot, salas JSON e persistência SQLite">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Preparar interfaces e material visual da apresentação">Preparar interfaces e material visual da apresentação<small>Laura Chagas Faria</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:61.81818181818181%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:61.81818181818181%;width:12.727272727272727%" title="Preparar interfaces e material visual da apresentação">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Revisar conteúdo científico e desafios do jogo">Revisar conteúdo científico e desafios do jogo<small>Lucas Gonçalves Florentino; Laura Chagas Faria</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:63.63636363636363%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:63.63636363636363%;width:10.909090909090908%" title="Revisar conteúdo científico e desafios do jogo">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Dicionário de Dados, normalização e scripts SQL">Dicionário de Dados, normalização e scripts SQL<small>Arthur Carvalho de Oliveira; Paulo André Lima Patrício</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:67.27272727272727%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:67.27272727272727%;width:7.2727272727272725%" title="Dicionário de Dados, normalização e scripts SQL">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Implementar persistência SQLite para inventário e progresso">Implementar persistência SQLite para inventário e progresso<small>Lucas Alves Oliveira</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:74.54545454545455%" title="Depende de 2"></div><div class="gantt-bar ok" style="left:74.54545454545455%;width:14.545454545454545%" title="Implementar persistência SQLite para inventário e progresso">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="ENTREGA PARCIAL">ENTREGA PARCIAL<small>Equipe R-31</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:81.81818181818183%" title="Depende de 7"></div><div class="gantt-bar marco" style="left:81.81818181818183%;width:0.8%" title="ENTREGA PARCIAL">🎯</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Integrar o banco com as cenas e o salvamento do jogo">Integrar o banco com as cenas e o salvamento do jogo<small>Paulo André Lima Patrício; Lucas Alves Oliveira</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:83.63636363636363%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:83.63636363636363%;width:7.2727272727272725%" title="Integrar o banco com as cenas e o salvamento do jogo">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Testar campanha, receitas, progressão e banco de dados">Testar campanha, receitas, progressão e banco de dados<small>Miguel Oliveira Silva</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:89.0909090909091%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:89.0909090909091%;width:5.454545454545454%" title="Testar campanha, receitas, progressão e banco de dados">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Finalizar documentação, conclusões, referências e vídeo pitch">Finalizar documentação, conclusões, referências e vídeo pitch<small>Laura Chagas Faria; Lucas Gonçalves Florentino; Miguel Oliveira Silva</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:90.9090909090909%" title="Depende de 2"></div><div class="gantt-bar ok" style="left:90.9090909090909%;width:7.2727272727272725%" title="Finalizar documentação, conclusões, referências e vídeo pitch">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Corrigir falhas e repetir os testes">Corrigir falhas e repetir os testes<small>Miguel Oliveira Silva; Paulo André Lima Patrício</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:94.54545454545455%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:94.54545454545455%;width:1.8181818181818181%" title="Corrigir falhas e repetir os testes">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="Gerar versão Windows e testar em outros computadores">Gerar versão Windows e testar em outros computadores<small>Paulo André Lima Patrício</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:96.36363636363636%" title="Depende de 1"></div><div class="gantt-bar ok" style="left:96.36363636363636%;width:1.8181818181818181%" title="Gerar versão Windows e testar em outros computadores">0%</div></div></div><div class="gantt-row"><div class="gantt-row-label" title="ENTREGA FINAL">ENTREGA FINAL<small>Equipe R-31</small></div><div class="gantt-track"><div class="gantt-today" style="left:56.36363636363636%"></div><div class="gantt-dep" style="left:100%" title="Depende de 1"></div><div class="gantt-bar marco" style="left:100%;width:0.8%" title="ENTREGA FINAL">🎯</div></div></div></div>
+    </div>
+
+    <h4>📋 Lista de Atividades</h4>
+    <div id="listaTarefas"><div class="tarefa-item"><div><div class="tarefa-nome">Formação do grupo e definição do projeto <span class="badge-status concluida">Concluída</span></div><div class="tarefa-meta">👤 Equipe R-31 · 📅 06/10/2026 → 12/10/2026 · 📊 100%</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(1)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(1)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Versão jogável com tutorial e 10 salas disponibilizada <span class="badge-status concluida">Concluída</span></div><div class="tarefa-meta">👤 Equipe R-31 · 📅 06/11/2026 → 06/11/2026 · 📊 100% · 🔗 Formação do grupo e defi</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(2)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(2)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Escopo, funcionalidades e requisitos do projeto <span class="badge-status concluida">Concluída</span></div><div class="tarefa-meta">👤 Lucas Gonçalves Florentino; Laura Chagas Faria · 📅 06/11/2026 → 06/11/2026 · 📊 100% · 🔗 Formação do grupo e defi, Versão jogável com tutor</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(3)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(3)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Criar repositório GitHub e versionar o código <span class="badge-status atencao">Vence em 4d</span></div><div class="tarefa-meta">👤 Lucas Alves Oliveira; Paulo André Lima Patrício · 📅 07/11/2026 → 10/11/2026 · 📊 0% · 🔗 Formação do grupo e defi</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(4)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(4)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Diagrama de Caso de Uso <span class="badge-status atencao">Vence em 4d</span></div><div class="tarefa-meta">👤 Arthur Carvalho de Oliveira · 📅 07/11/2026 → 10/11/2026 · 📊 0% · 🔗 Escopo, funcionalidades </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(5)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(5)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">DER e modelo relacional SQLite <span class="badge-status atencao">Vence em 7d</span></div><div class="tarefa-meta">👤 Arthur Carvalho de Oliveira · 📅 08/11/2026 → 13/11/2026 · 📊 0% · 🔗 Escopo, funcionalidades </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(6)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(6)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Documentar arquitetura Godot, salas JSON e persistência SQLite <span class="badge-status atencao">Vence em 7d</span></div><div class="tarefa-meta">👤 Lucas Alves Oliveira · 📅 08/11/2026 → 13/11/2026 · 📊 0% · 🔗 Escopo, funcionalidades </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(8)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(8)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Preparar interfaces e material visual da apresentação <span class="badge-status ok">Faltam 10d</span></div><div class="tarefa-meta">👤 Laura Chagas Faria · 📅 09/11/2026 → 16/11/2026 · 📊 0% · 🔗 Escopo, funcionalidades </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(11)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(11)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Revisar conteúdo científico e desafios do jogo <span class="badge-status ok">Faltam 10d</span></div><div class="tarefa-meta">👤 Lucas Gonçalves Florentino; Laura Chagas Faria · 📅 10/11/2026 → 16/11/2026 · 📊 0% · 🔗 Escopo, funcionalidades </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(12)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(12)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Dicionário de Dados, normalização e scripts SQL <span class="badge-status ok">Faltam 10d</span></div><div class="tarefa-meta">👤 Arthur Carvalho de Oliveira; Paulo André Lima Patrício · 📅 12/11/2026 → 16/11/2026 · 📊 0% · 🔗 DER e modelo relacional </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(7)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(7)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Implementar persistência SQLite para inventário e progresso <span class="badge-status ok">Faltam 18d</span></div><div class="tarefa-meta">👤 Lucas Alves Oliveira · 📅 16/11/2026 → 24/11/2026 · 📊 0% · 🔗 Dicionário de Dados, nor, Documentar arquitetura G</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(9)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(9)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">ENTREGA PARCIAL <span class="badge-status ok">Faltam 14d</span></div><div class="tarefa-meta">👤 Equipe R-31 · 📅 20/11/2026 → 20/11/2026 · 📊 0% · 🎯 Marco · 🔗 Criar repositório GitHub, Diagrama de Caso de Uso, DER e modelo relacional , Dicionário de Dados, nor, Documentar arquitetura G, Preparar interfaces e ma, Revisar conteúdo científ</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(15)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(15)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Integrar o banco com as cenas e o salvamento do jogo <span class="badge-status ok">Faltam 19d</span></div><div class="tarefa-meta">👤 Paulo André Lima Patrício; Lucas Alves Oliveira · 📅 21/11/2026 → 25/11/2026 · 📊 0% · 🔗 Implementar persistência</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(10)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(10)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Testar campanha, receitas, progressão e banco de dados <span class="badge-status ok">Faltam 21d</span></div><div class="tarefa-meta">👤 Miguel Oliveira Silva · 📅 24/11/2026 → 27/11/2026 · 📊 0% · 🔗 Integrar o banco com as </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(13)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(13)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Finalizar documentação, conclusões, referências e vídeo pitch <span class="badge-status ok">Faltam 23d</span></div><div class="tarefa-meta">👤 Laura Chagas Faria; Lucas Gonçalves Florentino; Miguel Oliveira Silva · 📅 25/11/2026 → 29/11/2026 · 📊 0% · 🔗 Testar campanha, receita, Gerar versão Windows e t</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(17)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(17)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Corrigir falhas e repetir os testes <span class="badge-status ok">Faltam 22d</span></div><div class="tarefa-meta">👤 Miguel Oliveira Silva; Paulo André Lima Patrício · 📅 27/11/2026 → 28/11/2026 · 📊 0% · 🔗 Testar campanha, receita</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(14)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(14)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">Gerar versão Windows e testar em outros computadores <span class="badge-status ok">Faltam 23d</span></div><div class="tarefa-meta">👤 Paulo André Lima Patrício · 📅 28/11/2026 → 29/11/2026 · 📊 0% · 🔗 Corrigir falhas e repeti</div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(16)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(16)">🗑️</button></div></div><div class="tarefa-item"><div><div class="tarefa-nome">ENTREGA FINAL <span class="badge-status ok">Faltam 24d</span></div><div class="tarefa-meta">👤 Equipe R-31 · 📅 30/11/2026 → 30/11/2026 · 📊 0% · 🎯 Marco · 🔗 Finalizar documentação, </div></div><div class="tarefa-acoes"><button class="btn verde btn-pequeno" onclick="editarTarefa(18)">✏️</button><button class="btn perigo btn-pequeno" onclick="removerTarefa(18)">🗑️</button></div></div></div>
+
+    <div class="btn-group">
+      <button class="btn secundario" onclick="restaurarPadrao()">🔄 Restaurar Padrão</button>
+      <button class="btn perigo" onclick="limparTudo()">🗑️ Limpar Tarefas</button>
+    </div>
+
+    <h3>📊 Análise de Carga por Integrante (Divisão de Tarefas)</h3>
+    <p style="font-size:0.9rem;">Calculado automaticamente a partir do cronograma. ⚠️ Alerta quando um integrante acumula mais de <strong>40% dos dias totais</strong>.</p>
+    <div id="workloadPanel"><div class="workload-item"><div class="workload-header"><span class="nome">👤 Lucas Alves Oliveira</span><span class="dias">15 dia(s) · 2 tarefa(s) · 19.2%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:19.230769230769234%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Equipe R-31</span><span class="dias">10 dia(s) · 4 tarefa(s) · 12.8%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:12.82051282051282%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Arthur Carvalho de Oliveira</span><span class="dias">10 dia(s) · 2 tarefa(s) · 12.8%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:12.82051282051282%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Lucas Gonçalves Florentino; Laura Chagas Faria</span><span class="dias">8 dia(s) · 2 tarefa(s) · 10.3%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:10.256410256410255%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Laura Chagas Faria</span><span class="dias">8 dia(s) · 1 tarefa(s) · 10.3%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:10.256410256410255%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Arthur Carvalho de Oliveira; Paulo André Lima Patrício</span><span class="dias">5 dia(s) · 1 tarefa(s) · 6.4%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:6.41025641025641%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Paulo André Lima Patrício; Lucas Alves Oliveira</span><span class="dias">5 dia(s) · 1 tarefa(s) · 6.4%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:6.41025641025641%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Laura Chagas Faria; Lucas Gonçalves Florentino; Miguel Oliveira Silva</span><span class="dias">5 dia(s) · 1 tarefa(s) · 6.4%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:6.41025641025641%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Lucas Alves Oliveira; Paulo André Lima Patrício</span><span class="dias">4 dia(s) · 1 tarefa(s) · 5.1%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:5.128205128205128%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Miguel Oliveira Silva</span><span class="dias">4 dia(s) · 1 tarefa(s) · 5.1%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:5.128205128205128%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Miguel Oliveira Silva; Paulo André Lima Patrício</span><span class="dias">2 dia(s) · 1 tarefa(s) · 2.6%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:2.564102564102564%"></div></div></div><div class="workload-item"><div class="workload-header"><span class="nome">👤 Paulo André Lima Patrício</span><span class="dias">2 dia(s) · 1 tarefa(s) · 2.6%</span></div><div class="workload-bar-bg"><div class="workload-bar-fill ok" style="width:2.564102564102564%"></div></div></div></div>
+
+    <!-- 9. MODELAGEM DE DADOS -->
+    <h2 id="modelagem">9️⃣ Modelagem de Dados <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <p style="font-size:0.9rem;">
+      Registre os links (ou descrições) dos artefatos de modelagem. Você pode hospedar imagens no GitHub, Google Drive, Figma,
+      dbdiagram.io, Mermaid Live, brModelo Web, etc. Para a entrega final, todos os artefatos devem estar preenchidos.
+    </p>
+
+    <div class="card">
+      <h4>🎭 Diagrama de Caso de Uso</h4>
+      <div class="form-group">
+        <label for="modCasoUso">Link do diagrama *</label>
+        <input type="text" id="modCasoUso" placeholder="Ex: https://drive.google.com/..." oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="modCasoUsoDesc">Atores e casos principais</label>
+        <textarea id="modCasoUsoDesc" rows="2" placeholder="Ex: Ator Cliente → (Fazer pedido), (Consultar histórico); Ator Admin → (Gerenciar produtos)..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>🧩 Diagrama Entidade-Relacionamento (DER)</h4>
+      <div class="form-group">
+        <label for="modDER">Link do DER *</label>
+        <input type="text" id="modDER" placeholder="Ex: https://dbdiagram.io/d/..." oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="modDERDesc">Entidades principais e relacionamentos</label>
+        <textarea id="modDERDesc" rows="2" placeholder="Ex: Cliente 1:N Pedido; Pedido N:N Produto (via ItemPedido)..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>🗂️ Diagrama de Tabelas Relacionais</h4>
+      <div class="form-group">
+        <label for="modTabelas">Link do diagrama relacional *</label>
+        <input type="text" id="modTabelas" placeholder="Ex: https://drive.google.com/..." oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="modTabelasDesc">Chaves primárias e estrangeiras principais</label>
+        <textarea id="modTabelasDesc" rows="2" placeholder="Ex: usuario(id PK); pedido(id PK, usuario_id FK); item_pedido(pedido_id FK, produto_id FK)..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>📖 Dicionário de Dados</h4>
+      <div class="form-group">
+        <label for="modDicionarioLink">Link do documento (opcional)</label>
+        <input type="text" id="modDicionarioLink" placeholder="Ex: https://docs.google.com/..." oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="modDicionario">Descrição textual do dicionário *</label>
+        <textarea id="modDicionario" rows="4" placeholder="Tabela: usuario
+- id (INT, PK, AUTO_INCREMENT)
+- nome (VARCHAR(120), NOT NULL)
+- email (VARCHAR(180), UNIQUE, NOT NULL)
+- criado_em (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)" oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>🔄 Registro da Normalização</h4>
+      <div class="form-group">
+        <label for="modNormalizacao">Explicação das etapas (1FN → 2FN → 3FN) *</label>
+        <textarea id="modNormalizacao" rows="4" placeholder="Ex:
+1FN: todos os atributos são atômicos, sem listas em células.
+2FN: removidos atributos que dependem parcialmente da PK composta (separação de ItemPedido).
+3FN: removidas dependências transitivas (separação de Cidade em relação a Cliente)..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>💾 Scripts SQL</h4>
+      <div class="form-group">
+        <label for="modSQL">Link do arquivo .sql (recomendado: GitHub Gist, Drive) *</label>
+        <input type="text" id="modSQL" placeholder="Ex: https://github.com/grupo/projeto/blob/main/schema.sql" oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="modSQLDesc">Resumo do que o script contém</label>
+        <textarea id="modSQLDesc" rows="2" placeholder="Ex: CREATE DATABASE, CREATE TABLE (5 tabelas), constraints (PK, FK, UNIQUE, CHECK), índices, triggers e inserts de exemplo..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <!-- 10. PROTÓTIPO -->
+    <h2 id="prototipo">🔟 Protótipo / Deploy <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <div class="card">
+      <div class="form-group">
+        <label for="protoLink">Link do protótipo / aplicação em produção</label>
+        <input type="text" id="protoLink" placeholder="Ex: https://meuapp.vercel.app ou link do Figma" oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="protoDesc">Estado atual do protótipo</label>
+        <textarea id="protoDesc" rows="3" placeholder="Descreva o que já está funcionando: telas prontas, fluxos completos, integração com banco etc." oninput="salvarEstado()"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="protoRepo">Repositório do projeto</label>
+        <input type="text" id="protoRepo" placeholder="Ex: https://github.com/grupo/projeto" oninput="salvarEstado()">
+      </div>
+    </div>
+
+    <!-- 11. DECISÕES TÉCNICAS -->
+    <h2 id="tecnico">1️⃣1️⃣ Decisões Técnicas <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <div class="card">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tecArquitetura">Arquitetura do sistema</label>
+          <input type="text" id="tecArquitetura" placeholder="Ex: MVC, cliente-servidor, microsserviços" oninput="salvarEstado()">
+        </div>
+        <div class="form-group">
+          <label for="tecSGBD">SGBD Escolhido *</label>
+          <select id="tecSGBD" onchange="salvarEstado()">
+            <option value="">-- Selecione --</option>
+            <option>MySQL</option>
+            <option>PostgreSQL</option>
+            <option>SQL Server</option>
+            <option>Oracle</option>
+            <option>SQLite</option>
+            <option>MariaDB</option>
+            <option>MongoDB</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tecApi">Padrão de API</label>
+          <input type="text" id="tecApi" placeholder="Ex: REST, GraphQL, RPC" oninput="salvarEstado()">
+        </div>
+        <div class="form-group">
+          <label for="tecAuth">Autenticação / Segurança</label>
+          <input type="text" id="tecAuth" placeholder="Ex: JWT, OAuth2, bcrypt, HTTPS" oninput="salvarEstado()">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tecObservacoes">Observações técnicas</label>
+        <textarea id="tecObservacoes" rows="2" placeholder="Decisões de deploy, requisitos de ambiente, integrações externas..." oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <!-- 12. RISCOS -->
+    <h2 id="riscos">1️⃣2️⃣ Matriz de Riscos <span class="fase-badge parcial">Parcial e Final</span></h2>
+    <div id="riscosList"><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Atraso no desenvolvimento das mecânicas</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(1)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Priorizar as funcionalidades essenciais e dividir as tarefas entre os integrantes.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Indisponibilidade de um integrante</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(2)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Redistribuir as atividades e manter a documentação atualizada.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Perda do código-fonte</span><div class="risco-tags"><span class="risco-tag prob-baixa">Prob: baixa</span><button class="btn perigo btn-pequeno" onclick="removerRisco(3)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Versionar o projeto no GitHub e manter cópias de segurança.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Erros nas combinações da bancada</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(4)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Testar receitas válidas e inválidas e revisar as mensagens de retorno.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Problemas de desempenho</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(5)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Testar em computadores-alvo e otimizar cenas, imagens e scripts.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Falhas no salvamento</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(6)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Testar o salvamento e o carregamento da campanha.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Atraso na modelagem do banco de dados</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(7)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Concluir DER, tabelas, dicionário e scripts antes da integração.</div></div><div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ Falhas na integração entre sistemas</span><div class="risco-tags"><span class="risco-tag prob-media">Prob: media</span><button class="btn perigo btn-pequeno" onclick="removerRisco(8)">🗑️</button></div></div><div style="font-size:0.9rem;"><strong>Mitigação:</strong> Integrar os módulos por etapas e executar testes de regressão.</div></div></div>
+    <div class="card">
+      <h4>➕ Adicionar risco</h4>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Risco</label>
+          <input type="text" id="riscoNome" placeholder="Ex: Atraso na entrega do backend">
+        </div>
+        <div class="form-group">
+          <label>Probabilidade</label>
+          <select id="riscoProb">
+            <option value="baixa">🟢 Baixa</option>
+            <option value="media">🟡 Média</option>
+            <option value="alta">🔴 Alta</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mitigação</label>
+          <input type="text" id="riscoMitig" placeholder="Ex: Priorizar MVP e dividir entregas">
+        </div>
+      </div>
+      <button class="btn verde btn-pequeno" onclick="adicionarRisco()">➕ Adicionar risco</button>
+    </div>
+
+    <!-- 13. ENTREGÁVEIS FINAIS -->
+    <h2 id="entregaveis">1️⃣3️⃣ Entregáveis Finais <span class="fase-badge final">Apenas Final</span></h2>
+    <div class="card">
+      <p style="font-size:0.9rem; margin-bottom:0.8rem;">
+        Preencha os links dos entregáveis finais (30/11). Estes campos só aparecem no documento final.
+      </p>
+      <div class="form-group">
+        <label for="entVideo">🎥 Link do Vídeo Pitch (até 5 min) *</label>
+        <input type="text" id="entVideo" placeholder="Ex: https://youtu.be/..." oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="entDeploy">🌐 Link do software em produção</label>
+        <input type="text" id="entDeploy" placeholder="Ex: https://meuapp.vercel.app" oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="entRepo">📁 Repositório GitHub (código-fonte)</label>
+        <input type="text" id="entRepo" placeholder="Ex: https://github.com/grupo/projeto" oninput="salvarEstado()">
+      </div>
+      <div class="form-group">
+        <label for="entConclusoes">🧠 Conclusões e Aprendizados</label>
+        <textarea id="entConclusoes" rows="3" placeholder="O que funcionou? O que foi desafiador? O que o grupo aprendeu sobre engenharia de software?" oninput="salvarEstado()"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="entReferencias">📚 Referências</label>
+        <textarea id="entReferencias" rows="2" placeholder="Documentações, artigos, tutoriais consultados" oninput="salvarEstado()"></textarea>
+      </div>
+    </div>
+
+    <div class="pegadinha">
+      <strong>⚠️ Atenção ao vídeo pitch:</strong> máximo de <strong>5 minutos</strong>. Deve apresentar:
+      o grupo, a atividade, o projeto e uma <strong>demonstração do software em operação exibindo o funcionamento de TODAS as funcionalidades previstas no escopo</strong>.
+      Deixe o vídeo público ou como "não listado" no YouTube, ou compartilhe via Google Drive com permissão de leitura.
+    </div>
+
+    <!-- 14. GERAR DOCUMENTO -->
+    <h2 id="gerar">📤 Gerar Documento de Entrega</h2>
+    <p>Escolha a fase e o formato. O documento é gerado com as informações preenchidas e pronto para entregar.</p>
+
+    <div class="gerador-grid">
+      <div class="gerador-card inscricao">
+        <h4>📋 Inscrição (hoje)</h4>
+        <div class="desc">Identificação do grupo, integrantes e papéis, apresentação do projeto, escopo preliminar, cronograma inicial e stack de tecnologias.</div>
+        <div class="acoes">
+          <button class="btn azul btn-pequeno" onclick="gerarDocumento('inscricao','preview')">👁️ Pré-visualizar</button>
+          <button class="btn azul btn-pequeno" onclick="gerarDocumento('inscricao','download')">⬇ Baixar HTML</button>
+          <button class="btn azul btn-pequeno" onclick="gerarDocumento('inscricao','print')">🖨️ Imprimir / PDF</button>
+        </div>
+      </div>
+
+      <div class="gerador-card parcial">
+        <h4>📦 Parcial (20/11)</h4>
+        <div class="desc">Atualização do desenvolvimento, cumprimento do cronograma, escopo completo, funcionalidades, requisitos, modelagem inicial e <strong>link do protótipo</strong>.</div>
+        <div class="acoes">
+          <button class="btn amarelo btn-pequeno" onclick="gerarDocumento('parcial','preview')">👁️ Pré-visualizar</button>
+          <button class="btn amarelo btn-pequeno" onclick="gerarDocumento('parcial','download')">⬇ Baixar HTML</button>
+          <button class="btn amarelo btn-pequeno" onclick="gerarDocumento('parcial','print')">🖨️ Imprimir / PDF</button>
+        </div>
+      </div>
+
+      <div class="gerador-card final">
+        <h4>🎯 Final (30/11)</h4>
+        <div class="desc">Documentação completa: escopo, funcionalidades, RF/RNF, cronograma, modelagem de dados (caso de uso, DER, tabelas, dicionário, normalização, SQL), vídeo pitch e deploy.</div>
+        <div class="acoes">
+          <button class="btn btn-pequeno" onclick="gerarDocumento('final','preview')">👁️ Pré-visualizar</button>
+          <button class="btn btn-pequeno" onclick="gerarDocumento('final','download')">⬇ Baixar HTML</button>
+          <button class="btn btn-pequeno" onclick="gerarDocumento('final','print')">🖨️ Imprimir / PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="destaque" style="margin-top:1rem;">
+      <strong>💡 Dica:</strong> escolha <em>Imprimir / PDF</em> e, na janela de impressão, selecione <strong>"Salvar como PDF"</strong>. Ficará formatado com capa, seções e rodapé — pronto para entregar no Classroom.
+    </div>
+
+    <!-- 15. CHECKLISTS -->
+    <h2 id="checklist">✅ Checklists por Fase</h2>
+
+    <div class="card">
+      <h3>📋 Inscrição (hoje)</h3>
+      <ul class="checklist">
+        <li>Nome do grupo e líder definidos</li>
+        <li>Projeto/sistema escolhido (ou customizado)</li>
+        <li>Tipo de aplicação selecionado (Web, Mobile etc.)</li>
+        <li>Todos os integrantes cadastrados com função</li>
+        <li>Objetivo geral e justificativa preenchidos</li>
+        <li>Escopo preliminar (dentro/fora) preenchido</li>
+        <li>Stack de tecnologias registrada</li>
+        <li>Cronograma inicial com etapas e responsáveis</li>
+        <li>Documento de inscrição gerado</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📦 Parcial (20/11)</h3>
+      <ul class="checklist">
+        <li>Escopo final (dentro/fora) preenchido</li>
+        <li>Funcionalidades com prioridade e descrição</li>
+        <li>Requisitos Funcionais (RF) listados</li>
+        <li>Requisitos Não Funcionais (RNF) listados</li>
+        <li>Cronograma atualizado com status real</li>
+        <li>Divisão de tarefas equilibrada entre integrantes</li>
+        <li>Diagrama de Caso de Uso registrado</li>
+        <li>DER preliminar registrado</li>
+        <li>Link do protótipo (se houver) preenchido</li>
+        <li>Documento parcial gerado</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Final (30/11)</h3>
+      <ul class="checklist">
+        <li>Apresentação do projeto (objetivo, justificativa, público)</li>
+        <li>Escopo completo</li>
+        <li>Lista de funcionalidades</li>
+        <li>Requisitos Funcionais (RF) e Não Funcionais (RNF)</li>
+        <li>Cronograma com todas as etapas e status</li>
+        <li>Divisão de tarefas (carga por integrante)</li>
+        <li>Diagrama de Caso de Uso com link</li>
+        <li>DER com link</li>
+        <li>Diagrama de Tabelas Relacionais com link</li>
+        <li>Dicionário de Dados completo</li>
+        <li>Registro da Normalização (1FN → 2FN → 3FN)</li>
+        <li>Scripts SQL para efetiva criação do banco</li>
+        <li>Link do vídeo pitch (até 5 min) demonstrando o software em operação</li>
+        <li>Link do deploy do software</li>
+        <li>Repositório GitHub</li>
+        <li>Conclusões e referências</li>
+        <li>Documento final gerado</li>
+      </ul>
+    </div>
+
+    <div class="dica">
+      <strong>💡 Dica final:</strong> comecem o quanto antes a modelagem de dados — ela é base para todo o backend e para o vídeo pitch.
+      Grupos que entregam a modelagem completa na parcial chegam na final com folga para testar e ajustar o software.
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    💻 <strong>Construtor de Entregas</strong> · Projeto e Engenharia de Software<br>
+    Centro Universitário UNA · Barreiro · Prof. da UC de Projeto e Engenharia de Software<br>
+    <span class="nota">Inscrição: hoje · Parcial: 20/11 · Final: 30/11</span>
+  </div>
+
+  <div class="footer-botoes">
+    <button class="btn" onclick="baixarHTML()">⬇ Baixar construtor (HTML)</button>
+    <button class="btn secundario" onclick="resetarTudo()">↻ Resetar</button>
+  </div>
+
+</div>
+
+<button class="scroll-top" id="scrollTop">↑</button>
+
+<script>
+/* ============================================================
+   ESTADO GLOBAL
+============================================================ */
+var STORAGE_KEY = 'proj_eng_sw_r31_final_2026_v3';
+
+var PARCIAL = new Date(2026, 10, 20); // 20/11/2026
+var FINAL = new Date(2026, 10, 30);   // 30/11/2026
+
+var SEED_INICIAL = false;
+
+var STATE = {
+  grupo: { nome:'', projeto:'', projetoCustom:'', tipoApp:'', lider:'' },
+  integrantes: [],
+  apresentacao: { objetivo:'', justificativa:'', publico:'', diferenciais:'' },
+  escopo: { dentro:[], fora:[] },
+  funcionalidades: [],
+  requisitos: { RF:[], RNF:[] },
+  tecnologias: [],
+  tarefas: [],
+  modelagem: { casoUso:'', casoUsoDesc:'', der:'', derDesc:'', tabelas:'', tabelasDesc:'', dicionarioLink:'', dicionario:'', normalizacao:'', sql:'', sqlDesc:'' },
+  prototipo: { link:'', desc:'', repo:'' },
+  tecnico: { arquitetura:'', sgbd:'', api:'', auth:'', observacoes:'' },
+  riscos: [],
+  entregaveis: { video:'', deploy:'', repo:'', conclusoes:'', referencias:'' }
+};
+
+var DEFAULT_TASKS = [
+  { id:1, nome:'Formação do grupo e definição do projeto', responsavel:'Todos', inicio:'2026-10-06', fim:'2026-10-12', status:100, tipo:'normal', dependeDe:[] },
+  { id:2, nome:'Levantamento de requisitos (RF/RNF)', responsavel:'Analista', inicio:'2026-10-10', fim:'2026-10-20', status:50, tipo:'normal', dependeDe:[1] },
+  { id:3, nome:'Definição do escopo e funcionalidades', responsavel:'Analista', inicio:'2026-10-15', fim:'2026-10-24', status:0, tipo:'normal', dependeDe:[2] },
+  { id:4, nome:'Diagrama de Caso de Uso', responsavel:'Modelador', inicio:'2026-10-20', fim:'2026-10-28', status:0, tipo:'normal', dependeDe:[2,3] },
+  { id:5, nome:'Diagrama ER (Entidade-Relacionamento)', responsavel:'Modelador', inicio:'2026-10-25', fim:'2026-11-03', status:0, tipo:'normal', dependeDe:[3] },
+  { id:6, nome:'Modelo Relacional + Normalização (3FN)', responsavel:'DBA', inicio:'2026-11-01', fim:'2026-11-10', status:0, tipo:'normal', dependeDe:[5] },
+  { id:7, nome:'Dicionário de Dados', responsavel:'DBA', inicio:'2026-11-05', fim:'2026-11-12', status:0, tipo:'normal', dependeDe:[6] },
+  { id:8, nome:'Scripts SQL de criação do banco', responsavel:'DBA', inicio:'2026-11-08', fim:'2026-11-15', status:0, tipo:'normal', dependeDe:[6] },
+  { id:9, nome:'Desenvolvimento Backend (APIs)', responsavel:'Backend', inicio:'2026-11-10', fim:'2026-11-25', status:0, tipo:'normal', dependeDe:[8] },
+  { id:10, nome:'Desenvolvimento Frontend (telas)', responsavel:'Frontend', inicio:'2026-11-10', fim:'2026-11-25', status:0, tipo:'normal', dependeDe:[8] },
+  { id:11, nome:'🎯 ENTREGA PARCIAL (protótipo + cronograma)', responsavel:'Todos', inicio:'2026-11-20', fim:'2026-11-20', status:0, tipo:'marco', dependeDe:[4,5,6,7,8] },
+  { id:12, nome:'Integração front + back + banco', responsavel:'Todos', inicio:'2026-11-21', fim:'2026-11-25', status:0, tipo:'normal', dependeDe:[11] },
+  { id:13, nome:'Testes e correções', responsavel:'QA', inicio:'2026-11-22', fim:'2026-11-27', status:0, tipo:'normal', dependeDe:[12] },
+  { id:14, nome:'Documentação final completa', responsavel:'Docs', inicio:'2026-11-22', fim:'2026-11-28', status:0, tipo:'normal', dependeDe:[11] },
+  { id:15, nome:'Gravação do vídeo pitch (até 5 min)', responsavel:'Todos', inicio:'2026-11-25', fim:'2026-11-29', status:0, tipo:'normal', dependeDe:[13,14] },
+  { id:16, nome:'🎯 ENTREGA FINAL', responsavel:'Todos', inicio:'2026-11-30', fim:'2026-11-30', status:0, tipo:'marco', dependeDe:[15] }
+];
+
+var proximoId = 100;
+var proximoIdIntegrante = 1;
+var proximoIdRisco = 1;
+
+/* ===== MODO ESCURO / SCROLL / ÍNDICE ===== */
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark-mode');
+
+window.addEventListener('scroll', function() {
+  var st = window.scrollY;
+  var dh = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progressFill').style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+  document.getElementById('scrollTop').classList.toggle('visible', st > 400);
+});
+document.getElementById('scrollTop').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+document.querySelectorAll('.indice a').forEach(function(l) {
+  l.addEventListener('click', function(e) {
+    e.preventDefault();
+    var t = document.querySelector(l.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ===== CONTAGENS ===== */
+function atualizarContagens() {
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
+  var cp = document.getElementById('cardParcial');
+  var sp = document.getElementById('statusParcial');
+  var dP = Math.round((PARCIAL - hoje) / (1000*60*60*24));
+  if (dP < 0) { sp.textContent = 'Encerrada'; cp.classList.remove('urgente'); }
+  else if (dP === 0) { sp.textContent = '🔥 É HOJE!'; cp.classList.add('urgente'); }
+  else if (dP <= 3) { sp.textContent = '⚠️ Faltam ' + dP + ' dia(s)'; cp.classList.add('urgente'); }
+  else { sp.textContent = 'Faltam ' + dP + ' dia(s)'; cp.classList.remove('urgente'); }
+  var cf = document.getElementById('cardFinal');
+  var sf = document.getElementById('statusFinal');
+  var dF = Math.round((FINAL - hoje) / (1000*60*60*24));
+  if (dF < 0) { sf.textContent = 'Encerrada'; cf.classList.remove('urgente'); }
+  else if (dF === 0) { sf.textContent = '🔥 É HOJE!'; cf.classList.add('urgente'); }
+  else if (dF <= 3) { sf.textContent = '⚠️ Faltam ' + dF + ' dia(s)'; cf.classList.add('urgente'); }
+  else { sf.textContent = 'Faltam ' + dF + ' dia(s)'; cf.classList.remove('urgente'); }
+}
+
+/* ===== PERSISTÊNCIA ===== */
+function carregarEstado() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      var d = JSON.parse(raw);
+      Object.keys(STATE).forEach(function(k) {
+        if (d[k]) STATE[k] = d[k];
+      });
+    }
+  } catch(e) {}
+  if (!STATE.tarefas.length && !SEED_INICIAL) STATE.tarefas = JSON.parse(JSON.stringify(DEFAULT_TASKS));
+  if (!STATE.escopo.dentro.length && !SEED_INICIAL) STATE.escopo.dentro = [
+    'Aplicação com frontend funcional (telas navegáveis)',
+    'Backend com API para consumo do frontend',
+    'Banco de dados modelado e populado',
+    'Autenticação básica de usuários',
+    'Documentação técnica completa',
+    'Vídeo pitch demonstrando o software em operação'
+  ];
+  if (!STATE.escopo.fora.length && !SEED_INICIAL) STATE.escopo.fora = [
+    'Aplicativo mobile nativo (se o projeto for apenas web)',
+    'Integrações com ERPs ou sistemas corporativos externos',
+    'Painel administrativo avançado com BI'
+  ];
+  if (!STATE.riscos.length && !SEED_INICIAL) STATE.riscos = [
+    { id:1, nome:'Atraso na implementação do backend', prob:'media', mitig:'Priorizar MVP e entregar funcionalidades críticas primeiro' },
+    { id:2, nome:'Integrante doente ou indisponível', prob:'media', mitig:'Documentar código e redistribuir tarefas entre os demais' },
+    { id:3, nome:'Perda de código-fonte', prob:'baixa', mitig:'Versionar no GitHub desde o primeiro commit' }
+  ];
+  proximoId = STATE.tarefas.length ? Math.max.apply(null, STATE.tarefas.map(function(t){ return t.id; })) + 1 : 100;
+  proximoIdIntegrante = STATE.integrantes.length ? Math.max.apply(null, STATE.integrantes.map(function(i){ return i.id || 0; })) + 1 : 1;
+  proximoIdRisco = STATE.riscos.length ? Math.max.apply(null, STATE.riscos.map(function(r){ return r.id || 0; })) + 1 : 1;
+}
+
+function salvarEstado() {
+  STATE.grupo = {
+    nome: val('gNome'), projeto: val('gProjeto'), projetoCustom: val('gProjetoCustom'),
+    tipoApp: val('gTipoApp'), lider: val('gLider')
+  };
+  STATE.apresentacao = {
+    objetivo: val('gObjetivo'), justificativa: val('gJustificativa'),
+    publico: val('gPublico'), diferenciais: val('gDiferenciais')
+  };
+  STATE.modelagem = {
+    casoUso: val('modCasoUso'), casoUsoDesc: val('modCasoUsoDesc'),
+    der: val('modDER'), derDesc: val('modDERDesc'),
+    tabelas: val('modTabelas'), tabelasDesc: val('modTabelasDesc'),
+    dicionarioLink: val('modDicionarioLink'), dicionario: val('modDicionario'),
+    normalizacao: val('modNormalizacao'),
+    sql: val('modSQL'), sqlDesc: val('modSQLDesc')
+  };
+  STATE.prototipo = { link: val('protoLink'), desc: val('protoDesc'), repo: val('protoRepo') };
+  STATE.tecnico = {
+    arquitetura: val('tecArquitetura'), sgbd: val('tecSGBD'),
+    api: val('tecApi'), auth: val('tecAuth'), observacoes: val('tecObservacoes')
+  };
+  STATE.entregaveis = {
+    video: val('entVideo'), deploy: val('entDeploy'), repo: val('entRepo'),
+    conclusoes: val('entConclusoes'), referencias: val('entReferencias')
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+}
+
+function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+/* ===== TROCA CUSTOM ===== */
+function toggleProjetoCustom() {
+  var sel = document.getElementById('gProjeto');
+  document.getElementById('projetoCustomBox').style.display = sel.value === 'Outro (especificar)' ? 'block' : 'none';
+}
+
+/* ===== INTEGRANTES ===== */
+function renderizarIntegrantes() {
+  var cont = document.getElementById('integrantesList');
+  if (!STATE.integrantes.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;font-size:0.9rem;">Nenhum integrante.</p>'; return; }
+  var html = '<table><tr><th>#</th><th>Nome</th><th>Matrícula</th><th>Função</th><th>Ação</th></tr>';
+  STATE.integrantes.forEach(function(i, idx) {
+    html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(i.nome) + '</td><td>' + escapeHTML(i.matricula || '—') + '</td><td>' + escapeHTML(i.funcao || '—') + '</td>';
+    html += '<td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerIntegrante(' + idx + ')">🗑️</button></td></tr>';
+  });
+  html += '</table>';
+  cont.innerHTML = html;
+}
+function adicionarIntegrante() {
+  var nome = val('novoIntegranteNome').trim();
+  if (!nome) return alert('Informe o nome.');
+  STATE.integrantes.push({ id: proximoIdIntegrante++, nome: nome, matricula: val('novoIntegranteMat').trim(), funcao: val('novoIntegranteFuncao') });
+  document.getElementById('novoIntegranteNome').value = '';
+  document.getElementById('novoIntegranteMat').value = '';
+  document.getElementById('novoIntegranteFuncao').value = '';
+  renderizarIntegrantes(); renderizarWorkload(); salvarEstado();
+}
+function removerIntegrante(idx) {
+  if (!confirm('Remover?')) return;
+  STATE.integrantes.splice(idx, 1);
+  renderizarIntegrantes(); renderizarWorkload(); salvarEstado();
+}
+
+/* ===== FUNCIONALIDADES ===== */
+function renderizarFuncionalidades() {
+  var cont = document.getElementById('funcionalidadesList');
+  if (!STATE.funcionalidades.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;font-size:0.9rem;">Nenhuma funcionalidade.</p>'; return; }
+  var html = '<table><tr><th>#</th><th>Funcionalidade</th><th>Prioridade</th><th>Descrição</th><th>Ação</th></tr>';
+  STATE.funcionalidades.forEach(function(f, idx) {
+    html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(f.nome) + '</td><td>' + escapeHTML(f.prioridade) + '</td><td>' + escapeHTML(f.desc || '—') + '</td>';
+    html += '<td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerFuncionalidade(' + idx + ')">🗑️</button></td></tr>';
+  });
+  html += '</table>';
+  cont.innerHTML = html;
+}
+function adicionarFuncionalidade() {
+  var nome = val('novaFuncNome').trim();
+  if (!nome) return alert('Informe o nome.');
+  STATE.funcionalidades.push({ nome: nome, prioridade: val('novaFuncPrio'), desc: val('novaFuncDesc').trim() });
+  document.getElementById('novaFuncNome').value = '';
+  document.getElementById('novaFuncDesc').value = '';
+  renderizarFuncionalidades(); salvarEstado();
+}
+function removerFuncionalidade(idx) {
+  STATE.funcionalidades.splice(idx, 1); renderizarFuncionalidades(); salvarEstado();
+}
+
+/* ===== ESCOPO ===== */
+function renderizarEscopo() {
+  ['dentro','fora'].forEach(function(tipo) {
+    var cont = document.getElementById(tipo === 'dentro' ? 'listaDentro' : 'listaFora');
+    if (!STATE.escopo[tipo].length) { cont.innerHTML = '<li style="text-align:center;color:#888;font-style:italic;">Vazio.</li>'; return; }
+    var html = '';
+    STATE.escopo[tipo].forEach(function(item, idx) {
+      html += '<li><span>' + escapeHTML(item) + '</span><button class="btn perigo btn-pequeno" onclick="removerEscopo(\'' + tipo + '\',' + idx + ')">🗑️</button></li>';
+    });
+    cont.innerHTML = html;
+  });
+}
+function adicionarEscopo(tipo) {
+  var inp = document.getElementById(tipo === 'dentro' ? 'novoDentro' : 'novoFora');
+  var v = inp.value.trim();
+  if (!v) return;
+  STATE.escopo[tipo].push(v); inp.value = ''; renderizarEscopo(); salvarEstado();
+}
+function removerEscopo(tipo, idx) {
+  STATE.escopo[tipo].splice(idx, 1); renderizarEscopo(); salvarEstado();
+}
+
+/* ===== REQUISITOS ===== */
+function renderizarRequisitos() {
+  ['RF','RNF'].forEach(function(tipo) {
+    var cont = document.getElementById('lista' + tipo);
+    if (!STATE.requisitos[tipo].length) { cont.innerHTML = '<li style="text-align:center;color:#888;font-style:italic;">Vazio.</li>'; return; }
+    var html = '';
+    STATE.requisitos[tipo].forEach(function(item, idx) {
+      var prefix = tipo === 'RF' ? 'RF' : 'RNF';
+      html += '<li><span><strong>' + prefix + (idx+1).toString().padStart(2,'0') + ':</strong> ' + escapeHTML(item) + '</span><button class="btn perigo btn-pequeno" onclick="removerReq(\'' + tipo + '\',' + idx + ')">🗑️</button></li>';
+    });
+    cont.innerHTML = html;
+  });
+}
+function adicionarReq(tipo) {
+  var inp = document.getElementById('novo' + tipo);
+  var v = inp.value.trim();
+  if (!v) return;
+  STATE.requisitos[tipo].push(v); inp.value = ''; renderizarRequisitos(); salvarEstado();
+}
+function removerReq(tipo, idx) {
+  STATE.requisitos[tipo].splice(idx, 1); renderizarRequisitos(); salvarEstado();
+}
+
+/* ===== TECNOLOGIAS ===== */
+function renderizarTecnologias() {
+  var cont = document.getElementById('tecnologiasList');
+  if (!STATE.tecnologias.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;font-size:0.9rem;">Nenhuma tecnologia.</p>'; return; }
+  var html = '<table><tr><th>#</th><th>Tecnologia</th><th>Categoria</th><th>Versão / Finalidade</th><th>Ação</th></tr>';
+  STATE.tecnologias.forEach(function(t, idx) {
+    html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(t.nome) + '</td><td>' + escapeHTML(t.categoria || '—') + '</td><td>' + escapeHTML(t.versao || '—') + '</td>';
+    html += '<td style="text-align:center;"><button class="btn perigo btn-pequeno" onclick="removerTecnologia(' + idx + ')">🗑️</button></td></tr>';
+  });
+  html += '</table>';
+  cont.innerHTML = html;
+}
+function adicionarTecnologia() {
+  var nome = val('novaTecNome').trim();
+  if (!nome) return alert('Informe a tecnologia.');
+  STATE.tecnologias.push({ nome: nome, categoria: val('novaTecCat'), versao: val('novaTecVersao').trim() });
+  document.getElementById('novaTecNome').value = '';
+  document.getElementById('novaTecCat').value = '';
+  document.getElementById('novaTecVersao').value = '';
+  renderizarTecnologias(); salvarEstado();
+}
+function removerTecnologia(idx) {
+  STATE.tecnologias.splice(idx, 1); renderizarTecnologias(); salvarEstado();
+}
+
+/* ===== CRONOGRAMA ===== */
+function calcularAlerta(t) {
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
+  var fim = new Date(t.fim + 'T00:00:00');
+  var dias = Math.round((fim - hoje) / (1000*60*60*24));
+  if (t.status >= 100) return { tipo: 'concluida', texto: 'Concluída', badge: 'concluida' };
+  if (dias < 0) return { tipo: 'atrasada', texto: 'Atrasada ' + Math.abs(dias) + 'd', badge: 'atrasada' };
+  if (dias === 0) return { tipo: 'urgente', texto: 'Vence HOJE', badge: 'urgente' };
+  if (dias <= 3) return { tipo: 'urgente', texto: 'Vence em ' + dias + 'd', badge: 'urgente' };
+  if (dias <= 7) return { tipo: 'atencao', texto: 'Vence em ' + dias + 'd', badge: 'atencao' };
+  return { tipo: 'ok', texto: 'Faltam ' + dias + 'd', badge: 'ok' };
+}
+function renderizarCronograma() {
+  renderizarAlertas(); renderizarProgresso(); renderizarDepList();
+  renderizarGantt(); renderizarListaTarefas(); renderizarWorkload(); salvarEstado();
+}
+function renderizarAlertas() {
+  var cont = { atrasada:0, urgente:0, atencao:0, ok:0, concluida:0 };
+  STATE.tarefas.forEach(function(t) { var a = calcularAlerta(t); cont[a.tipo] = (cont[a.tipo] || 0) + 1; });
+  var el = document.getElementById('numAtrasadas'); if (el) el.textContent = cont.atrasada;
+  el = document.getElementById('numUrgentes'); if (el) el.textContent = cont.urgente;
+  el = document.getElementById('numAtencao'); if (el) el.textContent = cont.atencao;
+  el = document.getElementById('numOk'); if (el) el.textContent = cont.ok;
+  el = document.getElementById('numConcluidas'); if (el) el.textContent = cont.concluida;
+}
+function renderizarProgresso() {
+  if (!STATE.tarefas.length) {
+    var el = document.getElementById('progressoTexto'); if (el) el.textContent = '0%';
+    el = document.getElementById('progressoBarra'); if (el) el.style.width = '0%'; return;
+  }
+  var soma = STATE.tarefas.reduce(function(s, t) { return s + (t.status || 0); }, 0);
+  var media = Math.round(soma / STATE.tarefas.length);
+  var el = document.getElementById('progressoTexto');
+  if (el) el.textContent = media + '% (' + STATE.tarefas.length + ' atividades)';
+  el = document.getElementById('progressoBarra'); if (el) el.style.width = media + '%';
+}
+function renderizarDepList() {
+  var cont = document.getElementById('depList');
+  if (!cont) return;
+  var editandoId = parseInt(val('editandoId') || '0', 10);
+  var editTarefa = STATE.tarefas.find(function(x){ return x.id === editandoId; });
+  var html = '';
+  STATE.tarefas.forEach(function(t) {
+    if (t.id === editandoId) return;
+    var marcado = editTarefa && editTarefa.dependeDe && editTarefa.dependeDe.indexOf(t.id) !== -1;
+    html += '<label><input type="checkbox" value="' + t.id + '" ' + (marcado ? 'checked' : '') + '> ' + escapeHTML(t.nome) + '</label>';
+  });
+  cont.innerHTML = html || '<p style="font-size:0.85rem;color:#888;">Nenhuma outra tarefa.</p>';
+}
+function renderizarGantt() {
+  var axis = document.getElementById('ganttAxis');
+  var rows = document.getElementById('ganttRows');
+  var range = document.getElementById('ganttRange');
+  if (!axis || !rows) return;
+  if (!STATE.tarefas.length) {
+    axis.innerHTML = ''; rows.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;">Nenhuma atividade.</p>';
+    if (range) range.textContent = ''; return;
+  }
+  var datas = STATE.tarefas.map(function(t){ return [new Date(t.inicio+'T00:00:00'), new Date(t.fim+'T00:00:00')]; });
+  var minD = new Date(Math.min.apply(null, datas.map(function(d){ return d[0]; })));
+  var maxD = new Date(Math.max.apply(null, datas.map(function(d){ return d[1]; })));
+  var span = (maxD - minD) / (1000*60*60*24);
+  if (span <= 0) span = 1;
+  var marksHTML = '';
+  for (var i = 0; i <= 4; i++) {
+    var pct = (i / 4) * 100;
+    var d = new Date(minD.getTime() + (span * i / 4) * 1000*60*60*24);
+    var dStr = ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2);
+    marksHTML += '<span class="gantt-axis-mark" style="left:' + pct + '%">' + dStr + '</span>';
+  }
+  axis.innerHTML = marksHTML;
+  if (range) range.textContent = 'Período: ' + formatarData(minD) + ' → ' + formatarData(maxD);
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
+  var hojePct = ((hoje - minD) / (1000*60*60*24)) / span * 100;
+  var mostrarHoje = hojePct >= 0 && hojePct <= 100;
+  var ordenadas = STATE.tarefas.slice().sort(function(a, b) { return new Date(a.inicio) - new Date(b.inicio); });
+  var html = '';
+  ordenadas.forEach(function(t) {
+    var inicio = new Date(t.inicio+'T00:00:00');
+    var fim = new Date(t.fim+'T00:00:00');
+    var leftPct = ((inicio - minD) / (1000*60*60*24)) / span * 100;
+    var widthPct = Math.max(((fim - inicio) / (1000*60*60*24)) / span * 100, 0.8);
+    var alerta = calcularAlerta(t);
+    var classeBar = t.tipo === 'marco' ? 'marco' : alerta.tipo;
+    var hojeLine = mostrarHoje ? '<div class="gantt-today" style="left:' + hojePct + '%"></div>' : '';
+    var conteudo = t.tipo === 'marco' ? '🎯' : (t.status + '%');
+    var depMarker = '';
+    if (t.dependeDe && t.dependeDe.length) depMarker = '<div class="gantt-dep" style="left:' + leftPct + '%" title="Depende de ' + t.dependeDe.length + '"></div>';
+    html += '<div class="gantt-row"><div class="gantt-row-label" title="' + escapeHTML(t.nome) + '">' + escapeHTML(t.nome) + '<small>' + escapeHTML(t.responsavel || '—') + '</small></div>';
+    html += '<div class="gantt-track">' + hojeLine + depMarker;
+    html += '<div class="gantt-bar ' + classeBar + '" style="left:' + leftPct + '%;width:' + widthPct + '%" title="' + escapeHTML(t.nome) + '">' + conteudo + '</div></div></div>';
+  });
+  rows.innerHTML = html;
+}
+function renderizarListaTarefas() {
+  var cont = document.getElementById('listaTarefas');
+  if (!STATE.tarefas.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;">Nenhuma atividade.</p>'; return; }
+  var ordenadas = STATE.tarefas.slice().sort(function(a, b) { return new Date(a.inicio) - new Date(b.inicio); });
+  var html = '';
+  ordenadas.forEach(function(t) {
+    var alerta = calcularAlerta(t);
+    var deps = (t.dependeDe || []).map(function(depId) {
+      var dep = STATE.tarefas.find(function(x){ return x.id === depId; });
+      return dep ? dep.nome.substring(0, 24) : '#' + depId;
+    }).join(', ');
+    html += '<div class="tarefa-item"><div><div class="tarefa-nome">' + escapeHTML(t.nome) + ' <span class="badge-status ' + alerta.badge + '">' + alerta.texto + '</span></div>';
+    html += '<div class="tarefa-meta">👤 ' + escapeHTML(t.responsavel || '—') + ' · 📅 ' + formatarDataBR(t.inicio) + ' → ' + formatarDataBR(t.fim) + ' · 📊 ' + t.status + '%';
+    if (t.tipo === 'marco') html += ' · 🎯 Marco';
+    if (deps) html += ' · 🔗 ' + escapeHTML(deps);
+    html += '</div></div><div class="tarefa-acoes">';
+    html += '<button class="btn verde btn-pequeno" onclick="editarTarefa(' + t.id + ')">✏️</button>';
+    html += '<button class="btn perigo btn-pequeno" onclick="removerTarefa(' + t.id + ')">🗑️</button>';
+    html += '</div></div>';
+  });
+  cont.innerHTML = html;
+}
+function renderizarWorkload() {
+  var cont = document.getElementById('workloadPanel');
+  if (!STATE.tarefas.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;">Adicione tarefas para ver a carga.</p>'; return; }
+  var porResp = {};
+  STATE.tarefas.forEach(function(t) {
+    var r = t.responsavel || '(sem responsável)';
+    if (!porResp[r]) porResp[r] = { dias:0, tarefas:0 };
+    var dias = Math.max(1, Math.round((new Date(t.fim) - new Date(t.inicio)) / (1000*60*60*24)) + 1);
+    porResp[r].dias += dias; porResp[r].tarefas += 1;
+  });
+  var totalDias = Object.values(porResp).reduce(function(s, x){ return s + x.dias; }, 0) || 1;
+  var arr = Object.keys(porResp).map(function(k) { return { nome: k, dias: porResp[k].dias, tarefas: porResp[k].tarefas }; })
+    .sort(function(a, b) { return b.dias - a.dias; });
+  var html = '';
+  arr.forEach(function(item) {
+    var pct = (item.dias / totalDias) * 100;
+    var classe = 'ok';
+    if (pct > 40) classe = 'sobrecarga';
+    else if (pct > 25) classe = 'atencao';
+    var tag = pct > 40 ? '<span class="sobrecarga-tag">⚠️ SOBRECARGA</span>' : '';
+    html += '<div class="workload-item"><div class="workload-header">';
+    html += '<span class="nome">👤 ' + escapeHTML(item.nome) + tag + '</span>';
+    html += '<span class="dias">' + item.dias + ' dia(s) · ' + item.tarefas + ' tarefa(s) · ' + pct.toFixed(1) + '%</span>';
+    html += '</div><div class="workload-bar-bg"><div class="workload-bar-fill ' + classe + '" style="width:' + Math.min(pct, 100) + '%"></div></div></div>';
+  });
+  cont.innerHTML = html;
+}
+
+/* ===== AÇÕES TAREFA ===== */
+function salvarTarefa() {
+  var nome = val('inpNome').trim();
+  var inicio = val('inpInicio'), fim = val('inpFim');
+  if (!nome) return alert('Informe o nome.');
+  if (!inicio || !fim) return alert('Informe início e fim.');
+  if (new Date(inicio) > new Date(fim)) return alert('Início depois do fim.');
+  var deps = [];
+  document.querySelectorAll('#depList input[type="checkbox"]:checked').forEach(function(cb) { deps.push(parseInt(cb.value, 10)); });
+  var editandoId = parseInt(val('editandoId') || '0', 10);
+  if (editandoId) {
+    var t = STATE.tarefas.find(function(x){ return x.id === editandoId; });
+    if (t) {
+      t.nome = nome; t.responsavel = val('inpResp').trim();
+      t.inicio = inicio; t.fim = fim;
+      t.status = parseInt(val('inpStatus'), 10); t.tipo = val('inpTipo');
+      t.dependeDe = deps;
+    }
+  } else {
+    STATE.tarefas.push({ id: proximoId++, nome: nome, responsavel: val('inpResp').trim(), inicio: inicio, fim: fim, status: parseInt(val('inpStatus'), 10), tipo: val('inpTipo'), dependeDe: deps });
+  }
+  cancelarEdicao(); renderizarCronograma();
+}
+function editarTarefa(id) {
+  var t = STATE.tarefas.find(function(x){ return x.id === id; });
+  if (!t) return;
+  document.getElementById('inpNome').value = t.nome;
+  document.getElementById('inpResp').value = t.responsavel || '';
+  document.getElementById('inpInicio').value = t.inicio;
+  document.getElementById('inpFim').value = t.fim;
+  document.getElementById('inpStatus').value = t.status;
+  document.getElementById('inpTipo').value = t.tipo || 'normal';
+  document.getElementById('editandoId').value = id;
+  document.getElementById('formTitulo').textContent = '✏️ Editando';
+  document.getElementById('btnSalvar').textContent = '💾 Salvar';
+  document.getElementById('btnCancelar').style.display = 'inline-block';
+  renderizarDepList();
+  document.getElementById('inpNome').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function cancelarEdicao() {
+  ['inpNome','inpResp','inpInicio','inpFim'].forEach(function(id){ document.getElementById(id).value = ''; });
+  document.getElementById('inpStatus').value = '0';
+  document.getElementById('inpTipo').value = 'normal';
+  document.getElementById('editandoId').value = '';
+  document.getElementById('formTitulo').textContent = '➕ Adicionar Atividade';
+  document.getElementById('btnSalvar').textContent = '💾 Adicionar';
+  document.getElementById('btnCancelar').style.display = 'none';
+  renderizarDepList();
+}
+function removerTarefa(id) {
+  var t = STATE.tarefas.find(function(x){ return x.id === id; });
+  if (!t || !confirm('Remover "' + t.nome + '"?')) return;
+  STATE.tarefas = STATE.tarefas.filter(function(x){ return x.id !== id; });
+  STATE.tarefas.forEach(function(t) { if (t.dependeDe) t.dependeDe = t.dependeDe.filter(function(d){ return d !== id; }); });
+  renderizarCronograma();
+}
+function restaurarPadrao() {
+  if (!confirm('Restaurar cronograma padrão?')) return;
+  STATE.tarefas = JSON.parse(JSON.stringify(DEFAULT_TASKS));
+  proximoId = Math.max.apply(null, STATE.tarefas.map(function(t){ return t.id; })) + 1;
+  renderizarCronograma();
+}
+function limparTudo() {
+  if (!confirm('⚠️ Remover TODAS as atividades?')) return;
+  STATE.tarefas = []; renderizarCronograma();
+}
+
+/* ===== RISCOS ===== */
+function renderizarRiscos() {
+  var cont = document.getElementById('riscosList');
+  if (!STATE.riscos.length) { cont.innerHTML = '<p style="text-align:center;color:#888;font-style:italic;">Nenhum risco.</p>'; return; }
+  var html = '';
+  STATE.riscos.forEach(function(r) {
+    html += '<div class="risco-item"><div class="risco-header"><span class="risco-nome">⚠️ ' + escapeHTML(r.nome) + '</span>';
+    html += '<div class="risco-tags"><span class="risco-tag prob-' + r.prob + '">Prob: ' + r.prob + '</span>';
+    html += '<button class="btn perigo btn-pequeno" onclick="removerRisco(' + r.id + ')">🗑️</button></div></div>';
+    html += '<div style="font-size:0.9rem;"><strong>Mitigação:</strong> ' + escapeHTML(r.mitig || '—') + '</div></div>';
+  });
+  cont.innerHTML = html;
+}
+function adicionarRisco() {
+  var nome = val('riscoNome').trim();
+  if (!nome) return alert('Informe o risco.');
+  STATE.riscos.push({ id: proximoIdRisco++, nome: nome, prob: val('riscoProb'), mitig: val('riscoMitig').trim() });
+  document.getElementById('riscoNome').value = '';
+  document.getElementById('riscoMitig').value = '';
+  renderizarRiscos(); salvarEstado();
+}
+function removerRisco(id) {
+  STATE.riscos = STATE.riscos.filter(function(r){ return r.id !== id; });
+  renderizarRiscos(); salvarEstado();
+}
+
+/* ===== HELPERS ===== */
+function formatarData(d) { return ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '/' + d.getFullYear(); }
+function formatarDataBR(iso) { if (!iso || iso === '—') return '—'; var p = iso.split('-'); return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : iso; }
+function escapeHTML(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+
+/* ===== GERAR DOCUMENTO ===== */
+function gerarDocumento(fase, modo) {
+  salvarEstado();
+  if (fase === 'inscricao') {
+    if (!STATE.grupo.nome) return alert('⚠️ Preencha o nome do grupo.');
+    if (!STATE.grupo.projeto && !STATE.grupo.projetoCustom) return alert('⚠️ Escolha o projeto.');
+    if (!STATE.grupo.tipoApp) return alert('⚠️ Selecione o tipo de aplicação.');
+    if (!STATE.integrantes.length) return alert('⚠️ Adicione pelo menos 1 integrante.');
+    if (!STATE.apresentacao.objetivo) return alert('⚠️ Preencha o objetivo geral.');
+  }
+  if (fase === 'parcial') {
+    if (!STATE.escopo.dentro.length) return alert('⚠️ Preencha o escopo.');
+    if (!STATE.funcionalidades.length) return alert('⚠️ Adicione funcionalidades.');
+    if (!STATE.requisitos.RF.length) return alert('⚠️ Adicione requisitos funcionais.');
+    if (!STATE.requisitos.RNF.length) return alert('⚠️ Adicione requisitos não funcionais.');
+    if (!STATE.tarefas.length) return alert('⚠️ Preencha o cronograma.');
+  }
+  if (fase === 'final') {
+    if (!STATE.modelagem.casoUso) return alert('⚠️ Informe o link do Diagrama de Caso de Uso.');
+    if (!STATE.modelagem.der) return alert('⚠️ Informe o link do DER.');
+    if (!STATE.modelagem.tabelas) return alert('⚠️ Informe o link das Tabelas Relacionais.');
+    if (!STATE.modelagem.dicionario) return alert('⚠️ Preencha o Dicionário de Dados.');
+    if (!STATE.modelagem.normalizacao) return alert('⚠️ Preencha o Registro de Normalização.');
+    if (!STATE.modelagem.sql) return alert('⚠️ Informe o link dos Scripts SQL.');
+    if (!STATE.entregaveis.video) return alert('⚠️ Informe o link do vídeo pitch.');
+  }
+
+  var docHTML = buildDocHTML(fase);
+  var nomeArq = 'proj_sw_' + fase + '_' + (STATE.grupo.nome || 'grupo').replace(/\s+/g,'_') + '.html';
+
+  if (modo === 'preview') {
+    var w = window.open('', '_blank'); w.document.write(docHTML); w.document.close();
+  } else if (modo === 'download') {
+    var blob = new Blob([docHTML], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = nomeArq;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } else if (modo === 'print') {
+    var w2 = window.open('', '_blank'); w2.document.write(docHTML); w2.document.close();
+    setTimeout(function() { w2.print(); }, 500);
+  }
+}
+
+function buildDocHTML(fase) {
+  var g = STATE.grupo;
+  var projetoNome = g.projeto === 'Outro (especificar)' ? g.projetoCustom : g.projeto;
+  var hoje = new Date();
+  var dataStr = formatarData(hoje);
+  var faseNome = fase === 'inscricao' ? 'Inscrição' : (fase === 'parcial' ? 'Atualização Parcial' : 'Entrega Final');
+  var faseCor = fase === 'inscricao' ? '#1565c0' : (fase === 'parcial' ? '#f57c00' : '#d32f2f');
+
+  var css = 'body{font-family:"Segoe UI",Tahoma,sans-serif;color:#1e2a3e;background:#fff;max-width:900px;margin:0 auto;padding:2rem;line-height:1.6;font-size:14px}'
+    + 'h1{color:#1e2a3e;font-size:1.8rem;border-bottom:3px solid ' + faseCor + ';padding-bottom:0.5rem;margin:1rem 0}'
+    + 'h2{color:' + faseCor + ';font-size:1.25rem;margin:1.8rem 0 0.7rem 0;border-bottom:1px solid #e0e6ed;padding-bottom:0.3rem;page-break-after:avoid}'
+    + 'h3{color:#1e2a3e;font-size:1.05rem;margin:1.1rem 0 0.5rem 0}'
+    + 'h4{color:' + faseCor + ';font-size:0.95rem;margin:0.8rem 0 0.4rem 0}'
+    + 'p{margin:0.4rem 0;text-align:justify}ul,ol{padding-left:1.5rem;margin:0.5rem 0}li{margin-bottom:0.25rem}'
+    + 'table{width:100%;border-collapse:collapse;margin:0.7rem 0;font-size:0.88rem}'
+    + 'th,td{border:1px solid #ccc;padding:0.5rem 0.7rem;text-align:left;vertical-align:top}'
+    + 'th{background:#1e2a3e;color:#fff;font-weight:600}tr:nth-child(even) td{background:#f8f9fb}'
+    + '.capa{text-align:center;padding:2.5rem 0 2rem 0;border-bottom:3px solid ' + faseCor + ';margin-bottom:2rem;page-break-after:always}'
+    + '.capa .logo{display:inline-block;padding:0.7rem 1.4rem;background:' + faseCor + ';color:#fff;font-weight:800;font-size:1.3rem;border-radius:10px;margin-bottom:1rem}'
+    + '.capa .uc{font-size:1rem;color:#555;margin-bottom:0.3rem}'
+    + '.capa h1{border:none;margin:0.5rem 0;font-size:2rem}'
+    + '.capa .fase{font-size:1.15rem;color:' + faseCor + ';font-weight:700;margin-top:0.4rem}'
+    + '.capa .data{font-size:0.95rem;color:#777;margin-top:1.2rem}'
+    + '.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:1rem 0}'
+    + '.info-box{background:#f4f6f9;padding:0.7rem 1rem;border-radius:8px;border-left:4px solid ' + faseCor + '}'
+    + '.info-box strong{display:block;color:' + faseCor + ';font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.2rem}'
+    + '.declaracao{background:#fff8e1;border-left:4px solid #f9a825;padding:0.9rem 1.2rem;border-radius:0 8px 8px 0;margin:1.2rem 0;font-size:0.95rem}'
+    + '.assinatura{margin-top:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}'
+    + '.assinatura .linha{border-top:1px solid #333;padding-top:0.4rem;text-align:center;font-size:0.85rem}'
+    + '.rodape{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0e6ed;text-align:center;font-size:0.82rem;color:#777}'
+    + 'code{background:#f0f2f5;padding:0.1rem 0.4rem;border-radius:5px;font-size:0.85rem;color:#d32f2f;font-family:Consolas,monospace}'
+    + '@media print{body{padding:0;font-size:12px}h2{page-break-after:avoid}table{page-break-inside:avoid}.capa{page-break-after:always}}'
+    + '@page{size:A4;margin:2cm}';
+
+  var html = '<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="UTF-8">\n<title>' + faseNome + ' · ' + escapeHTML(g.nome || 'Grupo') + ' · Proj. Eng. Software</title>\n<style>' + css + '</style>\n</head>\n<body>';
+
+  // CAPA
+  html += '<div class="capa">';
+  html += '<div class="logo">UNA</div>';
+  html += '<div class="uc">Centro Universitário UNA · Barreiro</div>';
+  html += '<div class="uc" style="font-weight:600;">Projeto e Engenharia de Software</div>';
+  html += '<h1>' + escapeHTML(g.nome || 'Grupo') + '</h1>';
+  html += '<div class="fase">' + faseNome + '</div>';
+  if (projetoNome) html += '<div style="font-size:1rem;color:#555;margin-top:0.8rem;">Projeto: ' + escapeHTML(projetoNome) + '</div>';
+  html += '<div class="data">' + dataStr + '</div>';
+  html += '</div>';
+
+  // 1. IDENTIFICAÇÃO
+  html += '<h2>1. Identificação do Grupo</h2>';
+  html += '<div class="info-grid">';
+  html += '<div class="info-box"><strong>Nome do Grupo</strong>' + escapeHTML(g.nome || '—') + '</div>';
+  html += '<div class="info-box"><strong>Líder Técnico / PO</strong>' + escapeHTML(g.lider || '—') + '</div>';
+  html += '<div class="info-box"><strong>Projeto</strong>' + escapeHTML(projetoNome || '—') + '</div>';
+  html += '<div class="info-box"><strong>Tipo de Aplicação</strong>' + escapeHTML(g.tipoApp || '—') + '</div>';
+  html += '</div>';
+
+  // 2. INTEGRANTES
+  html += '<h2>2. Integrantes e Papéis</h2>';
+  if (STATE.integrantes.length) {
+    html += '<table><tr><th>#</th><th>Nome</th><th>Matrícula</th><th>Função</th></tr>';
+    STATE.integrantes.forEach(function(i, idx) {
+      html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(i.nome) + '</td><td>' + escapeHTML(i.matricula || '—') + '</td><td>' + escapeHTML(i.funcao || '—') + '</td></tr>';
+    });
+    html += '</table>';
+  } else { html += '<p><em>Nenhum integrante.</em></p>'; }
+
+  // 3. APRESENTAÇÃO
+  html += '<h2>3. Apresentação do Projeto</h2>';
+  if (STATE.apresentacao.objetivo) html += '<p><strong>Objetivo geral:</strong> ' + escapeHTML(STATE.apresentacao.objetivo) + '</p>';
+  if (STATE.apresentacao.justificativa) html += '<p><strong>Justificativa:</strong> ' + escapeHTML(STATE.apresentacao.justificativa) + '</p>';
+  if (STATE.apresentacao.publico) html += '<p><strong>Público-alvo:</strong> ' + escapeHTML(STATE.apresentacao.publico) + '</p>';
+  if (STATE.apresentacao.diferenciais) html += '<p><strong>Diferenciais:</strong> ' + escapeHTML(STATE.apresentacao.diferenciais) + '</p>';
+
+  // 4. ESCOPO
+  if (fase !== 'inscricao') {
+    html += '<h2>4. Escopo</h2>';
+    html += '<h3>4.1 Dentro do escopo</h3>';
+    html += STATE.escopo.dentro.length ? '<ul>' + STATE.escopo.dentro.map(function(i){ return '<li>' + escapeHTML(i) + '</li>'; }).join('') + '</ul>' : '<p><em>Não definido.</em></p>';
+    html += '<h3>4.2 Fora do escopo</h3>';
+    html += STATE.escopo.fora.length ? '<ul>' + STATE.escopo.fora.map(function(i){ return '<li>' + escapeHTML(i) + '</li>'; }).join('') + '</ul>' : '<p><em>Não definido.</em></p>';
+  } else {
+    html += '<h2>4. Escopo (preliminar)</h2>';
+    html += STATE.escopo.dentro.length ? '<ul>' + STATE.escopo.dentro.map(function(i){ return '<li>' + escapeHTML(i) + '</li>'; }).join('') + '</ul>' : '<p><em>A definir na entrega parcial.</em></p>';
+  }
+
+  // 5. FUNCIONALIDADES
+  if (fase !== 'inscricao') {
+    html += '<h2>5. Lista de Funcionalidades</h2>';
+    if (STATE.funcionalidades.length) {
+      html += '<table><tr><th>#</th><th>Funcionalidade</th><th>Prioridade</th><th>Descrição</th></tr>';
+      STATE.funcionalidades.forEach(function(f, idx) {
+        html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(f.nome) + '</td><td>' + escapeHTML(f.prioridade) + '</td><td>' + escapeHTML(f.desc || '—') + '</td></tr>';
+      });
+      html += '</table>';
+    } else { html += '<p><em>Nenhuma funcionalidade.</em></p>'; }
+
+    // 6. REQUISITOS
+    html += '<h2>6. Levantamento de Requisitos</h2>';
+    html += '<h3>6.1 Requisitos Funcionais (RF)</h3>';
+    if (STATE.requisitos.RF.length) {
+      html += '<table><tr><th>ID</th><th>Descrição</th></tr>';
+      STATE.requisitos.RF.forEach(function(r, idx) {
+        html += '<tr><td>RF' + (idx+1).toString().padStart(2,'0') + '</td><td>' + escapeHTML(r) + '</td></tr>';
+      });
+      html += '</table>';
+    } else { html += '<p><em>Não definidos.</em></p>'; }
+    html += '<h3>6.2 Requisitos Não Funcionais (RNF)</h3>';
+    if (STATE.requisitos.RNF.length) {
+      html += '<table><tr><th>ID</th><th>Descrição</th></tr>';
+      STATE.requisitos.RNF.forEach(function(r, idx) {
+        html += '<tr><td>RNF' + (idx+1).toString().padStart(2,'0') + '</td><td>' + escapeHTML(r) + '</td></tr>';
+      });
+      html += '</table>';
+    } else { html += '<p><em>Não definidos.</em></p>'; }
+  }
+
+  // 7. TECNOLOGIAS
+  var numTec = fase === 'inscricao' ? '5' : '7';
+  html += '<h2>' + numTec + '. Tecnologias e Ferramentas</h2>';
+  if (STATE.tecnologias.length) {
+    html += '<table><tr><th>#</th><th>Tecnologia</th><th>Categoria</th><th>Versão / Finalidade</th></tr>';
+    STATE.tecnologias.forEach(function(t, idx) {
+      html += '<tr><td>' + (idx+1) + '</td><td>' + escapeHTML(t.nome) + '</td><td>' + escapeHTML(t.categoria || '—') + '</td><td>' + escapeHTML(t.versao || '—') + '</td></tr>';
+    });
+    html += '</table>';
+  } else { html += '<p><em>Nenhuma tecnologia registrada.</em></p>'; }
+
+  // 8. CRONOGRAMA
+  var numCron = fase === 'inscricao' ? '6' : '8';
+  html += '<h2>' + numCron + '. Cronograma e Divisão de Tarefas</h2>';
+  if (STATE.tarefas.length) {
+    var ord = STATE.tarefas.slice().sort(function(a, b){ return new Date(a.inicio) - new Date(b.inicio); });
+    html += '<table><tr><th>Atividade</th><th>Responsável</th><th>Início</th><th>Fim</th><th>Status</th></tr>';
+    ord.forEach(function(t) {
+      html += '<tr><td>' + escapeHTML(t.nome) + '</td><td>' + escapeHTML(t.responsavel || '—') + '</td><td>' + formatarDataBR(t.inicio) + '</td><td>' + formatarDataBR(t.fim) + '</td><td>' + t.status + '%</td></tr>';
+    });
+    html += '</table>';
+
+    // Carga por integrante
+    var porResp = {};
+    STATE.tarefas.forEach(function(t) {
+      var r = t.responsavel || '(sem responsável)';
+      if (!porResp[r]) porResp[r] = { dias:0, tarefas:0 };
+      var dias = Math.max(1, Math.round((new Date(t.fim) - new Date(t.inicio)) / (1000*60*60*24)) + 1);
+      porResp[r].dias += dias; porResp[r].tarefas += 1;
+    });
+    var totalDias = Object.values(porResp).reduce(function(s, x){ return s + x.dias; }, 0) || 1;
+    html += '<h3>Carga por Integrante</h3><table><tr><th>Responsável</th><th>Tarefas</th><th>Dias</th><th>% do total</th></tr>';
+    Object.keys(porResp).sort(function(a,b){ return porResp[b].dias - porResp[a].dias; }).forEach(function(k) {
+      html += '<tr><td>' + escapeHTML(k) + '</td><td>' + porResp[k].tarefas + '</td><td>' + porResp[k].dias + '</td><td>' + (porResp[k].dias / totalDias * 100).toFixed(1) + '%</td></tr>';
+    });
+    html += '</table>';
+  } else { html += '<p><em>Nenhuma atividade.</em></p>'; }
+
+  // 9. MODELAGEM (parcial e final)
+  if (fase !== 'inscricao') {
+    html += '<h2>9. Modelagem de Dados</h2>';
+
+    html += '<h3>9.1 Diagrama de Caso de Uso</h3>';
+    if (STATE.modelagem.casoUso) html += '<p><strong>Link:</strong> <a href="' + escapeHTML(STATE.modelagem.casoUso) + '">' + escapeHTML(STATE.modelagem.casoUso) + '</a></p>';
+    if (STATE.modelagem.casoUsoDesc) html += '<p><strong>Atores e casos:</strong> ' + escapeHTML(STATE.modelagem.casoUsoDesc) + '</p>';
+    if (!STATE.modelagem.casoUso && !STATE.modelagem.casoUsoDesc) html += '<p><em>Não informado.</em></p>';
+
+    html += '<h3>9.2 Diagrama Entidade-Relacionamento (DER)</h3>';
+    if (STATE.modelagem.der) html += '<p><strong>Link:</strong> <a href="' + escapeHTML(STATE.modelagem.der) + '">' + escapeHTML(STATE.modelagem.der) + '</a></p>';
+    if (STATE.modelagem.derDesc) html += '<p><strong>Entidades e relacionamentos:</strong> ' + escapeHTML(STATE.modelagem.derDesc) + '</p>';
+    if (!STATE.modelagem.der && !STATE.modelagem.derDesc) html += '<p><em>Não informado.</em></p>';
+
+    html += '<h3>9.3 Diagrama de Tabelas Relacionais</h3>';
+    if (STATE.modelagem.tabelas) html += '<p><strong>Link:</strong> <a href="' + escapeHTML(STATE.modelagem.tabelas) + '">' + escapeHTML(STATE.modelagem.tabelas) + '</a></p>';
+    if (STATE.modelagem.tabelasDesc) html += '<p><strong>Chaves e relações:</strong> ' + escapeHTML(STATE.modelagem.tabelasDesc) + '</p>';
+    if (!STATE.modelagem.tabelas && !STATE.modelagem.tabelasDesc) html += '<p><em>Não informado.</em></p>';
+
+    html += '<h3>9.4 Dicionário de Dados</h3>';
+    if (STATE.modelagem.dicionarioLink) html += '<p><strong>Link:</strong> <a href="' + escapeHTML(STATE.modelagem.dicionarioLink) + '">' + escapeHTML(STATE.modelagem.dicionarioLink) + '</a></p>';
+    if (STATE.modelagem.dicionario) html += '<pre style="background:#f4f6f9;padding:0.8rem;border-radius:8px;font-size:0.82rem;white-space:pre-wrap;border:1px solid #e0e6ed;">' + escapeHTML(STATE.modelagem.dicionario) + '</pre>';
+    if (!STATE.modelagem.dicionario && !STATE.modelagem.dicionarioLink) html += '<p><em>Não informado.</em></p>';
+
+    html += '<h3>9.5 Registro da Normalização</h3>';
+    if (STATE.modelagem.normalizacao) html += '<pre style="background:#f4f6f9;padding:0.8rem;border-radius:8px;font-size:0.82rem;white-space:pre-wrap;border:1px solid #e0e6ed;">' + escapeHTML(STATE.modelagem.normalizacao) + '</pre>';
+    else html += '<p><em>Não informado.</em></p>';
+
+    html += '<h3>9.6 Scripts SQL (Criação do Banco)</h3>';
+    if (STATE.modelagem.sql) html += '<p><strong>Link do arquivo:</strong> <a href="' + escapeHTML(STATE.modelagem.sql) + '">' + escapeHTML(STATE.modelagem.sql) + '</a></p>';
+    if (STATE.modelagem.sqlDesc) html += '<p><strong>Resumo:</strong> ' + escapeHTML(STATE.modelagem.sqlDesc) + '</p>';
+    if (!STATE.modelagem.sql && !STATE.modelagem.sqlDesc) html += '<p><em>Não informado.</em></p>';
+  }
+
+  // 10. PROTÓTIPO (parcial e final)
+  if (fase !== 'inscricao') {
+    var numProto = '10';
+    html += '<h2>' + numProto + '. Protótipo / Deploy</h2>';
+    if (STATE.prototipo.link) html += '<p><strong>Link:</strong> <a href="' + escapeHTML(STATE.prototipo.link) + '">' + escapeHTML(STATE.prototipo.link) + '</a></p>';
+    if (STATE.prototipo.desc) html += '<p><strong>Estado atual:</strong> ' + escapeHTML(STATE.prototipo.desc) + '</p>';
+    if (STATE.prototipo.repo) html += '<p><strong>Repositório:</strong> <a href="' + escapeHTML(STATE.prototipo.repo) + '">' + escapeHTML(STATE.prototipo.repo) + '</a></p>';
+    if (!STATE.prototipo.link && !STATE.prototipo.desc) html += '<p><em>Nenhum protótipo informado.</em></p>';
+  }
+
+  // 11. DECISÕES TÉCNICAS
+  if (fase !== 'inscricao') {
+    html += '<h2>11. Decisões Técnicas</h2>';
+    if (STATE.tecnico.arquitetura) html += '<p><strong>Arquitetura:</strong> ' + escapeHTML(STATE.tecnico.arquitetura) + '</p>';
+    if (STATE.tecnico.sgbd) html += '<p><strong>SGBD:</strong> ' + escapeHTML(STATE.tecnico.sgbd) + '</p>';
+    if (STATE.tecnico.api) html += '<p><strong>Padrão de API:</strong> ' + escapeHTML(STATE.tecnico.api) + '</p>';
+    if (STATE.tecnico.auth) html += '<p><strong>Autenticação:</strong> ' + escapeHTML(STATE.tecnico.auth) + '</p>';
+    if (STATE.tecnico.observacoes) html += '<p><strong>Observações:</strong> ' + escapeHTML(STATE.tecnico.observacoes) + '</p>';
+  }
+
+  // 12. RISCOS
+  if (fase !== 'inscricao') {
+    html += '<h2>12. Matriz de Riscos</h2>';
+    if (STATE.riscos.length) {
+      html += '<table><tr><th>Risco</th><th>Probabilidade</th><th>Mitigação</th></tr>';
+      STATE.riscos.forEach(function(r) {
+        html += '<tr><td>' + escapeHTML(r.nome) + '</td><td>' + r.prob + '</td><td>' + escapeHTML(r.mitig || '—') + '</td></tr>';
+      });
+      html += '</table>';
+    } else { html += '<p><em>Nenhum risco.</em></p>'; }
+  }
+
+  // 13. ENTREGÁVEIS FINAIS
+  if (fase === 'final') {
+    html += '<h2>13. Entregáveis Finais</h2>';
+    html += '<table><tr><th>Item</th><th>Link</th></tr>';
+    html += '<tr><td>Vídeo Pitch (até 5 min)</td><td>' + (STATE.entregaveis.video ? '<a href="' + escapeHTML(STATE.entregaveis.video) + '">' + escapeHTML(STATE.entregaveis.video) + '</a>' : '<em>não informado</em>') + '</td></tr>';
+    html += '<tr><td>Software em produção</td><td>' + (STATE.entregaveis.deploy ? '<a href="' + escapeHTML(STATE.entregaveis.deploy) + '">' + escapeHTML(STATE.entregaveis.deploy) + '</a>' : '<em>não informado</em>') + '</td></tr>';
+    html += '<tr><td>Repositório GitHub</td><td>' + (STATE.entregaveis.repo ? '<a href="' + escapeHTML(STATE.entregaveis.repo) + '">' + escapeHTML(STATE.entregaveis.repo) + '</a>' : '<em>não informado</em>') + '</td></tr>';
+    html += '</table>';
+
+    if (STATE.entregaveis.conclusoes) {
+      html += '<h2>14. Conclusões e Aprendizados</h2>';
+      html += '<p>' + escapeHTML(STATE.entregaveis.conclusoes).replace(/\n/g, '</p><p>') + '</p>';
+    }
+    if (STATE.entregaveis.referencias) {
+      html += '<h2>15. Referências</h2>';
+      html += '<p>' + escapeHTML(STATE.entregaveis.referencias).replace(/\n/g, '</p><p>') + '</p>';
+    }
+  }
+
+  // Declaração (inscrição)
+  if (fase === 'inscricao') {
+    html += '<div class="declaracao">';
+    html += '<strong>Declaração de ciência dos prazos:</strong> declaramos ciência de que a <strong>atualização parcial</strong> ocorrerá em <strong>20/11</strong> e a <strong>entrega final</strong> em <strong>30/11</strong>, e que o não cumprimento dos prazos implicará em prejuízo na avaliação.';
+    html += '</div>';
+    html += '<div class="assinatura">';
+    html += '<div class="linha">Líder Técnico / PO</div>';
+    html += '<div class="linha">Professor da UC</div>';
+    html += '</div>';
+  }
+
+  html += '<div class="rodape">Documento gerado em ' + dataStr + ' · Projeto e Engenharia de Software · UNA Barreiro</div>';
+  html += '</body>\n</html>';
+
+  return html;
+}
+
+/* ===== DOWNLOAD DO CONSTRUTOR ===== */
+function baixarHTML() {
+  salvarEstado();
+  var clone = document.documentElement.cloneNode(true);
+  var bodyClone = clone.querySelector('body');
+  bodyClone.removeAttribute('style');
+  var pf = clone.querySelector('#progressFill'); if (pf) pf.style.width = '0%';
+  var st = clone.querySelector('#scrollTop'); if (st) st.classList.remove('visible');
+  ['integrantesList','funcionalidadesList','listaDentro','listaFora','listaRF','listaRNF',
+   'tecnologiasList','ganttRows','listaTarefas','workloadPanel','riscosList','depList'].forEach(function(id) {
+    var el = clone.querySelector('#' + id);
+    if (el) el.innerHTML = '';
+  });
+  var oldSeed = clone.querySelector('#dadosEmbutidos');
+  if (oldSeed) oldSeed.remove();
+  var seed = document.createElement('script');
+  seed.type = 'application/json';
+  seed.id = 'dadosEmbutidos';
+  seed.textContent = JSON.stringify(STATE).replace(/</g, '\\u003c');
+  bodyClone.insertBefore(seed, bodyClone.firstChild);
+  var pagina = '<!DOCTYPE html>\n' + clone.outerHTML;
+  var blob = new Blob([pagina], { type: 'text/html;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'construtor_proj_sw_' + (STATE.grupo.nome || 'grupo').replace(/\s+/g,'_') + '.html';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function resetarTudo() {
+  if (confirm('Recarregar a página? Os dados permanecem salvos no navegador.')) location.reload();
+}
+
+/* ===== INICIALIZAÇÃO ===== */
+function renderizarTudo() {
+  document.getElementById('gNome').value = STATE.grupo.nome || '';
+  document.getElementById('gProjeto').value = STATE.grupo.projeto || '';
+  document.getElementById('gProjetoCustom').value = STATE.grupo.projetoCustom || '';
+  document.getElementById('gTipoApp').value = STATE.grupo.tipoApp || '';
+  document.getElementById('gLider').value = STATE.grupo.lider || '';
+  document.getElementById('gObjetivo').value = STATE.apresentacao.objetivo || '';
+  document.getElementById('gJustificativa').value = STATE.apresentacao.justificativa || '';
+  document.getElementById('gPublico').value = STATE.apresentacao.publico || '';
+  document.getElementById('gDiferenciais').value = STATE.apresentacao.diferenciais || '';
+  document.getElementById('modCasoUso').value = STATE.modelagem.casoUso || '';
+  document.getElementById('modCasoUsoDesc').value = STATE.modelagem.casoUsoDesc || '';
+  document.getElementById('modDER').value = STATE.modelagem.der || '';
+  document.getElementById('modDERDesc').value = STATE.modelagem.derDesc || '';
+  document.getElementById('modTabelas').value = STATE.modelagem.tabelas || '';
+  document.getElementById('modTabelasDesc').value = STATE.modelagem.tabelasDesc || '';
+  document.getElementById('modDicionarioLink').value = STATE.modelagem.dicionarioLink || '';
+  document.getElementById('modDicionario').value = STATE.modelagem.dicionario || '';
+  document.getElementById('modNormalizacao').value = STATE.modelagem.normalizacao || '';
+  document.getElementById('modSQL').value = STATE.modelagem.sql || '';
+  document.getElementById('modSQLDesc').value = STATE.modelagem.sqlDesc || '';
+  document.getElementById('protoLink').value = STATE.prototipo.link || '';
+  document.getElementById('protoDesc').value = STATE.prototipo.desc || '';
+  document.getElementById('protoRepo').value = STATE.prototipo.repo || '';
+  document.getElementById('tecArquitetura').value = STATE.tecnico.arquitetura || '';
+  document.getElementById('tecSGBD').value = STATE.tecnico.sgbd || '';
+  document.getElementById('tecApi').value = STATE.tecnico.api || '';
+  document.getElementById('tecAuth').value = STATE.tecnico.auth || '';
+  document.getElementById('tecObservacoes').value = STATE.tecnico.observacoes || '';
+  document.getElementById('entVideo').value = STATE.entregaveis.video || '';
+  document.getElementById('entDeploy').value = STATE.entregaveis.deploy || '';
+  document.getElementById('entRepo').value = STATE.entregaveis.repo || '';
+  document.getElementById('entConclusoes').value = STATE.entregaveis.conclusoes || '';
+  document.getElementById('entReferencias').value = STATE.entregaveis.referencias || '';
+  toggleProjetoCustom();
+  renderizarIntegrantes();
+  renderizarFuncionalidades();
+  renderizarEscopo();
+  renderizarRequisitos();
+  renderizarTecnologias();
+  renderizarRiscos();
+  renderizarCronograma();
+}
+
+// Seed embutido
+(function tentarCarregarSeed() {
+  var seedEl = document.getElementById('dadosEmbutidos');
+  if (seedEl) {
+    try {
+      var d = JSON.parse(seedEl.textContent);
+      if (d && typeof d === 'object') {
+        Object.keys(STATE).forEach(function(k) { if (d[k] !== undefined) STATE[k] = d[k]; });
+        SEED_INICIAL = true;
+      }
+    } catch(e) {}
+  }
+})();
+
+carregarEstado();
+renderizarTudo();
+atualizarContagens();
+setInterval(atualizarContagens, 60000);
+</script>
+
+</body></html>

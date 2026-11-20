@@ -1,0 +1,15 @@
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#e8f7fb','primaryBorderColor':'#0b7a8f','lineColor':'#345','fontFamily':'Arial'}}}%%
+flowchart LR
+    subgraph PC["Computador do jogador"]
+        G["Jogo (Godot 4)<br/>cliente / frontend<br/>login, salas, puzzles, bancada"]
+        L[("Save local JSON<br/>(modo offline / cache)")]
+        N["Navegador<br/>página /relatorio"]
+    end
+    subgraph SRV["Backend (Python 3 + http.server)"]
+        API["API REST JSON<br/>/api/cadastro · /api/login<br/>/api/progresso · /api/eventos<br/>/api/relatorio"]
+        DB[("SQLite<br/>rato_cyberlab.db<br/>12 tabelas")]
+    end
+    G -- "HTTP + JSON<br/>(token Bearer)" --> API
+    G --- L
+    N -- "HTTP" --> API
+    API --- DB

@@ -1,0 +1,16 @@
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#e8f7fb','primaryBorderColor':'#0b7a8f','lineColor':'#345','fontFamily':'Arial'}}}%%
+erDiagram
+    JOGADOR ||--o{ SESSAO : "abre"
+    JOGADOR ||--o| PROGRESSO : "possui"
+    JOGADOR ||--o{ INVENTARIO : "carrega"
+    JOGADOR ||--o{ RECEITA_APRENDIDA : "aprende"
+    JOGADOR ||--o{ MARCADOR : "conquista"
+    JOGADOR ||--o{ EVENTO_ERRO : "comete"
+    SALA ||--o{ PROGRESSO : "é a sala atual de"
+    SALA ||--o{ EVENTO_ERRO : "onde ocorre"
+    TIPO_ERRO ||--o{ EVENTO_ERRO : "classifica"
+    ITEM ||--o{ INVENTARIO : "aparece em"
+    ITEM ||--o| RECEITA : "é produzido por"
+    RECEITA ||--o{ INGREDIENTE_RECEITA : "usa"
+    ITEM ||--o{ INGREDIENTE_RECEITA : "é ingrediente de"
+    RECEITA ||--o{ RECEITA_APRENDIDA : "é aprendida em"
